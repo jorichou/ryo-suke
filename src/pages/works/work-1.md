@@ -9,6 +9,10 @@ image:
     alt: 'Astroのロゴ。'
 tags: ["Webサイト", "Astro"]
 type: "Webサイト"
+year: "2026"
+role: "all"
+source: ""
+link: ""
 ---
 
 
