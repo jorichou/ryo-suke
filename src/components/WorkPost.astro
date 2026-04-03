@@ -1,7 +1,8 @@
 ---
-const { postDate, img_url, work_type, title, url } = Astro.props;
+const { pubyear, img_url, work_type, title, url } = Astro.props;
 
-const year = new Date(postDate).getFullYear();
+const year = new Date(pubyear).getFullYear();
+// const year = pubyear;
 ---
 
 <style>

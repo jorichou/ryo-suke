@@ -12,7 +12,7 @@ const pageTitle = "Works";
         <div slot="chapter-content" class="chapter-box">
             <div class="chapter-content">
                 <ul class="work-list">
-                    {works.map((work)=> <WorkPost postDate={work.frontmatter.pubDate} img_url={work.frontmatter.image.url} work_type={work.frontmatter.type} title={work.frontmatter.title} url={work.url} />)   }
+                    {works.map((work)=> <WorkPost pubyear={work.frontmatter.year} img_url={work.frontmatter.image.url} work_type={work.frontmatter.type} title={work.frontmatter.title} url={work.url} />)   }
                 </ul>
             </div>
         </div>
