@@ -1,19 +1,44 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
-const { frontmatter } = Astro.props;
+import TableOfContents from "../components/TableOfContents.astro";
+const { frontmatter, headings } = Astro.props;
 ---
 
 <BaseLayout pageTitle={frontmatter.title}>
-    <p>{frontmatter.pubDate.toString().slice(0,10)}</p>
-    <p><em>{frontmatter.description}</em></p>
-    <p>著者: {frontmatter.author}</p>
+    <h1>{frontmatter.title}</h1>
+    <table>
+        <tr>
+            <th scope="row">Type</th>
+            <td>{frontmatter.type}</td>
+        </tr>
+        <tr>
+            <th scope="row">Year</th>
+            <td>{frontmatter.year}</td>
+        </tr>
+        <tr>
+            <th scope="row">Role</th>
+            <td>{frontmatter.role}</td>
+        </tr>
+        <tr>
+            <th scope="row">Source</th>
+            <td>{frontmatter.source}</td>
+        </tr>
+        <tr>
+            <th scope="row">Link</th>
+            <td>{frontmatter.link}</td>
+        </tr>
+    </table>
+    <!-- <p><em>{frontmatter.description}</em></p> -->
     <img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt} />
-    <div class="tags">{
+    <!-- <div class="tags">{
         frontmatter.tags.map((tag) => (
             <p class="tag"><a href={`/tags/${tag}`}>{tag}</a></p>
         ))}
-    </div>
+    </div> -->
     <slot />
+    <aside>
+        <TableOfContents headings={headings} />
+    </aside>
 </BaseLayout>
 <style>
     a {
