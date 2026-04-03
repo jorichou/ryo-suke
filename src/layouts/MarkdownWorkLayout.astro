@@ -27,11 +27,27 @@ const { frontmatter, headings } = Astro.props;
                     </div>
                     <div class="table-row">
                         <div class="table-header">Source</div>
-                        <div class="table-content">{frontmatter.source && <a href={frontmatter.source} target="_blank" rel="noopener noreferrer">{frontmatter.source}</a>}</div>
+                        <div class="table-content">
+                            {frontmatter.source_url && frontmatter.source_url !== "---" ? (
+                                <a href={frontmatter.source_url} target="_blank" rel="noopener noreferrer">
+                                    {frontmatter.source_name || frontmatter.source_url}
+                                </a>
+                            ) : (
+                                frontmatter.source_name || frontmatter.source_url || "---"
+                            )}
+                        </div>
                     </div>
                     <div class="table-row">
                         <div class="table-header">Link</div>
-                        <div class="table-content">{frontmatter.link && <a href={frontmatter.link} target="_blank" rel="noopener noreferrer">{frontmatter.link}</a>}</div>
+                        <div class="table-content">
+                            {frontmatter.link && frontmatter.link !== "---" ? (
+                                <a href={frontmatter.link} target="_blank" rel="noopener noreferrer">
+                                    {frontmatter.link_name || frontmatter.link}
+                                </a>
+                            ) : (
+                                frontmatter.link_name || frontmatter.link || "---"
+                            )}
+                        </div>
                     </div>
                 </div>
                    
@@ -49,6 +65,7 @@ const { frontmatter, headings } = Astro.props;
         <div class="post-layout">
             <div class="work-content">
                 <slot />
+                <!-- <h2>Media</h2> -->
             </div>
             <aside>
                 <TableOfContents headings={headings} />

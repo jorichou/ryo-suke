@@ -1,27 +1,29 @@
 ---
 layout: ../../layouts/MarkdownWorkLayout.astro
-title: 'ポートフォリオサイト'
-pubDate: 2025-12-13
-description: 'ポートフォリオサイトの紹介'
+title: 'CSSJ2026'
+pubDate: 2026-03-02
+description: '第6回計算社会科学会（CSSJ2026）で発表した論文と発表資料'
 author: 'ryousuke'
 image:
     url: 'https://docs.astro.build/assets/full-logo-light.png'
     alt: 'Astroのロゴ。'
-tags: ["Webサイト", "Astro"]
-type: "Webサイト"
+tags: ["計算社会科学会", "研究発表", "ポスター発表", "Yahoo!知恵袋", "外部リンク", "YouTube"]
+type: "研究発表"
+year: "2026"
+role: "Lead author"
+source_name: "---"
+source_url: "---"
+link_name: "計算社会科学会"
+link: "https://css-japan.com/2025/11/27/cssj2026/"
 ---
 
 
-私が始めて作成したポートフォリオサイトです。Astroを使って作成しました。
+## About
+CSSJ2026で発表した論文と発表資料です。
 
-## 達成したこと
+## Point
 
-1. **Astroのインストール**: まず、新しいAstroプロジェクトを作成し、オンラインアカウントを設定しました。
-
-2. **ページの作成**: 次に、新しい`.astro`ファイルを作成し、それを`src/pages/`フォルダに配置することで、ページを作成する方法を学びました。
-
-3. **ブログ記事の作成**: これが私の最初のブログ記事です！AstroページとMarkdownの記事があります！
-
-## 次の目標
-
-Astroチュートリアルを終え、さらに記事を追加していきます。これからもこの場所をご覧ください。
+## Media
+<embed src="/documents/CSSJ2026.pdf" type="application/pdf" width="100%" height="600px">
+<embed src="/documents/CSSJ2026_poster.pdf" type="application/pdf" width="100%" height="600px">
+<embed src="/documents/CSSJ2026_flashTalk.pdf" type="application/pdf" width="100%" height="600px">

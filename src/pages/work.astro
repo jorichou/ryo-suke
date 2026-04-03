@@ -4,11 +4,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import WorkPost from "../components/WorkPost.astro";
 const allWorks = Object.values(import.meta.glob('./works/work*.md', { eager: true }));
 const sortedWorks = allWorks.sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf());
+const tags = [...new Set(allWorks.map((post: any) => post.frontmatter.type).flat())];
 const works = sortedWorks;
 const pageTitle = "Works";
 ---
 <BaseLayout pageTitle={pageTitle}>
     <ContentFrame chapterTitle={pageTitle} rubi="作品">
+        <div slot="sub-menu" class="tags">
+            <button class="tag filter-btn active" data-filter="all">All</button>
+            {tags.map((tag) => (   
+                <button class="tag filter-btn" data-filter={tag}>{tag}</button>
+            ))}
+        </div>
         <div slot="chapter-content" class="chapter-box">
             <div class="chapter-content">
                 <ul class="work-list">
@@ -18,3 +25,56 @@ const pageTitle = "Works";
         </div>
     </ContentFrame>
 </BaseLayout>
+
+<style>
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .tag {
+        margin: 0.25rem;
+        border: dotted 1px #a1a1a1;
+        border-radius: .5rem;
+        padding: .5rem 1rem;
+        font-size: 1.15rem;
+        background-color: #f8fcfd;
+        color: #00539f;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .tag:hover, .tag.active {
+        background-color: #e86b79;
+        color: white;
+        border-style: solid;
+        border-color: #e86b79;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const buttons = document.querySelectorAll('.filter-btn');
+        const works = document.querySelectorAll('.work-item');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active state
+                buttons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Filter logic
+                const filterValue = button.getAttribute('data-filter');
+                works.forEach((work) => {
+                    const type = work.getAttribute('data-type');
+                    const el = work as HTMLElement; // cast to HTMLElement properly 
+                    if (filterValue === 'all' || type === filterValue) {
+                        el.style.display = '';
+                    } else {
+                        el.style.display = 'none';
+                    }
+                });
+            });
+        });
+    });
+</script>

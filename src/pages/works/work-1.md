@@ -11,7 +11,9 @@ tags: ["Webサイト", "Astro"]
 type: "Webサイト"
 year: "2026"
 role: "All"
-source: "https://github.com/jorichou/Portofolio_Site"
+source_name: "GitHub"
+source_url: "https://github.com/jorichou/Portofolio_Site"
+link_name: "ポートフォリオサイト"
 link: "https://izuchi-blog.pages.dev/"
 ---
 
