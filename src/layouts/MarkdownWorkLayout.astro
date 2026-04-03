@@ -46,22 +46,26 @@ const { frontmatter, headings } = Astro.props;
                 ))}
             </div> -->
         </div>
-        <slot />
-        <aside>
-            <TableOfContents headings={headings} />
-        </aside>
+        <div class="post-layout">
+            <div class="work-content">
+                <slot />
+            </div>
+            <aside>
+                <TableOfContents headings={headings} />
+            </aside>
+        </div>
     </div>
 </BaseLayout>
 <style>
     h1 {
-        color: #707070;
+        /* color: #707070; */
         font-size: 2rem;
         margin: 0 0 4vh 0;
         padding: 0 1vw;
     }
 
     .title-underline{
-        border-bottom: solid #e86b79 3px;
+        border-bottom: solid #e86b79 2px;
     }
 
     .w-box {
