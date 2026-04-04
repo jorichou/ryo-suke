@@ -1,13 +1,13 @@
 ---
 layout: ../../layouts/MarkdownWorkLayout.astro
 title: 'ポートフォリオサイト'
-pubDate: 2025-12-13
+pubDate: 2026-04-03
 description: 'ポートフォリオサイトの紹介'
 author: 'ryousuke'
 image:
     url: '/izuchi-logo2.svg'
-    alt: 'Astroのロゴ。'
-tags: ["Webサイト", "Astro"]
+    alt: 'サイトロゴ'
+tags: ["Webサイト", "Astro", "ホームページ"]
 type: "Webサイト"
 year: "2026"
 role: "All"
@@ -18,6 +18,7 @@ link: "https://izuchi-blog.pages.dev/"
 ---
 
 ## About
+初めて作ったポートフォリオサイトです。
 
 ## Point
 

@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MarkdownWorkLayout.astro
 title: 'CSSJ2026'
-pubDate: 2026-03-02
+pubDate: 2026-04-03
 description: '第6回計算社会科学会（CSSJ2026）で発表した論文と発表資料'
 author: 'ryousuke'
 image:
