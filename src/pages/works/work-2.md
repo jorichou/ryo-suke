@@ -5,8 +5,8 @@ pubDate: 2026-04-03
 description: '第6回計算社会科学会（CSSJ2026）で発表した論文と発表資料'
 author: 'ryousuke'
 image:
-    url: 'https://docs.astro.build/assets/full-logo-light.png'
-    alt: 'Astroのロゴ。'
+    url: '/images/izuchi-logo-mono-re.png'
+    alt: '白黒のロゴ'
 tags: ["計算社会科学会", "研究発表", "ポスター発表", "Yahoo!知恵袋", "外部リンク", "YouTube"]
 type: "研究発表"
 year: "2026"
@@ -24,6 +24,6 @@ CSSJ2026で発表した論文と発表資料です。
 ## Point
 
 ## Media
-<embed src="/documents/CSSJ2026.pdf" type="application/pdf" width="100%" height="600px">
-<embed src="/documents/CSSJ2026_poster.pdf" type="application/pdf" width="100%" height="600px">
-<embed src="/documents/CSSJ2026_flashTalk.pdf" type="application/pdf" width="100%" height="600px">
+<!-- <embed src="/documents/CSSJ2026.pdf" type="application/pdf" width="100%" height="600px"> -->
+<!-- <embed src="/documents/CSSJ2026_poster.pdf" type="application/pdf" width="100%" height="600px"> -->
+<!-- <embed src="/documents/CSSJ2026_flashTalk.pdf" type="application/pdf" width="100%" height="600px"> -->
