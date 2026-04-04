@@ -8,6 +8,7 @@ import BlogPost from "../components/BlogPost.astro";
 import NewsPost from "../components/NewsPost.astro";
 import WorkPost from "../components/WorkPost.astro";
 import SocialLink from "../components/SocialLink.astro";
+
 const pageTitle = "Home";
 
 const allPosts = await Astro.glob("../pages/posts/*.md");
@@ -32,18 +33,26 @@ const sortedWorks = allWorks.sort(
         new Date(a.frontmatter.pubDate).valueOf(),
 );
 const works = sortedWorks.slice(0, 4);
+const tags = [...new Set(allWorks.map((post: any) => post.frontmatter.type).flat())];
+
 ---
 
 <BaseLayout pageTitle={pageTitle}>
     <Hero slot="hero" />
     <ContentFrame chapterTitle="Works" rubi="作品">
+        <div slot="sub-menu" class="tags">
+            <button class="tag filter-btn active" data-filter="all">All</button>
+            {tags.map((tag) => (   
+                <button class="tag filter-btn" data-filter={tag}>{tag}</button>
+            ))}
+        </div>
         <div slot="chapter-content" class="chapter-box">
             <div class="chapter-content">
                 <ul class="work-list">
                     {
                         works.map((work) => (
                             <WorkPost
-                                postDate={work.frontmatter.pubDate}
+                                pubyear={work.frontmatter.year}
                                 img_url={work.frontmatter.image.url}
                                 work_type={work.frontmatter.type}
                                 title={work.frontmatter.title}
@@ -146,4 +155,29 @@ const works = sortedWorks.slice(0, 4);
     </ContentFrame>
 </BaseLayout>
 
-<style></style>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const buttons = document.querySelectorAll('.filter-btn');
+        const works = document.querySelectorAll('.work-item');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active state
+                buttons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Filter logic
+                const filterValue = button.getAttribute('data-filter');
+                works.forEach((work) => {
+                    const type = work.getAttribute('data-type');
+                    const el = work as HTMLElement; // cast to HTMLElement properly 
+                    if (filterValue === 'all' || type === filterValue) {
+                        el.style.display = '';
+                    } else {
+                        el.style.display = 'none';
+                    }
+                });
+            });
+        });
+    });
+</script>

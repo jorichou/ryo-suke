@@ -378,3 +378,27 @@ html.dark header {
     font-weight: bold;
     font-size: 1.2rem;
 }
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tag {
+    margin: 0.25rem;
+    border: dotted 1px #a1a1a1;
+    border-radius: .5rem;
+    padding: .5rem 1rem;
+    font-size: 1.15rem;
+    background-color: #f8fcfd;
+    color: #00539f;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tag:hover, .tag.active {
+    background-color: #e86b79;
+    color: white;
+    border-style: solid;
+    border-color: #e86b79;
+}
