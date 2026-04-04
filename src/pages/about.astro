@@ -49,14 +49,24 @@ const textCase = "uppercase";
 
     .image-container {
         width: 24vw;
+        height: 24vw;
         border: solid #e86b79 2px;
-        border-radius: 1000px;
+        border-radius: 50%;
+        overflow: hidden;          /* はみ出た部分を円でクリップ */
+        flex-shrink: 0;
+    }
+
+    .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;         /* 縦横比を保ちながらコンテナを埋める */
+        display: block;
     }
 
     .text-container {
         display: flex;
         flex-direction: column;
-        margin: 0 0 0 15vw;
+        margin: 0 0 0 10vw;
     }
 
     .dev-name {
@@ -143,10 +153,13 @@ const textCase = "uppercase";
                     <h1 class="dev-name">Izuchi</h1>
                     <article class="intro-text-container">
                         <p class="intro-text">
-                            大学3年生です。初めてWebサイトを作りました。
+                            大学4年生です。初めてWebサイトを作りました。このサイトでは、作ったものや日常の活動などについて発信していきます。
                         </p>
                         <p class="intro-text">
-                            作ったものや日常の活動などについて発信していきます。
+                            人工知能・データ分析・プログラミングを学んでいます。AIロボットや対話型システムの開発に興味があり、「話しかけられるものを作る」ことをテーマに個人開発に取り組んでいます。
+                        </p>
+                        <p class="intro-text">
+                            日本史が好きで、休日は城や寺社を巡ることも多いです。
                         </p>
                     </article>
                 </div>
@@ -183,7 +196,7 @@ const textCase = "uppercase";
                 <div id="content3" class="tab-content">
                     <p align="left">
                         <a href="https://skillicons.dev">
-                            <img src="https://skillicons.dev/icons?i=anaconda,discord,eclipse,figma,git,github,ai,notion,obsidian,pr,vscode,xd" />
+                            <img src="https://skillicons.dev/icons?i=anaconda,discord,eclipse,figma,git,github,ai,notion,obsidian,pr,vscode,xd,idea" />
                         </a>
                     </p>
                 </div>
@@ -213,6 +226,17 @@ const textCase = "uppercase";
                 </li>
                 <li>
                     <p>TOEIC L&R 620点（2024年）</p>
+                </li>
+                <li>
+                    <p>実用数学技能検定 3級（2019年）</p>
+                </li>
+                <li>
+                    <p>実用英語技能検定 3級（2019年）</p>
+                </li>
+                <li>
+                    <p>漢字能力検定検定 3級（2019年）</p>
+                <li>
+                    <p>歴史能力検定 3級日本史（2018年）</p>
                 </li>
             </ul>
             <!-- <p></p>
