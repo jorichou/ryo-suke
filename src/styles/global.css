@@ -385,13 +385,14 @@ html.dark header {
 }
 
 .tag {
-    margin: 0.25rem;
-    border: dotted 1px #a1a1a1;
+    margin: 0 1rem 1rem 0;
+    border: solid #e86b79 1.5px;
     border-radius: .5rem;
-    padding: .5rem 1rem;
-    font-size: 1.15rem;
+    padding: .3rem .7rem;
+    font-size: 1rem;
+    font-weight: bold;
     background-color: #f8fcfd;
-    color: #00539f;
+    color: #e86b79;
     cursor: pointer;
     transition: all 0.3s ease;
 }
