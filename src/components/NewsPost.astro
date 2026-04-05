@@ -51,6 +51,27 @@ const formattedDate = new Date(postDate).toLocaleDateString('ja-JP', {
     .news-post p {
         transition: color 0.4s;
     }
+
+    @media screen and (max-width: 636px) {
+        .text-content {
+            /* height: 10vh; */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 2vw;
+        }
+
+        .date {
+            font-size: 0.8rem;
+            margin: 0;
+        }
+
+        .title {
+            font-size: 0.8rem;
+            margin: 0;
+        }
+    }
 </style>
 
 <li class="news-post">

@@ -4,6 +4,12 @@ import Navigation from "./Navigation.astro";
 import ThemeIcon from "./ThemeIcon.astro";
 ---
 
+<!-- スマホ用：画面全体を覆うオーバーレイナビ -->
+<div class="nav-overlay" id="nav-overlay">
+    <button class="overlay-close" id="overlay-close" aria-label="メニューを閉じる">✕</button>
+    <Navigation />
+</div>
+
 <header class="w-wrap">
     <div class="header-logo">
         <a href="/">
@@ -13,6 +19,30 @@ import ThemeIcon from "./ThemeIcon.astro";
     <nav>
         <Hamburger />
         <!-- <ThemeIcon /> -->
+        <!-- PC用ナビ -->
         <Navigation />
     </nav>
 </header>
+
+<script>
+    const btn = document.getElementById('humburger-btn');
+    const overlay = document.getElementById('nav-overlay');
+    const closeBtn = document.getElementById('overlay-close');
+
+    // ハンバーガーボタンでオーバーレイを開く
+    btn?.addEventListener('click', () => {
+        overlay?.classList.add('open');
+    });
+
+    // ✕ボタンでオーバーレイを閉じる
+    closeBtn?.addEventListener('click', () => {
+        overlay?.classList.remove('open');
+    });
+
+    // オーバーレイ内のリンクをクリックしたらメニューを閉じる
+    overlay?.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            overlay?.classList.remove('open');
+        });
+    });
+</script>

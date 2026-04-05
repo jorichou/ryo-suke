@@ -7,8 +7,20 @@ const {platform, username, platformName} = Astro.props;
         background-color: #fff;
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        width: calc((100% - 6rem) / 4);
+        width: 90%;
         transition: box-shadow 0.3s;
+    }
+
+    @media screen and (min-width: 636px) and (max-width: 1024px) {
+        li {
+            width: calc((100% - 6rem) / 2);
+        }
+    }
+
+    @media screen and (min-width: 1024px) {
+        li {
+            width: calc((100% - 6rem) / 4);
+        }
     }
 
     li:hover {

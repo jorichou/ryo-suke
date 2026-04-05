@@ -137,6 +137,62 @@ const textCase = "uppercase";
         color: #424242;
         font-weight: normal;
     }
+
+    @media screen and (max-width: 636px) {
+        .introduce-container {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .intro-text {
+            font-size: 0.9rem;
+        }
+
+        .image-container {
+            width: 40vw;
+            height: 40vw;
+        }
+
+        .text-container {
+            align-items: center;
+        }
+
+        .dev-name {
+            font-size: 2.5rem;
+            width: fit-content;
+            display: inline-block;
+            margin: 4vh 0;
+        }
+
+        .text-container {
+            margin: 0;
+        }
+
+        .tab-btn {
+            width: 26vw;
+            height: 7vh;
+            font-size: .8rem;
+            padding: 2vw;
+        }
+
+        .tab-content {
+            overflow-x: scroll;
+        }
+
+        .tab-content img {
+            height: 10vh;
+        }
+    }
+
+    @media screen and (min-width: 637px) and (max-width: 1023px) {
+        .tab-btn {
+            width: 26vw;
+            /* height: 8vh; */
+            font-size: 2vw;
+            padding: 0.5em;
+        }
+    }
 </style>
 
 <BaseLayout pageTitle={pageTitle}>

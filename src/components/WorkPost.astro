@@ -95,6 +95,34 @@ const year = new Date(pubyear).getFullYear();
         font-size: 1.1rem;
         margin: 0;
     }
+
+    @media screen and (max-width: 636px) {
+        li {
+            width: 100%;
+        }
+
+        .work-type {
+            padding: 0 3vw 0 0;
+        }
+
+        .year {
+            padding: 0 0 0 3vw;
+        }
+    }
+
+    @media screen and (min-width: 636px) and (max-width: 1024px) {
+        li {
+            width: calc((100% - 2rem) / 2);
+        }
+
+        .work-type {
+            padding: 0 2vw 0 0;
+        }
+
+        .year {
+            padding: 0 0 0 2vw;
+        }
+    }
 </style>
 
 <li class="work-item" data-type={work_type}>

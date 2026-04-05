@@ -7,23 +7,24 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        flex-direction: column;
         background-color: #E86B79;
-        height: 50vw;
+        height: 70vh;
         max-height: 487px;
         width: 100%;
         margin-bottom: 10vh;
-        padding: 0 8.5vw;
+        padding: 5vw 8.5vw;
     }
     
     .message-box {
         display: flex;
         flex-direction: column;
-        justify-content: left;
+        justify-content: center;
     }
 
-    #hero-message {
+    .hero-message {
         color: #FAE8EA;
-        font-size: 3.7vw;
+        font-size: 1.5rem;
         margin: 5px 0;
     }
 
@@ -32,14 +33,44 @@
     }
 
     .hero-img img {
-        width: 22vw;
+        width: 40vw;
+    }
+
+    @media screen and (min-width: 636px) {
+        .hero {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            justify-content: space-between;
+            background-color: #E86B79;
+            height: 50vw;
+            max-height: 487px;
+            width: 100%;
+            margin-bottom: 10vh;
+            padding: 0 8.5vw;
+        }
+    
+        .message-box {
+            display: flex;
+            flex-direction: column;
+            justify-content: left;
+        }
+    
+        .hero-message {
+            font-size: 5vw;
+        }
+
+        .hero-img img {
+            width: 22vw;
+        }
+
     }
 </style>
 
 <div class="hero">
     <div class="message-box">
-        <h1 id="hero-message">Welcome to Izuchi's</h1>
-        <h1 id="hero-message">Web Site!</h1>
+        <h1 class="hero-message">Welcome to Izuchi's</h1>
+        <h1 class="hero-message">Web Site!</h1>
     </div>
     <div class="hero-img">
         <img src="/izuchi-logo2.svg" alt="ヒーローのロゴ">

@@ -35,6 +35,20 @@ p {
     /*margin: 10px 0;*/
 }
 
+@media screen and (max-width: 636px) {
+    p {
+        font-size: 0.8rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+}
+
 .w-wrap {
     padding: 0 2rem;
     width: 100%;
@@ -60,6 +74,7 @@ header {
 .hamburger {
     padding-right: 20px;
     cursor: pointer;
+    padding: 0;
 }
 
 .hamburger .line {
@@ -70,14 +85,18 @@ header {
     background-color: #e86b79;
 }
 
-/* .nav-links {
+.hamburger .line.last-line {
+    margin-bottom: 0;
+}
+
+.nav-links {
   width: 100%;
   top: 5rem;
   left: 48px;
-  background-color: #ff9776;
+  /* background-color: #ff9776; */
   display: none;
   margin: 0;
-} */
+}
 
 .nav-links a {
     display: block;
@@ -152,8 +171,9 @@ header {
 
 .link-list {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-start;
+    align-items: center;
     flex-wrap: wrap;
     gap: 2rem;
     list-style: none;
@@ -162,7 +182,7 @@ header {
     width: 100%;
 }
 
-@media screen and (min-width: 636px) {
+@media screen and (min-width: 1024px) {
     .nav-links {
         margin-left: 5em;
         display: block;
@@ -179,6 +199,79 @@ header {
     .hamburger {
         display: none;
     }
+
+    /* PC時はオーバーレイは不要 */
+    .nav-overlay {
+        display: none !important;
+    }
+
+    .link-list {
+        flex-direction: row;
+    }
+}
+
+/* === スマホ用 フルスクリーン オーバーレイナビ === */
+
+/* オーバーレイ本体（デフォルトは非表示） */
+.nav-overlay {
+    pointer-events: none;
+    position: fixed;
+    inset: 0;                          /* 画面全体を覆う */
+    background-color: rgba(255, 255, 255, 0);
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.4s ease, background-color 0.4s ease;
+}
+
+/* メニューが開いているとき */
+.nav-overlay.open {
+    pointer-events: auto;
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.97);
+}
+
+/* オーバーレイ内のナビリンク */
+.nav-overlay .nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease 0.15s, transform 0.4s ease 0.15s;
+}
+
+.nav-overlay .nav-links a {
+    font-size: 1.6rem;
+    padding: 12px 30px;
+}
+
+.nav-overlay.open .nav-links {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 閉じるボタン (✕) */
+.overlay-close {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #e86b79;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.3rem 0.6rem;
+    transition: transform 0.2s ease;
+}
+
+.overlay-close:hover {
+    transform: rotate(90deg);
 }
 
 html.dark {
@@ -394,6 +487,61 @@ html.dark header {
     color: #f5f5f5;
     font-weight: bold;
     font-size: 1.2rem;
+}
+
+@media screen and (max-width: 636px) {
+    .intro-card {
+        width: 100%;
+        padding: 1rem .8rem 1rem .8rem;
+    }
+
+    .card-img {
+        width: 15vw;
+        height: 15vw;
+    }
+
+    .dev-name {
+        font-size: 1.8rem;
+    }
+
+    .card-head {
+        margin: 0;
+    }
+
+    .intro-text {
+        margin: .7rem;
+    }
+
+    .button-body.intro  {
+        width: 5.5rem;
+        height: 1.8rem;
+    }
+
+    .button-body.intro a {
+        font-size: .8rem;
+    }
+
+    .button-body.intro:hover {
+        font-size: .8rem;
+    }
+}
+
+@media screen and (min-width: 636px) and (max-width: 1024px) {
+    .intro-card {
+        width: 50vw;
+    }
+
+    .dev-name {
+        font-size: 2rem;
+    }
+    .button-body.intro a {
+        font-size: 1rem;
+    }
+
+    .button-body.intro {
+        width: 6.5rem;
+        height: 2.1rem;
+    }
 }
 
 .tags {

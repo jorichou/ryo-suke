@@ -164,4 +164,36 @@ const { frontmatter, headings } = Astro.props;
     .table-content a {
         color: #212121;
     }
+
+    @media screen and (max-width: 800px) {
+
+        .about-box {
+            flex-direction: column;
+        }
+
+        .work-description {
+            width: 100%;
+        }
+
+        .work-image {
+            width: 100%;
+        }
+
+        .work-image {
+            margin-top: 5vh;
+        }
+        .table-header {
+            width: 30%;
+        }
+
+        .table-content {
+            width: 70%;
+        }
+    }
+
+    @media screen and (max-width: 636px) {
+        .w-box {
+            padding: 0;
+        }
+    }
 </style>
