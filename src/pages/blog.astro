@@ -2,7 +2,11 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ContentFrame from "../components/ContentFrame.astro";
 import BlogPost from "../components/BlogPost.astro";
-const allPosts = Object.values(import.meta.glob('./posts/post*.md', { eager: true }));
+type MarkdownPost = {
+  frontmatter: { pubDate: string; title: string; image: { url: string } };
+  url: string;
+};
+const allPosts = Object.values(import.meta.glob('./posts/post*.md', { eager: true })) as MarkdownPost[];
 const sortedPosts = allPosts.sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf());
 const posts = sortedPosts
 const pageTitle = "Blog";

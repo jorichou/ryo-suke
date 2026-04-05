@@ -2,8 +2,12 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ContentFrame from "../components/ContentFrame.astro";
 import NewsPost from "../components/NewsPost.astro";
-const allNews = Object.values(import.meta.glob('./news/news*.md', { eager: true }));
-const sortedNews = allNews.sort((a, b) => new Date(b.frontmatter.puDate).valueOf() - new Date(a.frontmatter.puDate).valueOf());
+type NewsPost = {
+  frontmatter: { pubDate: string; title: string };
+  url: string;
+};
+const allNews = Object.values(import.meta.glob('./news/news*.md', { eager: true })) as NewsPost[];
+const sortedNews = allNews.sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf());
 const news = sortedNews;
 const pageTitle = "News";
 ---
