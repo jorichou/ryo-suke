@@ -1,8 +1,8 @@
 ---
 layout: ../../layouts/MarkdownWorkLayout.astro
-title: 'ポートフォリオサイト'
+title: 'マイホームページ'
 pubDate: 2026-04-03
-description: 'ポートフォリオサイトの紹介'
+description: '本サイトの紹介'
 author: 'ryousuke'
 image:
     url: '/izuchi-logo2.svg'
@@ -13,13 +13,12 @@ year: "2026"
 role: "All"
 source_name: "GitHub"
 source_url: "https://github.com/jorichou/Portofolio_Site"
-link_name: "ポートフォリオサイト"
+link_name: "本サイトのトップページ"
 link: "https://izuchi-blog.pages.dev/"
 ---
 
 ## About
-初めて作ったポートフォリオサイトです。
+初めて作ったホームページです。このサイトでは、私がこれまでに制作した作品や、日々の活動などを発信していきます。
 
 ## Point
-
-## Media
+Astroという静的サイトジェネレーターを用いて制作しました。

@@ -1,13 +1,17 @@
 ---
 layout: ../../layouts/MarkdownNewsLayout.astro
-title: 'ポートフォリオサイトを作りました!'
-pubDate: 2025-12-12
-description: 'ポートフォリオサイトを作成しました!'
-author: 'ryousuke'
-# image:
-#     url: 'https://docs.astro.build/assets/full-logo-light.png'
-#     alt: 'Astroのロゴ。'
+title: 'ホームページを公開しました!'
+pubDate: 2026-04-05
+description: 'ホームページを公開しました。'
+author: 'izuchi'
 tags: ["astro", "ブログ", "公開学習", "学習"]
 ---
 
-私のポートフォリオサイトを作成しました。Astroを使って製作しています。
+## サイトの公開
+昨年から制作していた私の初めてのポートフォリオサイトが完成しました!現在はPCでの表示にしか対応していませんが、スマホでも見れるように改良していく予定です。
+
+## サイトの目的
+私の勉強の一環として本サイトを作成しました。このサイトでは、私がこれまでに制作した作品や、日々の活動などを発信していきます。
+
+## 本サイトの制作について
+本サイトの制作に関する情報は<a href='/works/work-1'>Works</a>にて公開します。こちらのほうも、ぜひご覧ください。
