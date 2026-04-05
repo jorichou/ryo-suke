@@ -2,7 +2,7 @@
 import ContentFrame from "../components/ContentFrame.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import WorkPost from "../components/WorkPost.astro";
-const allWorks = Object.values(import.meta.glob('./works/work*.md', { eager: true }));
+const allWorks = Object.values(import.meta.glob('./works/work*.md', { eager: true })) as any[];
 const sortedWorks = allWorks.sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf());
 const tags = [...new Set(allWorks.map((post: any) => post.frontmatter.type).flat())];
 const works = sortedWorks;
