@@ -299,11 +299,11 @@ html.dark header {
     justify-content: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     aspect-ratio: 1.65 / 1;
-    width: 50vw;
+    width: 40vw;
     /*height: 20vh;*/
     border-radius: 8px;
     background-color: #fff;
-    padding: 3rem;
+    padding: 1rem 3rem 1rem 3rem;
     transition: box-shadow 0.5s;
 
 }
@@ -313,17 +313,33 @@ html.dark header {
 }
 
 .card-img {
-    height: 30vh;
+    width: 7vw;
+    height: 7vw;
     aspect-ratio: 1 / 1;
-    border: solid #707070 2px;
+    /* border: solid #e86b79 1.5px; */
     border-radius: 1000px;
+}
+
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;         /* 縦横比を保ちながらコンテナを埋める */
+    display: block;
+    overflow: hidden;
 }
 
 .card-main {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     /* justify-content: space-between; */
     /* align-items: center; */
+}
+
+.card-head {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 0 1rem 0;
 }
 
 .card-text {
@@ -346,6 +362,7 @@ html.dark header {
 .button-container {
     display: flex;
     justify-content: right;
+    /* margin-top: 2rem; */
 }
 
 .button-body.intro {
