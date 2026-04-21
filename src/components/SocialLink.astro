@@ -1,5 +1,5 @@
 ---
-const {platform, username, platformName} = Astro.props;
+const {platformURL, platformName} = Astro.props;
 ---
 
 <style>
@@ -49,7 +49,7 @@ const {platform, username, platformName} = Astro.props;
 </style>
 
 <li>
-    <a href={`https://www.${platform}.com/${username}`} class="link-item">
+    <a href={platformURL} class="link-item">
         <p class="platform-name">{platformName}</p>
         <i class="fa-solid fa-arrow-up-right-from-square"></i>
     </a>
