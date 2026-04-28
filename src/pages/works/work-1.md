@@ -13,8 +13,8 @@ year: "2026"
 role: "All"
 source_name: "GitHub"
 source_url: "https://github.com/jorichou/Portofolio_Site"
-link_name: "本サイトのトップページ"
-link: "https://izuchi-blog.pages.dev/"
+link_name: "本サイト"
+link: "https://ryo-suke.org/"
 ---
 
 ## About
