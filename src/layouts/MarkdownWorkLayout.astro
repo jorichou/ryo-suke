@@ -54,7 +54,7 @@ const { frontmatter, headings } = Astro.props;
             </div>
             <!-- <p><em>{frontmatter.description}</em></p> -->
             <div class="work-image">
-                <img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt} />
+                <img src={frontmatter.image.url} alt={frontmatter.image.alt} />
             </div>
             <!-- <div class="tags">{
                 frontmatter.tags.map((tag) => (
@@ -132,7 +132,10 @@ const { frontmatter, headings } = Astro.props;
     }
 
     .work-image img {
-        
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 9px;
     }
 
     .table-area {
