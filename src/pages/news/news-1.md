@@ -3,7 +3,7 @@ layout: ../../layouts/MarkdownNewsLayout.astro
 title: 'ホームページを公開しました!'
 pubDate: 2026-04-05
 description: 'ホームページを公開しました。'
-author: 'izuchi'
+author: 'Ryousuke'
 tags: ["astro", "ブログ", "公開学習", "学習"]
 ---
 
