@@ -5,7 +5,7 @@ pubDate: 2026-04-03
 description: '第6回計算社会科学会（CSSJ2026）で発表した論文と発表資料'
 author: 'ryousuke'
 image:
-    url: '/images/izuchi-logo-mono-re.png'
+    url: '/images/umekabuto-shirokuro.png'
     alt: '白黒のロゴ'
 tags: ["計算社会科学会", "研究発表", "ポスター発表", "Yahoo!知恵袋", "外部リンク", "YouTube"]
 type: "研究発表"
