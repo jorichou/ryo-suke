@@ -11,9 +11,10 @@ import ThemeIcon from "./ThemeIcon.astro";
 </div>
 
 <header class="w-wrap">
-    <div class="header-logo">
+    <div class="site-title">
         <a href="/">
-            <img src="/images/izuchi-logo-name2.png" alt="ロゴ">
+            <!-- <img src="/images/izuchi-logo-name2.png" alt="ロゴ"> -->
+             <h1 class="title-text">Ryo-suke.org</h1>
         </a>
     </div>
     <nav>
@@ -46,3 +47,9 @@ import ThemeIcon from "./ThemeIcon.astro";
         });
     });
 </script>
+
+<style>
+    .site-title a {
+        text-decoration: none;
+    }
+</style>
