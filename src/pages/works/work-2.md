@@ -22,6 +22,6 @@ link: "https://css-japan.com/2025/11/27/cssj2026/"
 CSSJ2026で発表した論文と発表資料です。
 
 ## Media
-<embed src="/documents/CSSJ2026.pdf" type="application/pdf" width="100%" height="600px">
+<!-- <embed src="/documents/CSSJ2026.pdf" type="application/pdf" width="100%" height="600px"> -->
 <embed src="/documents/CSSJ2026_poster.pdf" type="application/pdf" width="100%" height="600px">
 <embed src="/documents/CSSJ2026_flashTalk.pdf" type="application/pdf" width="100%" height="600px">
