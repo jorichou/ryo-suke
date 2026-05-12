@@ -1,6 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Noto+Sans+JP:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Noto+Sans+JP:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --font-family-en: 'Noto Sans', 'google sans flex', 'sans-selif'
+}
+
 html {
     background-color: #f5f5f5;
-    font-family: sans-serif;
+    font-family: 'Noto Sans JP', sans-serif;
 }
 
 body {
@@ -129,6 +137,7 @@ header.header-hidden .site-title {
   /* background-color: #ff9776; */
   display: none;
   margin: 0;
+  font-family: var(--font-family-en);
 }
 
 .nav-links a {
@@ -146,6 +155,10 @@ header.header-hidden .site-title {
 /* .nav-links a:hover, a:focus {
   color: #00897B;
 } */
+
+.chapter-title {
+    font-family: var(--font-family-en);
+}
 
 .title-rubi {
     color: #e86b79;
@@ -479,6 +492,7 @@ html.dark header {
     color: #e86b79;
     font-weight: bold;
     margin: 0;
+    font-family: var(--font-family-en);
 }
 
 .intro-text {
@@ -509,6 +523,7 @@ html.dark header {
     font-weight: bold;
     font-size: 1.2rem;
     transition: 0.4s;
+    font-family: var(--font-family-en);
 }
 
 .button-body.intro:hover {
@@ -600,4 +615,13 @@ html.dark header {
     color: white;
     border-style: solid;
     border-color: #e86b79;
+}
+
+.site-title a {
+    text-decoration: none;
+}
+
+.site-title p {
+    font-family: var(--font-family-en);
+    font-weight: bold;
 }
