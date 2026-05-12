@@ -15,6 +15,10 @@ body {
     box-sizing: border-box;
 }
 
+body.no-scroll {
+    overflow: hidden;
+}
+
 main {
     margin-bottom: 20vh;
 }
@@ -57,13 +61,27 @@ p {
 header {
     position: sticky;
     top: 0;
-    z-index: 10;
+    z-index: 201;
     background-color: #f5f5f5;
     height: 5rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+header.header-hidden {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+header .site-title {
+    transition: opacity 0.3s ease;
+}
+
+header.header-hidden .site-title {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .header-logo img {
@@ -75,6 +93,8 @@ header {
     padding-right: 20px;
     cursor: pointer;
     padding: 0;
+    position: relative;
+    z-index: 201;
 }
 
 .hamburger .line {
@@ -83,10 +103,23 @@ header {
     height: 5px;
     margin-bottom: 10px;
     background-color: #e86b79;
+    transition: all 0.3s ease-in-out;
 }
 
 .hamburger .line.last-line {
     margin-bottom: 0;
+}
+
+.hamburger.active .line:nth-child(1) {
+    transform: translateY(15px) rotate(45deg);
+}
+
+.hamburger.active .line:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .line:nth-child(3) {
+    transform: translateY(-15px) rotate(-45deg);
 }
 
 .nav-links {
