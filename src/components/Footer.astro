@@ -46,14 +46,21 @@ import Social from "./Social.astro";
         display: flex;
         flex-direction: row;
     }
+
+    .title-text.footer-title {
+        font-size: 1.7rem;
+        color: #F5F5F5;
+    }
 </style>
 
 <footer class="w-wrap">
     <div class="footer-box">
         <div class="footer-top footer-element">
-            <a href="/">
-                <img src="/images/izuchi-logo-name-monox0.5.png" alt="ロゴ">
-            </a>
+            <div class="site-title">
+                <a href="/">
+                    <p class="title-text footer-title">Ryo-suke.org</p>
+                </a>
+            </div>
             <nav class="nav-links footer-nav">
                 <!-- <a href="/">ホーム</a> -->
                 <a href="/work">Works</a>
