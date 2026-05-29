@@ -1,8 +1,8 @@
 ---
-const {platform, username, iconClass} = Astro.props;
+const {link, iconClass} = Astro.props;
 ---
 <div class="icon-size icon-box">
-    <a href={`https://www.${platform}.com/${username}`}>
+    <a href={link}>
         <i class={iconClass}></i>
     </a>
     

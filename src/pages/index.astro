@@ -11,14 +11,35 @@ import SocialLink from "../components/SocialLink.astro";
 
 const pageTitle = "Home";
 
-const allPosts = await Astro.glob("../pages/posts/*.md");
+type MarkdownPost = {
+    frontmatter: { pubDate: string; title: string; image: { url: string } };
+    url: string;
+};
+type NewsEntry = {
+    frontmatter: { pubDate: string; title: string };
+    url: string;
+};
+type WorkEntry = {
+    frontmatter: {
+        pubDate: string;
+        title: string;
+        year: string;
+        image: { url: string };
+        type: string;
+    };
+    url: string;
+};
+
+const allPosts = (await Astro.glob(
+    "../pages/posts/*.md",
+)) as MarkdownPost[];
 const sortedPosts = allPosts.sort(
     (a, b) =>
         new Date(b.frontmatter.pubDate).valueOf() -
         new Date(a.frontmatter.pubDate).valueOf(),
 );
 const posts = sortedPosts.slice(0, 4);
-const allNews = await Astro.glob("../pages/news/*.md");
+const allNews = (await Astro.glob("../pages/news/*.md")) as NewsEntry[];
 const sortedNews = allNews.sort(
     (a, b) =>
         new Date(b.frontmatter.pubDate).valueOf() -
@@ -26,14 +47,14 @@ const sortedNews = allNews.sort(
 );
 const news = sortedNews.slice(0, 4);
 
-const allWorks = await Astro.glob("../pages/works/*.md");
+const allWorks = (await Astro.glob("../pages/works/*.md")) as WorkEntry[];
 const sortedWorks = allWorks.sort(
     (a, b) =>
         new Date(b.frontmatter.pubDate).valueOf() -
         new Date(a.frontmatter.pubDate).valueOf(),
 );
 const works = sortedWorks.slice(0, 4);
-const tags = [...new Set(allWorks.map((post: any) => post.frontmatter.type).flat())];
+const tags = [...new Set(allWorks.map((post) => post.frontmatter.type).flat())];
 
 ---
 
@@ -133,9 +154,17 @@ const tags = [...new Set(allWorks.map((post: any) => post.frontmatter.type).flat
         <div slot="chapter-content" class="chapter-box">
             <div class="chapter-content">
                 <ul class="link-list">
-                    <SocialLink
+                    <!-- <SocialLink
                         platformURL="https://x.com/izuchi_main"
                         platformName="X(Twitter)"
+                    /> -->
+                    <SocialLink
+                        platformURL="https://www.facebook.com/profile.php?id=100090539947363&locale=ja_JP"
+                        platformName="Facebook"
+                    />
+                    <SocialLink
+                        platformURL="https://www.linkedin.com/in/%E6%B6%BC%E4%BB%8B-%E7%94%B0%E4%B8%AD-277486412/"
+                        platformName="LinkedIn"
                     />
                     <SocialLink
                         platformURL="https://github.com/jorichou"
@@ -148,6 +177,10 @@ const tags = [...new Set(allWorks.map((post: any) => post.frontmatter.type).flat
                     <SocialLink
                         platformURL="https://atcoder.jp/users/izuch"
                         platformName="Atcoder"
+                    />
+                    <SocialLink
+                        platformURL="https://researchmap.jp/ryo-suke"
+                        platformName="researchmap"
                     />
                 </ul>
             </div>
