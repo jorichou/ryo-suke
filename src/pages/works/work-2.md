@@ -15,6 +15,7 @@ source_name: "---"
 source_url: "---"
 link_name: "計算社会科学会"
 link: "https://css-japan.com/2025/11/27/cssj2026/"
+draft: false
 ---
 
 

@@ -15,6 +15,7 @@ source_name: "GitHub"
 source_url: "https://github.com/jorichou/Portofolio_Site"
 link_name: "本サイト"
 link: "https://ryo-suke.org/"
+draft: false
 ---
 
 ## About
