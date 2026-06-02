@@ -6,6 +6,7 @@ description: '本サイトの紹介'
 author: 'ryousuke'
 image:
     url: '/izuchi-logo2.svg'
+    # url: '/umekabuto.svg'
     alt: 'サイトロゴ'
 tags: ["Webサイト", "Astro", "ホームページ"]
 type: "Webサイト"
