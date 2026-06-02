@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import MarkdownWorkLayout from '../../layouts/MarkdownWorkLayout.astro';
+
+export async function getStaticPaths() {
+  const allWorks = await getCollection('works');
+  // Filter out drafts in production
+  const activeWorks = allWorks.filter((entry: CollectionEntry<'works'>) => !import.meta.env.PROD || !entry.data.draft);
+  return activeWorks.map((entry: CollectionEntry<'works'>) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props as { entry: CollectionEntry<'works'> };
+const { Content, headings } = await entry.render();
+---
+<MarkdownWorkLayout frontmatter={entry.data} headings={headings}>
+  <Content />
+</MarkdownWorkLayout>

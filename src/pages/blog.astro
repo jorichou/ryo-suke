@@ -1,14 +1,14 @@
 ---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ContentFrame from "../components/ContentFrame.astro";
 import BlogPost from "../components/BlogPost.astro";
-type MarkdownPost = {
-  frontmatter: { pubDate: string; title: string; image: { url: string } };
-  url: string;
-};
-const allPosts = Object.values(import.meta.glob('./posts/post*.md', { eager: true })) as MarkdownPost[];
-const sortedPosts = allPosts.sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf());
-const posts = sortedPosts
+
+const allPosts = await getCollection('posts');
+const activePosts = allPosts.filter((post: CollectionEntry<'posts'>) => !import.meta.env.PROD || !post.data.draft);
+const sortedPosts = activePosts.sort((a: CollectionEntry<'posts'>, b: CollectionEntry<'posts'>) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const posts = sortedPosts;
 const pageTitle = "Blog";
 ---
 
@@ -18,7 +18,7 @@ const pageTitle = "Blog";
 		<div slot="chapter-content" class="chapter-box">
 			<div class="chapter-content">
 				<ul class="blog-list">
-					{posts.map((post) => <BlogPost postDate={post.frontmatter.pubDate} img_url={post.frontmatter.image.url} title={post.frontmatter.title} url={post.url} />)}
+					{posts.map((post) => <BlogPost postDate={post.data.pubDate} img_url={post.data.image?.url} title={post.data.title} url={`/posts/${post.slug}`} />)}
 				</ul>
 			</div>
 		</div>
