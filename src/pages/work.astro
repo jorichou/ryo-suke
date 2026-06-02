@@ -1,10 +1,14 @@
 ---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 import ContentFrame from "../components/ContentFrame.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import WorkPost from "../components/WorkPost.astro";
-const allWorks = Object.values(import.meta.glob('./works/work*.md', { eager: true })) as any[];
-const sortedWorks = allWorks.sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf());
-const tags = [...new Set(allWorks.map((post: any) => post.frontmatter.type).flat())];
+
+const allWorks = await getCollection('works');
+const activeWorks = allWorks.filter((work: CollectionEntry<'works'>) => !import.meta.env.PROD || !work.data.draft);
+const sortedWorks = activeWorks.sort((a: CollectionEntry<'works'>, b: CollectionEntry<'works'>) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const tags = [...new Set(activeWorks.map((post: CollectionEntry<'works'>) => post.data.type).flat())];
 const works = sortedWorks;
 const pageTitle = "Works";
 ---
@@ -19,7 +23,7 @@ const pageTitle = "Works";
         <div slot="chapter-content" class="chapter-box">
             <div class="chapter-content">
                 <ul class="work-list">
-                    {works.map((work)=> <WorkPost pubyear={work.frontmatter.year} img_url={work.frontmatter.image.url} work_type={work.frontmatter.type} title={work.frontmatter.title} url={work.url} />)   }
+                    {works.map((work)=> <WorkPost pubyear={work.data.year} img_url={work.data.image?.url} work_type={work.data.type} title={work.data.title} url={`/works/${work.slug}`} />)   }
                 </ul>
             </div>
         </div>

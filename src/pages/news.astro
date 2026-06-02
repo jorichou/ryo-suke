@@ -1,13 +1,13 @@
 ---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ContentFrame from "../components/ContentFrame.astro";
 import NewsPost from "../components/NewsPost.astro";
-type NewsPost = {
-  frontmatter: { pubDate: string; title: string };
-  url: string;
-};
-const allNews = Object.values(import.meta.glob('./news/news*.md', { eager: true })) as NewsPost[];
-const sortedNews = allNews.sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf());
+
+const allNews = await getCollection('news');
+const activeNews = allNews.filter((news: CollectionEntry<'news'>) => !import.meta.env.PROD || !news.data.draft);
+const sortedNews = activeNews.sort((a: CollectionEntry<'news'>, b: CollectionEntry<'news'>) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const news = sortedNews;
 const pageTitle = "News";
 ---
@@ -17,7 +17,7 @@ const pageTitle = "News";
 		<div slot="chapter-content" class="chapter-box">
 			<div class="chapter-content">
 				<ul class="news-list">
-					{news.map((news) => <NewsPost postDate={news.frontmatter.pubDate} title={news.frontmatter.title} url={news.url} />)}
+					{news.map((news) => <NewsPost postDate={news.data.pubDate} title={news.data.title} url={`/news/${news.slug}`} />)}
 				</ul>
 			</div>
 		</div>

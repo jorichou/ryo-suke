@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import MarkdownNewsLayout from '../../layouts/MarkdownNewsLayout.astro';
+
+export async function getStaticPaths() {
+  const allNews = await getCollection('news');
+  // Filter out drafts in production
+  const activeNews = allNews.filter((entry: CollectionEntry<'news'>) => !import.meta.env.PROD || !entry.data.draft);
+  return activeNews.map((entry: CollectionEntry<'news'>) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props as { entry: CollectionEntry<'news'> };
+const { Content } = await entry.render();
+---
+<MarkdownNewsLayout frontmatter={entry.data}>
+  <Content />
+</MarkdownNewsLayout>
