@@ -8,6 +8,7 @@ image:
     url: '/images/umekabuto-shirokuro.png'
     alt: '白黒のロゴ'
 tags: ["計算社会科学会", "学会", "Yahoo!知恵袋"]
+draft: true
 ---
 
 ## はじめに

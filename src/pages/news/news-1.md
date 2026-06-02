@@ -5,6 +5,7 @@ pubDate: 2026-04-05
 description: 'ホームページを公開しました。'
 author: 'Ryousuke'
 tags: ["astro", "ブログ", "公開学習", "学習"]
+draft: false
 ---
 
 ## サイトの公開
