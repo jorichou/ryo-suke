@@ -22,4 +22,4 @@ draft: true
 第34回（2026年度）情報知識学会年次大会で発表した発表資料です。
 
 ## Media
-<embed src="/documents/CSSJ2026_poster.pdf" type="application/pdf" width="100%" height="600px">
+<embed src="/documents/JSIK2026.pdf" type="application/pdf" width="100%" height="600px">
