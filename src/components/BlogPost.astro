@@ -12,18 +12,20 @@ const formattedDate = new Date(postDate).toLocaleDateString('ja-JP', {
 li {
     background: #fff;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+    border: 2px solid #9E9E9E;
     margin: 1.5rem 0;
     overflow: hidden; /* This is key for the child's rounded corners to be visible */
     /* transition: transform 0.2s ease-in-out; */
-    transition: box-shadow 0.5s;
+    transition: border-color 0.5s;
 
 
 }
 
 li:hover {
     /* transform: translateY(-5px); */
-    box-shadow:0 0 0 2px rgba(232, 107, 121, 1)
+    /* box-shadow:0 0 0 2px rgba(232, 107, 121, 1) */
+    border: 2px solid #E86B79;
 
 }
 
