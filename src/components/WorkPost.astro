@@ -43,14 +43,16 @@ const year = new Date(pubyear).getFullYear();
     .img-container {
         aspect-ratio: 1 / 1;
         background-color: #f0f0f0;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        transition: box-shadow 0.4s ease;
+        /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+        border: 2px solid #9E9E9E;
+        transition: border-color 0.5s ease;
         border-radius: 8px;
         overflow: hidden;
     }
 
     a:hover .img-container {
-        box-shadow: 0 0 0 2px rgba(232, 107, 121, 1);
+        /* box-shadow: 0 0 0 2px rgba(232, 107, 121, 1); */
+        border: 2px solid #E86B79;
     }
 
     .img-container img {
@@ -66,7 +68,7 @@ const year = new Date(pubyear).getFullYear();
     .text-content p {
         font-weight: bold;
         color: #707070;
-        /* transition: color 0.4s ease; */
+        /* transition: color 0.5s ease; */
     }
 
     .upper-content {
@@ -83,12 +85,13 @@ const year = new Date(pubyear).getFullYear();
         padding: 0 1vw 0 0;
         margin: 0;
         border-right: solid #707070 2px;
-        /* transition: border-color 0.4s ease; */
+        /* transition: border-right-color 0.5s ease; */
     }
 
     .year {
         padding: 0 0 0 1vw;
         margin: 0;
+
     }
 
     .title {

@@ -6,9 +6,10 @@ const {platformURL, platformName} = Astro.props;
     li {
         background-color: #fff;
         border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+        border: 2px solid #9E9E9E;
         width: 90%;
-        transition: box-shadow 0.3s;
+        transition: border-color 0.5s ease;
     }
 
     @media screen and (min-width: 636px) and (max-width: 1024px) {
@@ -24,7 +25,8 @@ const {platformURL, platformName} = Astro.props;
     }
 
     li:hover {
-        box-shadow:0 0 0 2px rgba(232, 107, 121, 1)
+        /* box-shadow:0 0 0 2px rgba(232, 107, 121, 1) */
+        border: 1.5px solid #E86B79;
     }   
 
     .link-item {
@@ -43,7 +45,7 @@ const {platformURL, platformName} = Astro.props;
 
     .platform-name {
         color: #707070;
-        font-weight: bold;
+        font-weight: 600;
         font-size: 1.5rem;
         font-family: var(--font-family-en);
     }
