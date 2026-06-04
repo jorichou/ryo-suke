@@ -5,7 +5,7 @@ pubDate: 2026-04-03
 description: '本サイトの紹介'
 author: 'ryousuke'
 image:
-    url: '/images/works/blog_simbol.png'
+    url: '/images/works/work-1/blog_simbol.png'
     alt: 'サイトロゴ'
 tags: ["Webサイト", "Astro", "ホームページ"]
 type: "Webサイト"

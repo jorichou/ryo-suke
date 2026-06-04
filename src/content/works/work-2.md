@@ -5,7 +5,7 @@ pubDate: 2026-04-03
 description: '第6回計算社会科学会（CSSJ2026）で発表した際のフラッシュトーク資料とポスター発表資料です。'
 author: 'ryousuke'
 image:
-    url: '/images/works/cssj2026.png'
+    url: '/images/works/work-2/cssj2026.png'
     alt: 'cssj2026のポスター'
 tags: ["計算社会科学会", "研究発表", "ポスター発表", "Yahoo!知恵袋", "外部リンク", "YouTube"]
 type: "研究発表"
