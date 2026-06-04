@@ -8,7 +8,7 @@ image:
     url: '/images/posts/post-1/dinner_after_presentation.JPG'
     alt: '発表後のお食事'
 tags: ["計算社会科学会", "学会", "Yahoo!知恵袋"]
-draft: true
+draft: false
 ---
 
 ## はじめに
