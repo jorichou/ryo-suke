@@ -10,7 +10,7 @@ image:
 tags: ["計算社会科学会", "研究発表", "ポスター発表", "Yahoo!知恵袋", "外部リンク", "YouTube"]
 type: "研究発表"
 year: "2026"
-role: "Lead author"
+role: "Lead author, Presenter"
 source_name: "---"
 source_url: "---"
 link_name: "計算社会科学会"
@@ -20,7 +20,7 @@ draft: false
 
 
 ## About
-第6回計算社会科学会大会で発表した際のフラッシュトーク資料とポスター発表資料です。
+2026年3月2日～4日に開催された第6回計算社会科学会大会で発表した際のフラッシュトーク資料とポスター発表資料です。「Yahoo!知恵袋における外部リンクの特徴とYouTube動画の利用実態」というタイトルの研究発表を行いました。
 
 ## Media
 <!-- <embed src="/documents/CSSJ2026.pdf" type="application/pdf" width="100%" height="600px"> -->
