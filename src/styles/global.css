@@ -228,6 +228,12 @@ header.header-hidden .site-title {
     width: 100%;
 }
 
+@media screen and (min-width: 636px) and (max-width: 1024px) {
+    .link-list {
+        flex-direction: row;
+    }
+}
+
 @media screen and (min-width: 1024px) {
     .nav-links {
         margin-left: 5em;
