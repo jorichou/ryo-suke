@@ -216,22 +216,15 @@ header.header-hidden .site-title {
 }
 
 .link-list {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    display: grid;
+    grid-template-rows: repeat(auto-fill, minmax(clamp(100px, 10vh, 120px), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     align-items: center;
-    flex-wrap: wrap;
     gap: 2rem;
     list-style: none;
     padding: 0;
-    margin: 10vh 0 0 0;
+    margin: clamp(40px, 1em, 50px) 0 0 0;
     width: 100%;
-}
-
-@media screen and (min-width: 636px) and (max-width: 1024px) {
-    .link-list {
-        flex-direction: row;
-    }
 }
 
 @media screen and (min-width: 1024px) {
@@ -257,9 +250,9 @@ header.header-hidden .site-title {
         display: none !important;
     }
 
-    .link-list {
+    /* .link-list {
         flex-direction: row;
-    }
+    } */
 }
 
 /* === スマホ用 フルスクリーン オーバーレイナビ === */
