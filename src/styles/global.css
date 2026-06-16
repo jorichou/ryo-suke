@@ -204,14 +204,13 @@ header.header-hidden .site-title {
 }
 
 .work-list {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
     gap: 2rem;
     list-style: none;
     padding: 0;
-    margin: 10vh 0 0 0;
+    margin: clamp(40px, 1em, 50px) 0 0 0;
     width: 100%;
 }
 
@@ -225,6 +224,12 @@ header.header-hidden .site-title {
     padding: 0;
     margin: clamp(40px, 1em, 50px) 0 0 0;
     width: 100%;
+}
+
+@media screen and (min-width: 636px) and (max-width: 1024px) {
+    .work-list {
+        grid-template-columns: repeat(2, calc((100% - 2rem) / 2));
+    }
 }
 
 @media screen and (min-width: 1024px) {
@@ -250,9 +255,9 @@ header.header-hidden .site-title {
         display: none !important;
     }
 
-    /* .link-list {
-        flex-direction: row;
-    } */
+    .work-list {
+        grid-template-columns: repeat(4, calc((100% - 6rem) / 4));
+    }
 }
 
 /* === スマホ用 フルスクリーン オーバーレイナビ === */
