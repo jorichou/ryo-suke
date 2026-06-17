@@ -12,7 +12,7 @@ type: "Webサイト"
 year: "2026"
 role: "All"
 source_name: "GitHub"
-source_url: "https://github.com/jorichou/Portofolio_Site"
+source_url: "https://github.com/jorichou/ryo-suke"
 link_name: "本サイト"
 link: "https://ryo-suke.org/"
 draft: false
@@ -22,4 +22,4 @@ draft: false
 初めて作ったホームページです。このサイトでは、私がこれまでに制作した作品や、日々の活動などを発信していきます。
 
 ## Point
-Astroという静的サイトジェネレーターを用いて制作しました。
+Astroという静的サイトジェネレーターを用いて制作しました。Astroはコンポーネント化により、コードを再利用できるうえに、記事をmarkdownで管理できるため、今回のサイト制作で採用しました。テーマカラーは紅梅色としており、
