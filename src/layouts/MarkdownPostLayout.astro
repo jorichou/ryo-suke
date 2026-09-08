@@ -23,7 +23,8 @@ const formattedDate = new Date(frontmatter.pubDate)
                         alt={frontmatter.image.alt}
                     />
                 </div>
-                <p class="description">{frontmatter.description}</p>
+                <!-- <p class="description">{frontmatter.description}</p>
+                  -->
             </div>
             <article>
                 <slot />
@@ -41,10 +42,6 @@ const formattedDate = new Date(frontmatter.pubDate)
         color: #707070;
     }
     .post-title {
-        color: #707070;
-    }
-
-    h2 {
         color: #707070;
     }
 
@@ -68,21 +65,182 @@ const formattedDate = new Date(frontmatter.pubDate)
         border: 2px #9E9E9E solid;
         margin: 0;
     }
-    /*a {
-        color: #00539f;
+
+    article {
+        width: 100%;
+        overflow-x: auto;
     }
 
-    .tags {
-        display: flex;
-        flex-wrap: wrap;
+    /* 節（h2）および小節（h3, h4）のスペーシング */
+    article :global(h2) {
+        color: #707070;
+        margin-top: 4rem;
+        margin-bottom: 1.5rem;
+        font-size: 1.6rem;
     }
 
-    .tag {
-        margin: 0.25rem;
-        border: dotted 1px #a1a1a1;
-        border-radius: .5rem;
-        padding: .5rem 1rem;
-        font-size: 1.15rem;
-        background-color: #f8fcfd;
-    }*/
+    article :global(h2:first-of-type) {
+        margin-top: 1.5rem;
+    }
+
+    /* 小節（h3）の間隔 */
+    article :global(h3) {
+        color: #707070;
+        margin-top: 3.5rem;
+        margin-bottom: 1.2rem;
+        font-size: 1.3rem;
+    }
+
+    /* 節（h2）直後の小節（h3）の間隔調整 */
+    article :global(h2 + h3) {
+        margin-top: 1.5rem;
+    }
+
+    article :global(h4) {
+        color: #707070;
+        margin-top: 2.5rem;
+        margin-bottom: 0.8rem;
+    }
+
+    article :global(p) {
+        margin: 1.2rem 0;
+        line-height: 1.8;
+    }
+
+    /* 表（テーブル）スタイル */
+    article :global(table) {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 2.5rem 0;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        border-top: 1.5px solid #e86b79;
+        border-bottom: 1.5px solid #e86b79;
+        border-left: none;
+        border-right: none;
+    }
+
+    article :global(thead) {
+        background-color: rgba(232, 107, 121, 0.06);
+    }
+
+    article :global(th),
+    article :global(td) {
+        padding: 0.85rem 1.2rem;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+        text-align: left;
+    }
+
+    /* 列タイトル (thead th) */
+    article :global(th) {
+        color: #e86b79;
+        font-weight: 700;
+        border-bottom: 1.5px solid #e86b79;
+        letter-spacing: 0.02em;
+    }
+
+    /* 行タイトル (tbody th, tbody tr の先頭セル) */
+    article :global(tbody th),
+    article :global(tbody tr > th:first-child),
+    article :global(tbody tr > td:first-child) {
+        font-weight: 700;
+        color: #707070;
+    }
+
+    article :global(td) {
+        color: #707070;
+        font-weight: 500;
+    }
+
+    /* 最下行のセルの下線はテーブル下部境界線と重複しないように消去 */
+    article :global(tbody tr:last-child td),
+    article :global(tbody tr:last-child th) {
+        border-bottom: none;
+    }
+
+    /* 行ホバー時のアクセント */
+    /* article :global(tbody tr) {
+        transition: background-color 0.2s ease;
+    }
+
+    article :global(tbody tr:hover) {
+        background-color: rgba(232, 107, 121, 0.04);
+    } */
+
+    /* Markdownのセル配置指定（左寄せ・中央・右寄せ）を尊重 */
+    article :global(th[align="left"]),
+    article :global(td[align="left"]) {
+        text-align: left;
+    }
+
+    article :global(th[align="center"]),
+    article :global(td[align="center"]) {
+        text-align: center;
+    }
+
+    article :global(th[align="right"]),
+    article :global(td[align="right"]) {
+        text-align: right;
+    }
+
+    /* スマホ画面対応 */
+    @media screen and (max-width: 636px) {
+        article :global(h2) {
+            margin-top: 2.8rem;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        article :global(h3) {
+            margin-top: 2.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        article :global(h2 + h3) {
+            margin-top: 1.2rem;
+        }
+
+        article :global(table) {
+            font-size: 0.85rem;
+            margin: 1.5rem 0;
+        }
+
+        article :global(th),
+        article :global(td) {
+            padding: 0.65rem 0.75rem;
+        }
+    }
+
+    /* ダークモード対応 */
+    :global(html.dark) article :global(table) {
+        border-top-color: #e86b79;
+        border-bottom-color: #e86b79;
+    }
+
+    :global(html.dark) article :global(thead) {
+        background-color: rgba(232, 107, 121, 0.15);
+    }
+
+    :global(html.dark) article :global(th) {
+        border-bottom-color: #e86b79;
+    }
+
+    :global(html.dark) article :global(td) {
+        color: #d0d0d0;
+        border-bottom-color: rgba(255, 255, 255, 0.12);
+    }
+
+    :global(html.dark) article :global(tbody th),
+    :global(html.dark) article :global(tbody tr > th:first-child),
+    :global(html.dark) article :global(tbody tr > td:first-child) {
+        color: #ffffff;
+    }
+
+    :global(html.dark) article :global(tbody tr:hover) {
+        background-color: rgba(232, 107, 121, 0.1);
+    }
 </style>
