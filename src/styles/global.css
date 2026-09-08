@@ -37,7 +37,7 @@ h1 {
     font-size: 2.5rem;
 }
 
-h2 {
+h2, h3, h4, h5, h6, y {
     color: #707070;
 }
 
@@ -45,6 +45,11 @@ p {
     color: #707070;
     font-weight: 500;
     /*margin: 10px 0;*/
+}
+
+a {
+    color: #e86b79;
+    text-decoration: solid underline;
 }
 
 @media screen and (max-width: 636px) {
