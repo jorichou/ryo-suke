@@ -67,4 +67,40 @@ const formattedDate = new Date(frontmatter.pubDate)
         font-size: 1.15rem;
         background-color: #f8fcfd;
     }
+
+    /* 節（h2）および小節（h3, h4）のスペーシング */
+    article :global(h2) {
+        color: #707070;
+        margin-top: 4rem;
+        margin-bottom: 1.5rem;
+        font-size: 1.6rem;
+    }
+
+    article :global(h2:first-of-type) {
+        margin-top: 1.5rem;
+    }
+
+    /* 小節（h3）の間隔 */
+    article :global(h3) {
+        color: #707070;
+        margin-top: 3.5rem;
+        margin-bottom: 1.2rem;
+        font-size: 1.3rem;
+    }
+
+    /* 節（h2）直後の小節（h3）の間隔調整 */
+    article :global(h2 + h3) {
+        margin-top: 1.5rem;
+    }
+
+    article :global(h4) {
+        color: #707070;
+        margin-top: 2.5rem;
+        margin-bottom: 0.8rem;
+    }
+
+    article :global(p) {
+        margin: 1.2rem 0;
+        line-height: 1.8;
+    }
 </style>
