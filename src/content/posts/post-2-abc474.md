@@ -7,7 +7,7 @@ author: 'Ryousuke'
 image:
     url: '/images/posts/atcoder-joinlog-head.png'
     alt: 'AtCoder参加記タイトル画像'
-tags: ["AtCoder", "ABC474", "ABC", "AtCoder Beginer Contest"]
+tags: ["AtCoder", "ABC474", "ABC", "AtCoder Beginer Contest", "AtCoder参加記"]
 draft: true
 ---
 
@@ -34,7 +34,7 @@ draft: true
 [解答](https://github.com/jorichou/atcoder/blob/main/solutions/ABC/ABC474/A/01.py)
 
 ### B問題
-客のグループ分けをするときのリストのインデックスを迷った。1~Nの数字の昇順配列を正解配列として用意する。与えられた客の配列Pと正解配列を同じようにグループ分けした後で、それぞれ昇順にソートして比較する。すべてのグループで正解配列と一致すればYes、一つでも違うものがあればNo
+客のグループ分けをするときのリストのインデックスを迷った。1~Nの数字の昇順配列を正解配列として用意する。与えられた客の配列Pと正解配列を同じようにグループ分けした後で、それぞれ昇順にソートして比較する。すべてのグループで正解配列と一致すればYes、一つでも違うものがあればNo。
 
 [解答](https://github.com/jorichou/atcoder/blob/main/solutions/ABC/ABC474/B/01.py)
 
@@ -44,7 +44,7 @@ draft: true
 [解答](https://github.com/jorichou/atcoder/blob/main/solutions/ABC/ABC474/C/01.py)
 
 ### D問題
-条件を満たす整数列があるかどうかをどう判定するかが難しかった。配列Aと配列Bのそれぞれの要素の差を`Ai - Bi`で求める。これがすべて0以下であれば、条件を満たす整数列Wは存在しない。１以上のものが一つでもあれば、`Ai - Bi`の値が最も大きいiについて`W[i]`を`Wi`最大の値である`10^18`にすることで条件を満たす配列Wが求まる
+条件を満たす整数列があるかどうかをどう判定するかが難しかった。配列Aと配列Bのそれぞれの要素の差を`Ai - Bi`で求める。これがすべて0以下であれば、条件を満たす整数列Wは存在しない。１以上のものが一つでもあれば、`Ai - Bi`の値が最も大きいiについて`W[i]`をWの制約の中で最大の値である`10^18`にすることで条件を満たす配列Wが求まる。
 
 [解答](https://github.com/jorichou/atcoder/blob/main/solutions/ABC/ABC474/D/01.py)
 
