@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
 const { frontmatter } = Astro.props;
 const formattedDate = new Date(frontmatter.pubDate)
     .toLocaleDateString("ja-JP", {
@@ -12,6 +13,7 @@ const formattedDate = new Date(frontmatter.pubDate)
 
 <BaseLayout pageTitle={frontmatter.title}>
     <div class="news-container">
+        <Breadcrumbs title={frontmatter.title} />
         <div class="news-top">
             <p class="post-date">{formattedDate}</p>
             <h1 class="post-title">{frontmatter.title}</h1>
