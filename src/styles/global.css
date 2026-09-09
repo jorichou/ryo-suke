@@ -246,7 +246,7 @@ header.header-hidden .site-title {
 .link-list {
     display: grid;
     grid-template-rows: repeat(auto-fill, minmax(clamp(100px, 10vh, 120px), 1fr));
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     align-items: center;
     gap: 2rem;
     list-style: none;
