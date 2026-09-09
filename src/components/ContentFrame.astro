@@ -4,10 +4,10 @@ const { chapterTitle, rubi } = Astro.props;
 
 <div class="chapter-title-box">
     <h2 class="chapter-title">{chapterTitle}</h2>
-    <p class="title-rubi">{rubi}</p>
+    <!-- <p class="title-rubi">{rubi}</p> -->
 </div>
-<slot name="sub-menu"/>
-<div class="under-chapter-title-line"></div>
+<!-- <slot name="sub-menu"/> -->
+<!-- <div class="under-chapter-title-line"></div> -->
 <slot name="chapter-content"/>
 
 <style>
@@ -16,11 +16,12 @@ const { chapterTitle, rubi } = Astro.props;
         color: #e86b79;
         font-size: 2.5rem;
         margin-bottom: 0;
+        font-weight: 600;
     }
     .chapter-title-box {
         display: flex;
         flex-direction: column;
-        margin-bottom: 2rem;
+        margin-bottom: 0rem;
         align-items: center;
         width: fit-content;
     }
