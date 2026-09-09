@@ -8,3 +8,47 @@
     <a href="/blog/">Blog</a>
     <!-- <a href="/tags/">Tag</a> -->
 </nav>
+
+<style>
+    .nav-links {
+        width: 100%;
+        top: 5rem;
+        left: 48px;
+        /* background-color: #ff9776; */
+        display: none;
+        margin: 0;
+        font-family: var(--font-family-en);
+    }
+
+    .nav-links a {
+        display: block;
+        text-align: center;
+        padding: 10px 0;
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: 580;
+        /* text-transform: uppercase; */
+        color: #212122;
+        transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+        color: #E86B79;
+    }
+    
+    @media screen and (min-width: 1024px) {
+    .nav-links {
+        margin-left: 5em;
+        display: block;
+        position: static;
+        width: auto;
+        background: none;
+    }
+
+    .nav-links a {
+        display: inline-block;
+        padding: 15px 20px;
+    }
+}
+
+</style>

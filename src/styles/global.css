@@ -71,43 +71,7 @@ a {
     width: 100%;
 }
 
-header {
-    position: sticky;
-    top: 0;
-    z-index: 201;
-    background-color: #f5f5f5;
-    height: 4.3rem;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
 
-header.header-hidden {
-    background-color: transparent !important;
-    box-shadow: none !important;
-}
-
-header .site-title {
-    transition: opacity 0.3s ease;
-}
-
-header.header-hidden .site-title {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.header-logo {
-    height: 2.6rem;
-    width: auto;
-    display: block;
-}
-
-/* @media screen and (max-width: 1023px) {
-    .header-logo {
-        height: 2.4rem;
-    }
-} */
 
 /* ナビゲーションのスタイル */
 .hamburger {
@@ -159,31 +123,7 @@ header.header-hidden .site-title {
 
 }
 
-.nav-links {
-  width: 100%;
-  top: 5rem;
-  left: 48px;
-  /* background-color: #ff9776; */
-  display: none;
-  margin: 0;
-  font-family: var(--font-family-en);
-}
 
-.nav-links a {
-    display: block;
-    text-align: center;
-    padding: 10px 0;
-    text-decoration: none;
-    font-size: 1.2rem;
-    font-weight: bold;
-    /* text-transform: uppercase; */
-    color: #e86b79;
-    transition: 0.7s;
-}
-
-/* .nav-links a:hover, a:focus {
-  color: #00897B;
-} */
 
 .chapter-title {
     font-family: var(--font-family-en);
@@ -262,18 +202,7 @@ header.header-hidden .site-title {
 }
 
 @media screen and (min-width: 1024px) {
-    .nav-links {
-        margin-left: 5em;
-        display: block;
-        position: static;
-        width: auto;
-        background: none;
-    }
 
-    .nav-links a {
-        display: inline-block;
-        padding: 15px 20px;
-    }
 
     .hamburger {
         display: none;

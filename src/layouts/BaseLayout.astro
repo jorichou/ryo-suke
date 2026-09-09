@@ -17,6 +17,23 @@ const tabTitle = pageTitle === "Home" ? "Ryo-suke.org" : `${pageTitle} | Ryo-suk
 		<meta name="generator" content={Astro.generator} />
 		<script src="https://kit.fontawesome.com/c8d155ce04.js" crossorigin="anonymous"></script>
 		<title>{tabTitle}</title>
+		<script is:inline>
+			const theme = (() => {
+				if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+					return localStorage.getItem('theme');
+				}
+				if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+					return 'dark';
+				}
+				return 'light';
+			})();
+
+			if (theme === 'dark') {
+				document.documentElement.classList.add('dark');
+			} else {
+				document.documentElement.classList.remove('dark');
+			}
+		</script>
 	</head>
 	<body>
 		<Header />
