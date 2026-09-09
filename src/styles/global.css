@@ -103,6 +103,12 @@ header.header-hidden .site-title {
     display: block;
 }
 
+@media screen and (max-width: 1023px) {
+    .header-logo {
+        height: 2.4rem;
+    }
+}
+
 /* ナビゲーションのスタイル */
 .hamburger {
     padding-right: 20px;
@@ -135,6 +141,22 @@ header.header-hidden .site-title {
 
 .hamburger.active .line:nth-child(3) {
     transform: translateY(-15px) rotate(-45deg);
+}
+
+@media screen and (max-width: 1023px) {
+    .hamburger .line {
+        width: 28px;
+        height: 4px;
+        margin-bottom: 6px;
+    }
+
+    .hamburger.active .line:nth-child(1) {
+        transform: translateY(10px) rotate(45deg);
+    }
+    .hamburger.active .line:nth-child(3) {
+        transform: translateY(-10px) rotate(-45deg);
+    }
+
 }
 
 .nav-links {

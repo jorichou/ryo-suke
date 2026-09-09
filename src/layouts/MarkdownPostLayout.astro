@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import TableOfContents from "../components/TableOfContents.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
 const { frontmatter, headings } = Astro.props;
 const formattedDate = new Date(frontmatter.pubDate)
     .toLocaleDateString("ja-JP", {
@@ -14,6 +15,7 @@ const formattedDate = new Date(frontmatter.pubDate)
 <BaseLayout pageTitle={frontmatter.title}>
     <div class="post-layout">
         <div class="post-container">
+            <Breadcrumbs title={frontmatter.title} />
             <div class="post-top">
                 <p class="post-date">{formattedDate}</p>
                 <h1 class="post-title">{frontmatter.title}</h1>

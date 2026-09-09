@@ -1,11 +1,13 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import TableOfContents from "../components/TableOfContents.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
 const { frontmatter, headings } = Astro.props;
 ---
 
 <BaseLayout pageTitle={frontmatter.title}>
     <div class="w-box">
+        <Breadcrumbs title={frontmatter.title} />
         <div class="about-box">
             <div class="work-description">
                 <div class="title-wrap">
