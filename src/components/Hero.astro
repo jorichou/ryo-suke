@@ -91,7 +91,7 @@ const slideImages = [
 
     .typing-text {
         color: #ffffff;
-        font-size: clamp(1.2rem, 3vw, 2.4rem);
+        font-size: clamp(1.5rem, 5vw, 3rem);
         font-family:
             "Google Sans Flex", "Noto Sans", "Consolas", "Courier New", Courier,
             monospace;
@@ -100,6 +100,12 @@ const slideImages = [
         white-space: pre;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     }
+    
+    /* @media screen and (max-width: 636px) {
+        .typing-text {
+            font-size: clamp(1.0rem, 1.5vw, 2rem);
+        }
+    } */
 
     .typing-cursor {
         display: inline-block;
