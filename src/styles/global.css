@@ -103,7 +103,7 @@ header.header-hidden .site-title {
     display: block;
 }
 
-@media screen and (max-width: 636px) {
+@media screen and (max-width: 1023px) {
     .header-logo {
         height: 2.4rem;
     }
@@ -143,7 +143,7 @@ header.header-hidden .site-title {
     transform: translateY(-15px) rotate(-45deg);
 }
 
-@media screen and (max-width: 636px) {
+@media screen and (max-width: 1023px) {
     .hamburger .line {
         width: 28px;
         height: 4px;
