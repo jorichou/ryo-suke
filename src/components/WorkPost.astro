@@ -11,6 +11,11 @@ const year = new Date(pubyear).getFullYear();
         /* margin-top: 10vh; */
         /* width: calc((100% - 6rem) / 4); */
         /* transition: box-shadow 0.5s; */
+        border: 1px solid #212121;
+        border-radius: 8px;
+        transition: border-color 0.25s ease, outline-color 0.25s ease;
+        outline: 1px solid transparent;
+        overflow: hidden;
     }
 
     /* li:hover {
@@ -31,28 +36,29 @@ const year = new Date(pubyear).getFullYear();
     }
 
     /* Hover effects */
-    a:hover .text-content p {
+    /* a:hover .text-content p {
         color: #e86b79;
     }
 
     a:hover .work-type {
         border-right-color: #e86b79;
-    }
+    } */
 
 
     .img-container {
-        aspect-ratio: 1 / 1;
+        aspect-ratio: 4 / 3;
         background-color: #f0f0f0;
         /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
-        border: 2px solid #9E9E9E;
+        /* border: 2px solid #9E9E9E; */
         transition: border-color 0.5s ease;
-        border-radius: 8px;
+        /* border-radius: 8px; */
         overflow: hidden;
     }
 
-    a:hover .img-container {
+    li:hover {
         /* box-shadow: 0 0 0 2px rgba(232, 107, 121, 1); */
-        border: 2px solid #E86B79;
+        border: 1px solid #E86B79;
+        outline: 1.5px solid #E86B79;
     }
 
     .img-container img {
@@ -62,16 +68,20 @@ const year = new Date(pubyear).getFullYear();
     }
 
     .text-content {
-        padding: 1rem 1.2rem;
+        padding: 0.8rem 1.2rem;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        align-items: left;
     }
 
     .text-content p {
-        font-weight: bold;
-        color: #707070;
+        font-weight: 400;
+        color: #212121;
         /* transition: color 0.5s ease; */
     }
 
-    .upper-content {
+    /* .upper-content {
         display: flex;
         flex-direction: row;
         margin: 0 0 0.7rem 0;
@@ -79,7 +89,7 @@ const year = new Date(pubyear).getFullYear();
 
     .upper-content p {
         font-size: 1.0rem;
-    }
+    } */
 
     .work-type {
         padding: 0 1vw 0 0;
@@ -89,9 +99,9 @@ const year = new Date(pubyear).getFullYear();
     }
 
     .year {
-        padding: 0 0 0 1vw;
+        /* padding: 0 0 0 1vw; */
         margin: 0;
-
+        font-size: 1.1rem;
     }
 
     .title {
@@ -109,7 +119,7 @@ const year = new Date(pubyear).getFullYear();
         }
 
         .year {
-            padding: 0 0 0 3vw;
+            /* padding: 0 0 0 3vw; */
         }
     }
 
@@ -123,7 +133,7 @@ const year = new Date(pubyear).getFullYear();
         }
 
         .year {
-            padding: 0 0 0 2vw;
+            /* padding: 0 0 0 2vw; */
         }
     }
 </style>
@@ -134,11 +144,11 @@ const year = new Date(pubyear).getFullYear();
             <img src={img_url} alt={`Image for ${title}`}>
         </div>
         <div class="text-content">
-            <div class="upper-content">
+            <!-- <div class="upper-content">
                 <p class="work-type upper-item">{work_type}</p>
-                <p class="year upper-item">{year}</p>
-            </div>
+            </div> -->
             <p class="title">{title}</p>
+            <p class="year">{year}</p>
         </div>
     </a>
 </li>
