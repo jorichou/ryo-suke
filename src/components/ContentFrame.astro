@@ -2,15 +2,21 @@
 const { chapterTitle, rubi } = Astro.props;
 ---
 
-<div class="chapter-title-box">
-    <h2 class="chapter-title">{chapterTitle}</h2>
-    <!-- <p class="title-rubi">{rubi}</p> -->
+<div class="chapter-frame">
+    <div class="chapter-title-box">
+        <h2 class="chapter-title">{chapterTitle}</h2>
+        <!-- <p class="title-rubi">{rubi}</p> -->
+    </div>
+    <slot name="sub-menu"/>
+    <div class="under-chapter-title-line"></div>
+    <slot name="chapter-content"/>
 </div>
-<slot name="sub-menu"/>
-<div class="under-chapter-title-line"></div>
-<slot name="chapter-content"/>
 
 <style>
+    .chapter-frame {
+        padding: clamp(20px, 5vh, 60px) 0;
+    }
+        
     .chapter-title {
         margin: 1rem 0;
         color: #e86b79;
