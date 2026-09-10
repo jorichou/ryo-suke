@@ -1,4 +1,6 @@
 ---
+import Tag from "./Tag.astro";
+
 const { pubyear, img_url, work_type, title, url } = Astro.props;
 
 const year = new Date(pubyear).getFullYear();
@@ -16,6 +18,10 @@ const year = new Date(pubyear).getFullYear();
         transition: border-color 0.25s ease, outline-color 0.25s ease;
         outline: 1px solid transparent;
         overflow: hidden;
+    }
+
+    .work-item {
+        position: relative;
     }
 
     /* li:hover {
@@ -67,8 +73,14 @@ const year = new Date(pubyear).getFullYear();
         object-fit: cover;
     }
 
-    .text-content {
+    .work-info {
+        display: flex;
+        flex-direction: row;
         padding: 0.8rem 1.2rem;
+    }
+
+    .text-content {
+        /* padding: 0.8rem 0; */
         display: flex;
         justify-content: space-between;
         flex-direction: column;
@@ -109,6 +121,13 @@ const year = new Date(pubyear).getFullYear();
         margin: 0;
     }
 
+    .tag-wrapper {
+        position: absolute;
+        bottom: 0.8rem;
+        right: 1.2rem;
+        z-index: 2;
+    }
+
     @media screen and (max-width: 636px) {
         li {
             width: 100%;
@@ -143,12 +162,17 @@ const year = new Date(pubyear).getFullYear();
         <div class="img-container">
             <img src={img_url} alt={`Image for ${title}`}>
         </div>
-        <div class="text-content">
-            <!-- <div class="upper-content">
-                <p class="work-type upper-item">{work_type}</p>
-            </div> -->
-            <p class="title">{title}</p>
-            <p class="year">{year}</p>
+        <div class="work-info">
+            <div class="text-content">
+                <!-- <div class="upper-content">
+                    <p class="work-type upper-item">{work_type}</p>
+                </div> -->
+                <p class="title">{title}</p>
+                <p class="year">{year}</p>
+            </div>
+            <div class="tag-wrapper">
+                <Tag tagName={work_type}/>
+            </div>
         </div>
     </a>
 </li>
