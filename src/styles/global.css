@@ -168,6 +168,10 @@ html.dark header {
     background-color: #0d0950;
 }
 
+html.dark .under-chapter-title-line {
+    border-color: #f5f5f5;
+}
+
 /* --- 目次スタイル --- */
 .toc {
     /*background: #fff;*/
