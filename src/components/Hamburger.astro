@@ -6,3 +6,53 @@
     <span class="line"></span>
     <span class="line last-line"></span>
 </div>
+
+<style>
+    @media screen and (min-width: 1024px) {
+        .hamburger {
+            display: none;
+        }
+    }
+
+    /* ナビゲーションのスタイル */
+    .hamburger {
+        cursor: pointer;
+        padding: 0;
+        position: relative;
+        z-index: 201;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .hamburger .line {
+        display: block;
+        width: 28px;
+        height: 3px;
+        margin-bottom: 6px;
+        background-color: #212121;
+        border-radius: 2px;
+        transform-origin: center;
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, background-color 0.3s ease;
+    }
+
+    .hamburger .line.last-line {
+        margin-bottom: 0;
+    }
+
+    .hamburger.active .line:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+
+    .hamburger.active .line:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .line:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+
+    :global(html.dark) .hamburger .line {
+        background-color: #ffffff;
+    }
+</style>
