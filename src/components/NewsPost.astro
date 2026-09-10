@@ -6,7 +6,7 @@ const formattedDate = new Date(postDate).toLocaleDateString('ja-JP', {
   year: 'numeric',
   month: '2-digit',
   day: '2-digit',
-}).replace(/\//g, '.');
+})
 ---
 <style>
     li {
@@ -36,20 +36,20 @@ const formattedDate = new Date(postDate).toLocaleDateString('ja-JP', {
 
     .date {
         font-size: 1.1rem;
-        color: #707070;
-        font-weight: bold;
+        color: #212121;
+        font-weight: ;500
         /* margin: 0; */
     }
 
     .title {
         font-size: 1.1rem;
-        font-weight: bold;
+        font-weight: 500;
         margin: 0 5rem;
-        color: #707070;
+        color: #212121;
     }
 
     .news-post p {
-        transition: color 0.4s;
+        transition: color 0.2s;
     }
 
     @media screen and (max-width: 636px) {
