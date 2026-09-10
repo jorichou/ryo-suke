@@ -34,12 +34,12 @@ const tags = [...new Set(activeWorks.map((post: CollectionEntry<'works'>) => pos
 <BaseLayout pageTitle={pageTitle}>
     <Hero slot="hero" />
     <ContentFrame chapterTitle="Works" rubi="作品">
-        <div slot="sub-menu" class="tags">
+        <!-- <div slot="sub-menu" class="tags">
             <button class="tag filter-btn active" data-filter="all">All</button>
             {tags.map((tag) => (   
                 <button class="tag filter-btn" data-filter={tag}>{tag}</button>
             ))}
-        </div>
+        </div> -->
         <div slot="chapter-content" class="chapter-box">
             <div class="chapter-content">
                 <ul class="work-list">
