@@ -3,162 +3,163 @@ import Hamburger from "./Hamburger.astro";
 import Navigation from "./Navigation.astro";
 ---
 
-<!-- スマホ用：画面全体を覆うオーバーレイナビ -->
-<div class="nav-overlay" id="nav-overlay">
-    <Navigation />
-</div>
-
-<header class="w-wrap">
-    <div class="site-title">
-        <a href="/">
-            <!-- <img src="/umekabuto.svg" alt="Ryo-suke.org" class="header-logo"> -->
-             <p class="title-text">Ryousuke</p>
-        </a>
-    </div>
-    <div class="header-right">
-        <nav>
+<header class="header">
+    <div class="header-bar w-wrap">
+        <div class="site-title">
+            <a href="/">
+                <p class="title-text">Ryousuke</p>
+            </a>
+        </div>
+        <div class="header-actions">
             <Hamburger />
-            <!-- PC用ナビ -->
+        </div>
+    </div>
+
+    <!-- スマホ版でヘッダーからスライド展開する帯ナビゲーション（PCではヘッダー右側に配置） -->
+    <div class="nav-band" id="nav-band">
+        <div class="nav-band-inner w-wrap">
             <Navigation />
-        </nav>
-        <button class="theme-button" id="theme-button" type="button" aria-label="テーマ切り替え">
-            <!-- 太陽アイコン (ライトモード時表示) -->
-            <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                <path fill="currentColor" d="M15 3v5h2V3zM7.5 6.094L6.094 7.5l3.531 3.563l1.438-1.438zm17 0l-3.563 3.531l1.438 1.438L25.906 7.5zM16 9c-3.855 0-7 3.145-7 7s3.145 7 7 7s7-3.145 7-7s-3.145-7-7-7m0 2c2.773 0 5 2.227 5 5s-2.227 5-5 5s-5-2.227-5-5s2.227-5 5-5M3 15v2h5v-2zm21 0v2h5v-2zM9.625 20.938L6.094 24.5L7.5 25.906l3.563-3.531zm12.75 0l-1.438 1.437l3.563 3.531l1.406-1.406zM15 24v5h2v-5z"/>
-            </svg>
-            <!-- 月アイコン (ダークモード時表示) -->
-            <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                <path fill="currentColor" d="M5 5v2H3v2h2v2h2V9h2V7H7V5zm15.281 2.938L18.625 8C13.281 8.191 9 12.578 9 17.969c0 5.511 4.488 10 10 10c5.39 0 9.777-4.282 9.969-9.625l.062-1.625l-1.468.687A5.94 5.94 0 0 1 25 17.97c-3.324 0-6-2.676-6-6c0-.914.223-1.75.594-2.531zm-2.906 2.375c-.125.554-.375 1.062-.375 1.656c0 4.406 3.594 8 8 8c.605 0 1.121-.246 1.688-.375c-.762 3.625-3.829 6.375-7.688 6.375c-4.43 0-8-3.57-8-8c0-3.852 2.758-6.887 6.375-7.657z"/>
-            </svg>
-        </button>
+        </div>
     </div>
 </header>
 
 <script>
     const btn = document.getElementById('humburger-btn');
-    const overlay = document.getElementById('nav-overlay');
-    const header = document.querySelector('header');
+    const navBand = document.getElementById('nav-band');
     const themeButton = document.getElementById('theme-button');
-    
+
     // テーマ切り替え機能
     themeButton?.addEventListener('click', () => {
         const isDark = document.documentElement.classList.toggle('dark');
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
 
-    // ハンバーガーボタンでオーバーレイを開閉
+    // ハンバーガーボタンで帯を開閉
     btn?.addEventListener('click', () => {
-        btn.classList.toggle('active');
-        if (btn.classList.contains('active')) {
-            overlay?.classList.add('open');
-            header?.classList.add('header-hidden');
-            document.body.classList.add('no-scroll');
-        } else {
-            overlay?.classList.remove('open');
-            header?.classList.remove('header-hidden');
-            document.body.classList.remove('no-scroll');
-        }
+        const isOpen = btn.classList.toggle('active');
+        navBand?.classList.toggle('open', isOpen);
     });
 
-    // オーバーレイ内のリンクをクリックしたらメニューを閉じる
-    overlay?.querySelectorAll('a').forEach(link => {
+    // 帯内のリンクをクリックしたら帯を閉じる
+    navBand?.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             btn?.classList.remove('active');
-            overlay?.classList.remove('open');
-            header?.classList.remove('header-hidden');
-            document.body.classList.remove('no-scroll');
+            navBand?.classList.remove('open');
         });
+    });
+
+    // メニュー外側をクリックした時に閉じる
+    document.addEventListener('click', (e) => {
+        if (!btn?.contains(e.target as Node) && !navBand?.contains(e.target as Node)) {
+            btn?.classList.remove('active');
+            navBand?.classList.remove('open');
+        }
     });
 </script>
 
 <style>
+    .header {
+        position: sticky;
+        top: 0;
+        z-index: 201;
+        background-color: #f5f5f5;
+        transition: background-color 0.3s ease;
+    }
+
     .title-text {
         font-size: 1.7rem;
         font-weight: 700;
         color: #212121;
         transition: color 0.3s ease;
+        margin: 0;
     }
 
-    header {
-        position: sticky;
-        top: 0;
-        z-index: 201;
-        background-color: #f5f5f5;
-        height: 4.3rem;
-        /* box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); */
-        /* border-bottom: 1px solid #212121; */
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        transition: background-color 0.3s ease;
+    /* スマホ表示 (< 1024px) */
+    @media screen and (max-width: 1023px) {
+        .header {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 4.3rem;
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        /* ヘッダーから出てくる帯 */
+        .nav-band {
+            width: 100%;
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                        border-color 0.3s ease,
+                        box-shadow 0.3s ease;
+            background-color: #f5f5f5;
+            border-bottom: 1px solid transparent;
+        }
+
+        .nav-band.open {
+            grid-template-rows: 1fr;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-band-inner {
+            overflow: hidden;
+            width: 100%;
+        }
     }
 
-    header.header-hidden {
-        background-color: transparent !important;
-        box-shadow: none !important;
-    }
+    /* PC表示 (>= 1024px) */
+    @media screen and (min-width: 1024px) {
+        .header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            height: 4.3rem;
+            padding: 0 2rem;
+            width: 100%;
+        }
 
-    header .site-title {
-        transition: opacity 0.3s ease;
-    }
+        .header-bar {
+            display: flex;
+            align-items: center;
+            padding: 0;
+            width: auto;
+        }
 
-    header.header-hidden .site-title {
-        opacity: 0;
-        pointer-events: none;
-    }
+        .header-actions {
+            display: none;
+        }
 
-    .header-logo {
-        height: 2.6rem;
-        width: auto;
-        display: block;
-    }
+        .nav-band {
+            display: block !important;
+            width: auto;
+            grid-template-rows: unset;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+        }
 
-    .header-right {
-        display: flex;
-        flex-direction: row;
-        gap: 1rem;
-        align-items: center;
-    }
-
-    .theme-button {
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        padding: 0.35rem;
-        border-radius: 50%;
-        color: #212121;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        transition: color 0.2s ease, background-color 0.2s ease, transform 0.15s ease;
-    }
-
-    .theme-button:hover {
-        color: #e86b79;
-        background-color: rgba(0, 0, 0, 0.05);
-    }
-
-    .theme-button:active {
-        transform: scale(0.92);
-    }
-
-    .theme-button svg {
-        display: block;
-        width: 1.8rem;
-        height: 1.8rem;
-    }
-
-    /* ライトモード時: 太陽を表示、月を非表示 */
-    .theme-button .sun-icon {
-        display: block;
-    }
-
-    .theme-button .moon-icon {
-        display: none;
+        .nav-band-inner {
+            padding: 0;
+            width: auto;
+            overflow: visible;
+        }
     }
 
     /* ダークモード時 */
-    :global(html.dark) header {
+    :global(html.dark) .header {
         background-color: #0d0950;
     }
 
@@ -166,26 +167,14 @@ import Navigation from "./Navigation.astro";
         color: #ffffff;
     }
 
-    :global(html.dark) .theme-button {
-        color: #ffffff;
-    }
-
-    :global(html.dark) .theme-button:hover {
-        color: #ff8a98;
-        background-color: rgba(255, 255, 255, 0.12);
-    }
-
-    :global(html.dark) .theme-button .sun-icon {
-        display: none;
-    }
-
-    :global(html.dark) .theme-button .moon-icon {
-        display: block;
-    }
-
-    /* @media screen and (max-width: 1023px) {
-        .header-logo {
-            height: 2.4rem;
+    @media screen and (max-width: 1023px) {
+        :global(html.dark) .nav-band {
+            background-color: #0d0950;
         }
-    } */
+
+        :global(html.dark) .nav-band.open {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+        }
+    }
 </style>

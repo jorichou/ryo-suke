@@ -149,79 +149,11 @@ a {
 
 @media screen and (min-width: 1024px) {
 
-    /* PC時はオーバーレイは不要 */
-    .nav-overlay {
-        display: none !important;
-    }
-
     .work-list {
         grid-template-columns: repeat(4, calc((100% - 6rem) / 4));
     }
 }
 
-/* === スマホ用 フルスクリーン オーバーレイナビ === */
-
-/* オーバーレイ本体（デフォルトは非表示） */
-.nav-overlay {
-    pointer-events: none;
-    position: fixed;
-    inset: 0;                          /* 画面全体を覆う */
-    background-color: rgba(255, 255, 255, 0);
-    z-index: 200;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 0.4s ease, background-color 0.4s ease;
-}
-
-/* メニューが開いているとき */
-.nav-overlay.open {
-    pointer-events: auto;
-    opacity: 1;
-    background-color: rgba(255, 255, 255, 0.97);
-}
-
-/* オーバーレイ内のナビリンク */
-.nav-overlay .nav-links {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.4s ease 0.15s, transform 0.4s ease 0.15s;
-}
-
-.nav-overlay .nav-links a {
-    font-size: 1.6rem;
-    padding: 12px 30px;
-}
-
-.nav-overlay.open .nav-links {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* 閉じるボタン (✕) */
-.overlay-close {
-    position: absolute;
-    top: 1.2rem;
-    right: 1.5rem;
-    background: none;
-    border: none;
-    font-size: 2rem;
-    color: #e86b79;
-    cursor: pointer;
-    line-height: 1;
-    padding: 0.3rem 0.6rem;
-    transition: transform 0.2s ease;
-}
-
-.overlay-close:hover {
-    transform: rotate(90deg);
-}
 
 html.dark {
     background-color: #0d0950;
