@@ -11,6 +11,7 @@ import NewsPost from "../components/NewsPost.astro";
 import WorkPost from "../components/WorkPost.astro";
 import SocialLink from "../components/SocialLink.astro";
 import Social from "../components/Social.astro";
+import IntroCard from "../components/IntroCard.astro";
 
 const pageTitle = "Home";
 
@@ -59,33 +60,13 @@ const tags = [...new Set(activeWorks.map((post: CollectionEntry<'works'>) => pos
             <Button buttonName="View All" link="/work" />
         </div>
     </ContentFrame>
-    <ContentFrame chapterTitle="About" rubi="私について">
-        <div slot="chapter-content" class="chapter-box">
-            <div class="chapter-content intro-chapter">
-                <div class="intro-card">
-                    <div class="card-main">
-                        <div class="card-head">
-                            <div class="card-img">
-                                <img src="izuchi-logo2.svg" alt="プロフィール画像" />
-                            </div>
-                            <div class="card-text">
-                                <p class="dev-name">Ryousuke</p>
-                            </div>
-                        </div>
-                        <p class="intro-text">
-                            大学4年生です。人工知能・データ分析・プログラミングを学んでいます。
-                        </p>
-                    </div>
-                    <!-- <Button buttonName="View More" link="/about" /> -->
-                     <div class="button-container">
-                        <div class="button-body intro">
-                            <a href="/about">View More</a>
-                        </div>
-                     </div>
-                </div>
-            </div>
-        </div>
-    </ContentFrame>
+    <!-- <ContentFrame chapterTitle="About" rubi="私について"> -->
+    <div class="about-container">
+        <!-- <div class="chapter-content intro-chapter"> -->
+        <IntroCard />
+        <!-- </div> -->
+    </div>
+    <!-- </ContentFrame> -->
     <ContentFrame chapterTitle="News" rubi="ニュース">
         <div slot="chapter-content" class="chapter-box">
             <div class="chapter-content news-content">

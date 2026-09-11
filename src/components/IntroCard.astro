@@ -1,0 +1,181 @@
+---
+import Button from "./button.astro";
+---
+
+<div class="intro-card">
+    <div class="card-main">
+        <div class="card-img">
+            <img src="izuchi-logo2.svg" alt="プロフィール画像" />
+        </div>
+        <div class="about-content">
+            <h2 class="chapter-title about">About</h2>
+            <div class="dev-name about">Ryousuke</div>
+            <p class="intro-text">
+                I’m university student researching Informatics. I study data analysis and machine learning.
+            </p>
+            <div class="button-wrapper">
+                <Button buttonName="View More" link="/about" />
+            </div>
+        </div>
+        <!-- <div class="card-head">
+            <div class="card-img">
+                
+            </div>
+            <div class="card-text">
+                <p class="dev-name">Ryousuke</p>
+            </div>
+        </div> -->
+    </div>
+</div>
+
+<style>
+    .intro-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+        border: solid #212121 1px;
+        aspect-ratio: 17 / 10;
+        width: 50%;
+        min-width: 650px;
+        height: auto;
+        position: relative;
+        border-radius: 8px;
+        background-color: #f5f5f5;
+        padding: 1rem 3rem 1rem 3rem;
+        transition: border-color 0.25s ease, outline-color 0.25s ease;
+        outline: 1.5px solid transparent;
+    }
+
+    .intro-card:hover {
+        border: 1px solid #E86B79;
+        outline: 1.5px solid #E86B79;
+        transition: .2s;
+    }
+
+    .card-img {
+        width: auto;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        /* border: solid #e86b79 1.5px; */
+        border-radius: 1000px;
+        border: #212121 1px solid;
+    }
+
+    .card-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;         /* 縦横比を保ちながらコンテナを埋める */
+        display: block;
+        overflow: hidden;
+    }
+
+    .card-main {
+        display: grid;
+        grid-template-columns: 39% 1fr;
+        /* justify-content: space-between; */
+        align-items: center;
+        gap: 2em;
+    }
+
+    .chapter-title.about {
+        display: block;
+        margin: 0 0 .5rem 0;
+        font-size: 1.8rem;
+        font-weight: 600;
+        line-height: 1;
+        height: auto;
+    }
+
+    .dev-name.about {
+        font-size: 2.5rem;
+        line-height: 1;
+        height: auto;
+        color: #424242;
+    }
+
+    .card-text {
+        /* display: flex;
+        flex-direction: column; */
+        /* margin-left: 4vw; */
+    }
+
+    .intro-text {
+        font-size: 1rem;
+    }
+
+    .button-wrapper {
+        justify-self: right;
+        width: fit-content;
+    }   
+
+    @media screen and (max-width: 960px) {
+        .intro-card {
+            padding: 2.5rem 2rem;
+            width: 90%;
+            min-width: 0;
+        }
+
+        .card-main {
+            grid-template-rows: auto 6fr;
+            grid-template-columns: 1fr;
+            justify-content: center;
+            justify-items: center;
+            position: relative;
+        }
+
+        .card-img {
+            width: 65%;
+            height: auto;
+        }
+
+        .chapter-title.about {
+            justify-self: center;
+            margin: 0 0 .8rem 0;
+        }
+
+        .dev-name {
+            font-size: 1.5rem;
+            justify-self: center;
+            margin: .8rem 0;
+        }
+
+        .intro-text {
+            margin: 1rem .7rem;
+        }
+    }
+
+    @media screen and (min-width: 636px) and (max-width: 1024px) {
+        .intro-card {
+            /* width: 50vw; */
+            padding: 2.5rem 2rem;
+
+            width: 60%;
+        }
+
+        .card-main {
+            grid-template-rows: auto 6fr;
+            grid-template-columns: 1fr;
+            justify-content: center;
+            justify-items: center;
+            position: relative;
+        }
+
+        .card-img {
+            width: 65%;
+            height: auto;
+        }
+
+        .dev-name {
+            font-size: 2rem;
+        }
+        .button-body.intro a {
+            font-size: 1rem;
+        }
+
+        .button-body.intro {
+            width: 6.5rem;
+            height: 2.1rem;
+        }
+    }
+</style>

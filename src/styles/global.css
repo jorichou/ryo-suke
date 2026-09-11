@@ -38,12 +38,12 @@ h1 {
 }
 
 h2, h3, h4, h5, h6, y {
-    color: #707070;
+    color: #212121;
 }
 
 p {
-    color: #707070;
-    font-weight: 500;
+    color: #212121;
+    font-weight: 400;
     /*margin: 10px 0;*/
 }
 
@@ -79,6 +79,7 @@ a {
 
 .chapter-title {
     font-family: var(--font-family-en);
+    color: #e86b79;
 }
 
 .title-rubi {
@@ -280,85 +281,41 @@ html.dark .under-chapter-title-line {
     }
 }
 
-.intro-chapter {
+.about-container {
+    background-color: #d9d9d9;
+    display: block;
+    justify-items: center;
+    padding: 4rem 0;
+    border-radius: 8px;
+}
+
+/* .intro-chapter {
     display: flex;
     justify-content: center;
     padding: 10vh 0 0 0;
-}
+} */
 
-.intro-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    aspect-ratio: 1.65 / 1;
-    width: 40vw;
-    /*height: 20vh;*/
-    border-radius: 8px;
-    background-color: #fff;
-    padding: 1rem 3rem 1rem 3rem;
-    transition: box-shadow 0.5s;
 
-}
-
-.intro-card:hover {
-    box-shadow:0 0 0 2px rgba(232, 107, 121, 1)
-}
-
-.card-img {
-    width: 7vw;
-    height: 7vw;
-    aspect-ratio: 1 / 1;
-    /* border: solid #e86b79 1.5px; */
-    border-radius: 1000px;
-}
-
-.card-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;         /* 縦横比を保ちながらコンテナを埋める */
-    display: block;
-    overflow: hidden;
-}
-
-.card-main {
-    display: flex;
-    flex-direction: column;
-    /* justify-content: space-between; */
-    /* align-items: center; */
-}
-
-.card-head {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 0 0 1rem 0;
-}
-
-.card-text {
-    display: flex;
-    flex-direction: column;
-    margin-left: 4vw;
-}
 
 .dev-name {
-    font-size: 2.5rem;
-    color: #e86b79;
-    font-weight: bold;
+    box-sizing: border-box;
+    font-size: 1.8rem;
+    color: #212121;
+    font-weight: 600;
     margin: 0;
+    border: 0;
+    padding: 0;
     font-family: var(--font-family-en);
+    margin-inline-start: 0;
+    margin-inline-end: 0;
 }
 
-.intro-text {
-    font-size: 0.9rem;
-}
-
-.button-container {
+/* .button-container {
     display: flex;
     justify-content: right;
     /* margin-top: 2rem; */
-}
-
+/* } */
+/* 
 .button-body.intro {
         display: flex;
         justify-content: center;
@@ -369,9 +326,9 @@ html.dark .under-chapter-title-line {
         border-radius: 6px;
         border: solid #e86b79 2px;
         transition: 0.4s;
-    }
+    } */
 
-.button-body.intro a {
+/* .button-body.intro a {
     text-decoration: none;
     color: #e86b79;
     font-weight: bold;
@@ -389,62 +346,7 @@ html.dark .under-chapter-title-line {
     color: #f5f5f5;
     font-weight: bold;
     font-size: 1.2rem;
-}
-
-@media screen and (max-width: 636px) {
-    .intro-card {
-        width: 100%;
-        padding: 1rem .8rem 1rem .8rem;
-    }
-
-    .card-img {
-        width: 15vw;
-        height: 15vw;
-    }
-
-    .dev-name {
-        font-size: 1.8rem;
-    }
-
-    .card-head {
-        margin: 0;
-    }
-
-    .intro-text {
-        margin: .7rem;
-    }
-
-    .button-body.intro  {
-        width: 5.5rem;
-        height: 1.8rem;
-    }
-
-    .button-body.intro a {
-        font-size: .8rem;
-    }
-
-    .button-body.intro:hover {
-        font-size: .8rem;
-    }
-}
-
-@media screen and (min-width: 636px) and (max-width: 1024px) {
-    .intro-card {
-        width: 50vw;
-    }
-
-    .dev-name {
-        font-size: 2rem;
-    }
-    .button-body.intro a {
-        font-size: 1rem;
-    }
-
-    .button-body.intro {
-        width: 6.5rem;
-        height: 2.1rem;
-    }
-}
+} */
 
 .tags {
     display: flex;
@@ -479,3 +381,5 @@ html.dark .under-chapter-title-line {
     font-family: var(--font-family-en);
     font-weight: bold;
 }
+
+
