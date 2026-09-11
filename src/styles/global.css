@@ -289,6 +289,10 @@ html.dark .under-chapter-title-line {
     border-radius: 8px;
 }
 
+html.dark .about-container {
+    background-color: #616161;
+}
+
 /* .intro-chapter {
     display: flex;
     justify-content: center;

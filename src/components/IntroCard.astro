@@ -47,7 +47,7 @@ import Button from "./button.astro";
         outline: 1.5px solid transparent;
     }
 
-    .intro-card:hover {
+    .intro-card:hover, html.dark .intro-card:hover {
         border: 1px solid #E86B79;
         outline: 1.5px solid #E86B79;
         transition: .2s;
@@ -108,6 +108,15 @@ import Button from "./button.astro";
         justify-self: right;
         width: fit-content;
     }   
+
+    html.dark .intro-card {
+        background-color: #212121;
+        border: solid #f5f5f5 1px;
+    }
+
+    html.dark .intro-text, html.dark .dev-name {
+        color: #f5f5f5;
+    }
 
     @media screen and (max-width: 960px) {
         .intro-card {
