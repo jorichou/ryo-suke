@@ -19,15 +19,16 @@ li {
     /* margin: 1.5rem 0; */
     overflow: hidden; /* This is key for the child's rounded corners to be visible */
     /* transition: transform 0.2s ease-in-out; */
-    transition: border-color 0.25s, outline-color 0.25s;
-
+    transition: border-color 0.25s ease, outline-color 0.25s ease;
+    outline: 1.5px solid transparent;
 }
 
-li:hover {
+li:hover, html.dark li:hover {
     /* transform: translateY(-5px); */
     /* box-shadow:0 0 0 2px rgba(232, 107, 121, 1) */
     border: 1px solid #E86B79;
-    outline: 1px solid #E86B79;
+    outline: 1.5px solid #E86B79;
+    transition: .2s;
 }
 
 a {
