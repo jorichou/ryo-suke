@@ -12,9 +12,9 @@ type: "Webサイト"
 year: "2026"
 role: "All"
 source_name: "GitHub"
-source_url: "https://github.com/jorichou/ryo-suke"
+source_url: "https://github.com/jorichou/ryo-suke/tree/archive-site1"
 link_name: "本サイト"
-link: "https://ryo-suke.org/"
+link: "https://archive-site1.ryo-suke.org/"
 draft: false
 ---
 
