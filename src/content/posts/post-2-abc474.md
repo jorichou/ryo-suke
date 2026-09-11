@@ -8,7 +8,7 @@ image:
     url: '/images/posts/atcoder-joinlog-head.png'
     alt: 'AtCoder参加記タイトル画像'
 tags: ["AtCoder", "ABC474", "ABC", "AtCoder Beginner Contest", "AtCoder参加記"]
-janre: "atcoder"
+janre: "AtCoder"
 draft: false
 ---
 

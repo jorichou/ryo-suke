@@ -8,7 +8,7 @@ image:
     url: '/images/works/work-1/blog_simbol.png'
     alt: 'サイトロゴ'
 tags: ["Webサイト", "Astro", "ホームページ"]
-type: "Webサイト"
+type: "Site"
 year: "2026"
 role: "All"
 source_name: "GitHub"

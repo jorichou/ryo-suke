@@ -8,7 +8,7 @@ image:
     url: '/images/works/work-2/cssj2026.png'
     alt: 'cssj2026のポスター'
 tags: ["計算社会科学会", "研究発表", "ポスター発表", "Yahoo!知恵袋", "外部リンク", "YouTube"]
-type: "研究発表"
+type: "Research"
 year: "2026"
 role: "Lead author, Presenter"
 source_name: "---"

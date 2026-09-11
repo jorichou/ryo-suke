@@ -8,7 +8,7 @@ image:
     url: '/images/works/work-3/jsik2026_slide_top.png'
     alt: '発表スライドのトップページ'
 tags: ["情報知識学会", "研究発表", "Yahoo!知恵袋", "外部リンク", "YouTube", "教えて!goo"]
-type: "研究発表"
+type: "Research"
 year: "2026"
 role: "Lead author, Presenter"
 source_name: "---"
