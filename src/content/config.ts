@@ -37,6 +37,7 @@ const postsCollection = defineCollection({
       alt: z.string(),
     }).optional(),
     tags: z.array(z.string()).optional(),
+    janre: z.string(),
     draft: z.boolean().optional().default(false),
   })
 });

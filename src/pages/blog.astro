@@ -18,7 +18,7 @@ const pageTitle = "Blog";
 		<div slot="chapter-content" class="chapter-box">
 			<div class="chapter-content">
 				<ul class="blog-list">
-					{posts.map((post) => <BlogPost postDate={post.data.pubDate} img_url={post.data.image?.url} title={post.data.title} url={`/posts/${post.slug}`} />)}
+					{posts.map((post) => <BlogPost postDate={post.data.pubDate} img_url={post.data.image?.url} title={post.data.title} url={`/posts/${post.slug}`} janre={post.data.janre} />)}
 				</ul>
 			</div>
 		</div>

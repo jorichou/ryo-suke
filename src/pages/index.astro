@@ -114,6 +114,7 @@ const tags = [...new Set(activeWorks.map((post: CollectionEntry<'works'>) => pos
                                 postDate={post.data.pubDate}
                                 img_url={post.data.image?.url}
                                 title={post.data.title}
+                                janre={post.data.janre}
                                 url={`/posts/${post.slug}`}
                             />
                         ))
