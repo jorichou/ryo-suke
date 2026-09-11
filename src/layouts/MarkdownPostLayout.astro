@@ -8,8 +8,7 @@ const formattedDate = new Date(frontmatter.pubDate)
         year: "numeric",
         month: "2-digit",
         day: "2-digit",
-    })
-    .replace(/\//g, ".");
+    });
 ---
 
 <BaseLayout pageTitle={frontmatter.title}>
@@ -40,11 +39,19 @@ const formattedDate = new Date(frontmatter.pubDate)
 <style>
     .post-date {
         margin: 0;
-        font-weight: 500;
-        color: #707070;
+        font-weight: var(--font-weight-normal);
+        color: var(--main-color-black);
     }
     .post-title {
-        color: #707070;
+        color: var(--main-color-black);
+    }
+
+    html.dark .post-date {
+        color: var(--main-color-white);
+    }
+
+    html.dark .post-title {
+        color: var(--main-color-white);
     }
 
     .post-container {
@@ -64,8 +71,12 @@ const formattedDate = new Date(frontmatter.pubDate)
         height: 100%;
         object-fit: cover; /* This makes the image cover the container, cropping it */
         border-radius: 20px;
-        border: 2px #9E9E9E solid;
+        border: 1px var(--main-color-black) solid;
         margin: 0;
+    }
+
+    html.dark .img-container img {
+        border: 1px var(--main-color-white) solid;
     }
 
     article {
@@ -75,7 +86,8 @@ const formattedDate = new Date(frontmatter.pubDate)
 
     /* 節（h2）および小節（h3, h4）のスペーシング */
     article :global(h2) {
-        color: #707070;
+        color: var(--main-color-black);
+        font-weight: var(--font-weight-semibold);
         margin-top: 4rem;
         margin-bottom: 1.5rem;
         font-size: 1.6rem;
@@ -87,7 +99,8 @@ const formattedDate = new Date(frontmatter.pubDate)
 
     /* 小節（h3）の間隔 */
     article :global(h3) {
-        color: #707070;
+        color: var(--main-color-black);
+        font-weight: var(--font-weight-semibold);
         margin-top: 3.5rem;
         margin-bottom: 1.2rem;
         font-size: 1.3rem;
@@ -99,7 +112,8 @@ const formattedDate = new Date(frontmatter.pubDate)
     }
 
     article :global(h4) {
-        color: #707070;
+        color: var(--main-color-black);
+        font-weight: var(--font-weight-semibold);
         margin-top: 2.5rem;
         margin-bottom: 0.8rem;
     }
@@ -107,6 +121,22 @@ const formattedDate = new Date(frontmatter.pubDate)
     article :global(p) {
         margin: 1.2rem 0;
         line-height: 1.8;
+    }
+
+    html.dark article :global(h2) {
+        color: var(--main-color-white);
+    }
+
+    html.dark article :global(h3) {
+        color: var(--main-color-white);
+    }
+
+    html.dark article :global(h4) {
+        color: var(--main-color-white);
+    }
+
+    html.dark article :global(p) {
+        color: var(--main-color-white);
     }
 
     /* 表（テーブル）スタイル */
