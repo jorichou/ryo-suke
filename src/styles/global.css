@@ -35,6 +35,7 @@ h1 {
     margin: 1rem 0;
     color: #e86b79;
     font-size: 2.5rem;
+    font-weight: 500;
 }
 
 h2, h3, h4, h5, h6, y {
@@ -80,11 +81,12 @@ a {
 .chapter-title {
     font-family: var(--font-family-en);
     color: #e86b79;
+    font-weight: 600;
 }
 
 .title-rubi {
     color: #e86b79;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 .under-chapter-title-line {
@@ -279,6 +281,10 @@ html.dark .under-chapter-title-line {
     .post-layout aside {
         display: none;
     }
+}
+
+.chapter-frame {
+    padding: clamp(20px, 5vh, 60px) 0;
 }
 
 .about-container {
