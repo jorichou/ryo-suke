@@ -19,11 +19,17 @@ const {platformURL, platformName} = Astro.props;
         transition: border-color .2 ease;
     }
 
-    li:hover, html.dark li:hover {
+    li:hover {
         border: 1px solid #E86B79;
         outline: 1.5px solid #E86B79;
         transition: .2;
     }   
+
+    html.dark li:hover {
+        border: 1px solid var(--theme-color-dark);
+        outline: 1.5px solid var(--theme-color-dark);
+        transition: .2s;
+    }
 
     .link-item {
         display: flex;
@@ -53,6 +59,10 @@ const {platformURL, platformName} = Astro.props;
 
     li:hover .link-item path {
         fill: #E86B79;
+    }
+
+    html.dark li:hover .link-item path {
+        fill: var(--theme-color-dark);
     }
 
     @keyframes arrow-bounce {

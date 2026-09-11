@@ -3,7 +3,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Noto+Sans+JP:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
-    --font-family-en: 'Noto Sans', 'google sans flex', 'sans-selif'
+    --font-family-en: 'Noto Sans', 'google sans flex', 'sans-serif';
+    --theme-color-dark: #ff8a98;
 }
 
 html {
@@ -83,6 +84,10 @@ a {
     color: #e86b79;
     font-weight: 600;
 }
+
+/* html.dark .chapter-title {
+    color: var(--theme-color-dark);
+} */
 
 .title-rubi {
     color: #e86b79;
@@ -183,7 +188,7 @@ html.dark {
 }
 
 html.dark header {
-    background-color: #0d0950;
+    background-color: #212121;
 }
 
 html.dark .under-chapter-title-line {
