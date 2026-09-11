@@ -21,7 +21,6 @@ li {
     /* transition: transform 0.2s ease-in-out; */
     transition: border-color 0.25s, outline-color 0.25s;
 
-
 }
 
 li:hover {
@@ -35,7 +34,7 @@ a {
     display: flex;
     text-decoration: none;
     color: inherit;
-    height: 20vh;
+    height: clamp(6rem, 20vh, 8rem);
 }
 
 .img-container {
@@ -95,16 +94,24 @@ a {
 }
 
 @media screen and (max-width: 636px) {
+
     a {
         height: 12vh;
     }
 
     .img-container {
-        aspect-ratio: 4 / 3;
+        aspect-ratio: 1 / 1;
+    }
+
+    .blog-info {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0 1.5rem;
+        padding: 0.8rem 1rem;
     }
 
     .text-content {
-        padding: 2vw 3vw;
+        /* padding: 2vw 0; */
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -121,6 +128,11 @@ a {
         font-size: 0.8rem;
         margin: 0;
     }
+
+    .tag-wrapper {
+        /* align-self: flex-end; */
+    }
+
 }
 </style>
 
@@ -134,7 +146,9 @@ a {
                 <p class="date">{formattedDate}</p>
                 <p class="title">{title}</p>
             </div>
-            <Tag tagName={janre} />
+            <div class="tag-wrapper">
+                <Tag tagName={janre} />
+            </div>
         </div>
     </a>
 </li>
