@@ -11,7 +11,7 @@ const { frontmatter, headings } = Astro.props;
         <div class="about-box">
             <div class="work-description">
                 <div class="title-wrap">
-                    <h1>{frontmatter.title}</h1>
+                    <h1 class="work-title">{frontmatter.title}</h1>
                     <div class="title-underline"></div>
                 </div>
                 <div class="table-area">
@@ -76,15 +76,25 @@ const { frontmatter, headings } = Astro.props;
     </div>
 </BaseLayout>
 <style>
-    h1 {
+    .work-title {
         /* color: #707070; */
         font-size: 2rem;
         margin: 0 0 4vh 0;
         padding: 0 1vw;
+        font-weight: var(--font-weight-semibold);
+        color: var(--main-color-black);
+    }
+
+    html.dark .work-title {
+        color: var(--main-color-white);
     }
 
     .title-underline{
-        border-bottom: solid #e86b79 2px;
+        border-bottom: solid var(--main-color-black) 1.5px;
+    }
+
+    html.dark .title-underline{
+        border-bottom: solid var(--main-color-white) 1.5px;
     }
 
     .w-box {
@@ -127,10 +137,14 @@ const { frontmatter, headings } = Astro.props;
         display: flex;
         justify-content: center;
         align-items: center;
-        border: solid #9E9E9E 2px;
+        border: solid var(--main-color-black) 1px;
         border-radius: 9px;
         aspect-ratio: 4 / 3;
         background-color: #EEEEEE;
+    }
+
+    html.dark .work-image {
+        border: solid var(--main-color-white) 1px;
     }
 
     .work-image img {
@@ -157,8 +171,8 @@ const { frontmatter, headings } = Astro.props;
 
     .table-header {
         width: 20%;
-        font-weight: bold;
-        color: #707070;
+        font-weight: var(--font-weight-semibold);
+        color: var(--main-color-black);
     }
 
     .table-content {
@@ -204,7 +218,8 @@ const { frontmatter, headings } = Astro.props;
 
     /* 節（h2）および小節（h3, h4）のスペーシング */
     .work-content :global(h2) {
-        color: #707070;
+        color: var(--main-color-black);
+        font-weight: var(--font-weight-semibold);
         margin-top: 2rem;
         margin-bottom: 1.5rem;
         font-size: 1.6rem;
@@ -216,10 +231,15 @@ const { frontmatter, headings } = Astro.props;
 
     /* 小節（h3）の間隔 */
     .work-content :global(h3) {
-        color: #707070;
+        color: var(--main-color-black);
+        font-weight: var(--font-weight-semibold);
         margin-top: 3.5rem;
         margin-bottom: 1.2rem;
         font-size: 1.3rem;
+    }
+
+    html.dark .work-content :global(h3) {
+        color: var(--main-color-white);
     }
 
     /* 節（h2）直後の小節（h3）の間隔調整 */
@@ -228,13 +248,22 @@ const { frontmatter, headings } = Astro.props;
     }
 
     .work-content :global(h4) {
-        color: #707070;
+        color: var(--main-color-black);
+        font-weight: var(--font-weight-semibold);
         margin-top: 2.5rem;
         margin-bottom: 0.8rem;
+    }
+
+    html.dark .work-content :global(h4) {
+        color: var(--main-color-white);
     }
 
     .work-content :global(p) {
         margin: 1.2rem 0;
         line-height: 1.8;
+    }
+
+    html.dark .work-content :global(p) {
+        color: var(--main-color-white);
     }
 </style>
