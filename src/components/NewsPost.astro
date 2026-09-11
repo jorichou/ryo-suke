@@ -10,8 +10,7 @@ const formattedDate = new Date(postDate).toLocaleDateString('ja-JP', {
 ---
 <style>
     li {
-        
-        
+        /* height: clamp(40px, 10vh, 60px); */
     }
 
     .news-post a:hover p{
@@ -30,7 +29,7 @@ const formattedDate = new Date(postDate).toLocaleDateString('ja-JP', {
     .text-content {
         display: flex;
         align-items: center;
-        height: 13vh;
+        height: clamp(50px, 13vh, 80px);
         padding: 1rem;
     }
 
@@ -55,7 +54,7 @@ const formattedDate = new Date(postDate).toLocaleDateString('ja-JP', {
     @media screen and (max-width: 636px) {
         .text-content {
             /* height: 10vh; */
-            height: 80px;
+            /* height: 80px; */
             display: flex;
             flex-direction: column;
             justify-content: center;
