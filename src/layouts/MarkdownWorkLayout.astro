@@ -1,77 +1,104 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import Tag from "../components/Tag.astro";
 import TableOfContents from "../components/TableOfContents.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
 const { frontmatter, headings } = Astro.props;
 ---
 
 <BaseLayout pageTitle={frontmatter.title}>
-    <div class="w-box">
+    <div class="work-container">
         <Breadcrumbs title={frontmatter.title} />
-        <div class="about-box">
-            <div class="work-description">
-                <div class="title-wrap">
-                    <h1 class="work-title">{frontmatter.title}</h1>
-                    <div class="title-underline"></div>
-                </div>
-                <div class="table-area">
-                    <div class="table-row">
-                        <div class="table-header">Type</div>
-                        <div class="table-content">{frontmatter.type}</div>
+        <div class="work-content-wrap">
+            <aside class="left-content">
+                <div class="work-description">
+                    <div class="title-wrap">
+                        <h1 class="work-title">{frontmatter.title}</h1>
+                        <div class="title-underline"></div>
                     </div>
-                    <div class="table-row">
-                        <div class="table-header">Year</div>
-                        <div class="table-content">{frontmatter.year}</div>
-                    </div>
-                    <div class="table-row">
-                        <div class="table-header">Role</div>
-                        <div class="table-content">{frontmatter.role}</div>
-                    </div>
-                    <div class="table-row">
-                        <div class="table-header">Source</div>
-                        <div class="table-content">
-                            {frontmatter.source_url && frontmatter.source_url !== "---" ? (
-                                <a href={frontmatter.source_url} target="_blank" rel="noopener noreferrer">
-                                    {frontmatter.source_name || frontmatter.source_url}
-                                </a>
-                            ) : (
-                                frontmatter.source_name || frontmatter.source_url || "---"
-                            )}
+                    <div class="table-area">
+                        <div class="table-row">
+                            <div class="table-header">Type</div>
+                            <div class="table-content"><Tag tagName={frontmatter.type}></div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-header">Year</div>
+                            <div class="table-content">{frontmatter.year}</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-header">Role</div>
+                            <div class="table-content">{frontmatter.role}</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-header">Source</div>
+                            <div class="table-content">
+                                                                {frontmatter.source && frontmatter.source.url ? (
+                                    <ul class="link-list work">
+                                        {Array.isArray(frontmatter.source.url) ? (
+                                            frontmatter.source.url.map((u: string, idx: number) => {
+                                                const labelArr = frontmatter.source.label;
+                                                const label = Array.isArray(labelArr) ? labelArr[idx] ?? u : frontmatter.source.label ?? u;
+                                                return u && u !== "---" ? (
+                                                    <li><a href={u} target="_blank" rel="noopener noreferrer">{label}</a></li>
+                                                ) : null;
+                                            })
+                                        ) : (
+                                            (frontmatter.source.url && frontmatter.source.url !== "---") ? (
+                                                <li><a href={frontmatter.source.url} target="_blank" rel="noopener noreferrer">{frontmatter.source.label ?? frontmatter.source.url}</a></li>
+                                            ) : null
+                                        )}
+                                    </ul>
+                                ) : (
+                                    // legacy fallback
+                                    (frontmatter.source_url && frontmatter.source_url !== "---") ? (
+                                        <a href={frontmatter.source_url} target="_blank" rel="noopener noreferrer">{frontmatter.source_name || frontmatter.source_url}</a>
+                                    ) : (
+                                        frontmatter.source_name || frontmatter.source_url || "---"
+                                    )
+                                )}
+                            </div>
+                        </div>
+                        <div class="table-row last-row">
+                            <div class="table-header">Link</div>
+                            <div class="table-content">
+                                {frontmatter.link && frontmatter.link.url ? (
+                                    <ul class="link-list work">
+                                        {Array.isArray(frontmatter.link.url) ? (
+                                            frontmatter.link.url.map((u: string, idx: number) => {
+                                                const labelArr = frontmatter.link.label;
+                                                const label = Array.isArray(labelArr) ? labelArr[idx] ?? u : frontmatter.link.label ?? u;
+                                                return u && u !== "---" ? (
+                                                    <li><a href={u} target="_blank" rel="noopener noreferrer">{label}</a></li>
+                                                ) : null;
+                                            })
+                                        ) : (
+                                            (frontmatter.link.url && frontmatter.link.url !== "---") ? (
+                                                <li><a href={frontmatter.link.url} target="_blank" rel="noopener noreferrer">{frontmatter.link.label ?? frontmatter.link.url}</a></li>
+                                            ) : null
+                                        )}
+                                    </ul>
+                                ) : (
+                                    // legacy fallback
+                                    (frontmatter.link && typeof frontmatter.link === "string" && frontmatter.link !== "---") ? (
+                                        <a href={frontmatter.link} target="_blank" rel="noopener noreferrer">{frontmatter.link_name || frontmatter.link}</a>
+                                    ) : (
+                                        frontmatter.link_name || frontmatter.link || "---"
+                                    )
+                                )}
+                            </div>
                         </div>
                     </div>
-                    <div class="table-row">
-                        <div class="table-header">Link</div>
-                        <div class="table-content">
-                            {frontmatter.link && frontmatter.link !== "---" ? (
-                                <a href={frontmatter.link} target="_blank" rel="noopener noreferrer">
-                                    {frontmatter.link_name || frontmatter.link}
-                                </a>
-                            ) : (
-                                frontmatter.link_name || frontmatter.link || "---"
-                            )}
-                        </div>
-                    </div>
+                       
                 </div>
-                   
-            </div>
-            <!-- <p><em>{frontmatter.description}</em></p> -->
-            <div class="work-image">
-                <img src={frontmatter.image.url} alt={frontmatter.image.alt} />
-            </div>
-            <!-- <div class="tags">{
-                frontmatter.tags.map((tag) => (
-                    <p class="tag"><a href={`/tags/${tag}`}>{tag}</a></p>
-                ))}
-            </div> -->
-        </div>
-        <div class="post-layout">
-            <div class="work-content">
-                <slot />
-                <!-- <h2>Media</h2> -->
-            </div>
-            <aside>
-                <TableOfContents headings={headings} />
             </aside>
+            <div class="right-content">
+                <div class="work-image">
+                    <img src={frontmatter.image.url} alt={frontmatter.image.alt} />
+                </div>
+                <article>
+                    <slot />
+                </article>
+            </div>
         </div>
     </div>
 </BaseLayout>
@@ -79,7 +106,7 @@ const { frontmatter, headings } = Astro.props;
     .work-title {
         /* color: #707070; */
         font-size: 2rem;
-        margin: 0 0 4vh 0;
+        margin: 0 0 1rem 0;
         padding: 0 1vw;
         font-weight: var(--font-weight-semibold);
         color: var(--main-color-black);
@@ -97,13 +124,43 @@ const { frontmatter, headings } = Astro.props;
         border-bottom: solid var(--main-color-white) 1.5px;
     }
 
-    .w-box {
-        padding: 0 2rem;
-        margin: 8vh 0;
+    .work-container {
+        padding: 0;
+        min-height: 100vh;
+    }
+
+    .work-content-wrap {
+        display: flex;
+        /* grid-template-columns: 35% 1fr; */
+        gap: 5vw;
+    }
+
+    .left-content {
+        position: sticky;
+        top: var(--header-height);
+        align-self: flex-start;
+        flex: 0 0 35%;
+        max-height: 100vh;
+    }
+
+    .right-content {
+        flex: 1;
+        /* border-left: 1px solid #e0e0e0; */
+        /* overflow-y: auto; */
+        /* max-height: 100vh; */
+        padding-left: 1rem;
+    }
+
+    .work-description {
+        width: 40%;
     }
 
     a {
-        color: #00539f;
+        color: var(--theme-color);
+    }
+
+    html.dark a {
+        color: var(--theme-color-dark);
     }
 
     .tags {
@@ -129,27 +186,30 @@ const { frontmatter, headings } = Astro.props;
     }
 
     .work-description {
-        width: 50%;
+        width: 100%;
     }
 
     .work-image {
-        width: 40%;
+        width: 100%;
+        height: auto;
         display: flex;
         justify-content: center;
         align-items: center;
-        border: solid var(--main-color-black) 1px;
-        border-radius: 9px;
-        aspect-ratio: 4 / 3;
-        background-color: #EEEEEE;
+        margin: 1rem 0 3rem 0;
+        /* background-color: #EEEEEE; */
     }
 
-    html.dark .work-image {
+    html.dark .work-image img{
         border: solid var(--main-color-white) 1px;
     }
 
     .work-image img {
-        height: 100%;
-        width: 100%;
+        height: auto;
+        width: 60%;
+        border: solid var(--main-color-black) 1px;
+        aspect-ratio: 4 / 3;
+        border-radius: 9px;
+
         object-fit: cover;
         border-radius: 9px;
     }
@@ -159,20 +219,40 @@ const { frontmatter, headings } = Astro.props;
         flex-direction: column;
         width: 100%;
         margin: 2vh 0;
-        padding: 0 1vw;
+        padding: 0;
     }
 
     .table-row {
         display: flex;
         flex-direction: row;
         width: 100%;
-        margin-top: 2vh;
+        padding: 2vh 1vw;
+        border-bottom: 1px solid #BDBDBD;
+        gap: 1rem;
+    }
+
+    .table-row.last-row {
+        border-bottom: none;
     }
 
     .table-header {
         width: 20%;
         font-weight: var(--font-weight-semibold);
         color: var(--main-color-black);
+        align-self: center;
+    }
+
+    html.dark .table-header {
+        color: var(--main-color-white);
+    }
+
+    .link-list.work {
+        display: grid;
+        margin: 0;
+        padding: 0;
+        grid-template-rows: minmax(min-content, auto);
+        grid-template-columns: 1fr;
+        gap: 1vh;
     }
 
     .table-content {
@@ -180,14 +260,31 @@ const { frontmatter, headings } = Astro.props;
         color: #212121;
     }
 
+    html.dark .table-content {
+        color: var(--main-color-white);
+    }
+
     .table-content a {
-        color: #212121;
+        color: var(--theme-color);
+    }
+
+    html.dark .table-content a {
+        color: var(--theme-color-dark);
     }
 
     @media screen and (max-width: 800px) {
 
-        .about-box {
+        .work-content-wrap {
             flex-direction: column;
+        }
+
+        .left-content {
+            position: inherit;
+            width: 100%;
+        }
+
+        .right-content {
+            padding: 0;
         }
 
         .work-description {
@@ -210,14 +307,8 @@ const { frontmatter, headings } = Astro.props;
         }
     }
 
-    @media screen and (max-width: 636px) {
-        .w-box {
-            padding: 0;
-        }
-    }
-
     /* 節（h2）および小節（h3, h4）のスペーシング */
-    .work-content :global(h2) {
+    .right-content :global(h2) {
         color: var(--main-color-black);
         font-weight: var(--font-weight-semibold);
         margin-top: 2rem;
@@ -225,12 +316,16 @@ const { frontmatter, headings } = Astro.props;
         font-size: 1.6rem;
     }
 
-    .work-content :global(h2:first-of-type) {
+    html.dark .right-content :global(h2) {
+        color: var(--main-color-white);
+    }
+
+    .right-content :global(h2:first-of-type) {
         margin-top: 1.5rem;
     }
 
     /* 小節（h3）の間隔 */
-    .work-content :global(h3) {
+    .right-content :global(h3) {
         color: var(--main-color-black);
         font-weight: var(--font-weight-semibold);
         margin-top: 3.5rem;
@@ -238,32 +333,32 @@ const { frontmatter, headings } = Astro.props;
         font-size: 1.3rem;
     }
 
-    html.dark .work-content :global(h3) {
+    html.dark .right-content :global(h3) {
         color: var(--main-color-white);
     }
 
     /* 節（h2）直後の小節（h3）の間隔調整 */
-    .work-content :global(h2 + h3) {
+    .right-content :global(h2 + h3) {
         margin-top: 1.5rem;
     }
 
-    .work-content :global(h4) {
+    .right-content :global(h4) {
         color: var(--main-color-black);
         font-weight: var(--font-weight-semibold);
         margin-top: 2.5rem;
         margin-bottom: 0.8rem;
     }
 
-    html.dark .work-content :global(h4) {
+    html.dark .right-content :global(h4) {
         color: var(--main-color-white);
     }
 
-    .work-content :global(p) {
+    .right-content :global(p) {
         margin: 1.2rem 0;
         line-height: 1.8;
     }
 
-    html.dark .work-content :global(p) {
+    html.dark .right-content :global(p) {
         color: var(--main-color-white);
     }
 </style>

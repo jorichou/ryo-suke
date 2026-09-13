@@ -10,6 +10,7 @@
     --theme-color-dark: #ff8a98;
     --font-weight-normal: 400;
     --font-weight-semibold: 600;
+    --header-height: 4.3rem;
 }
 
 html {

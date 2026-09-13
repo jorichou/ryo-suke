@@ -11,10 +11,12 @@ tags: ["Webサイト", "Astro", "ホームページ"]
 type: "Site"
 year: "2026"
 role: "All"
-source_name: "GitHub"
-source_url: "https://github.com/jorichou/ryo-suke"
-link_name: "本サイト"
-link: "https://ryo-suke.org/"
+source:
+    url: "https://github.com/jorichou/ryo-suke"
+    label: "GitHub"
+link:
+    url: "https://ryo-suke.org/"
+    label: "本サイト"
 draft: false
 ---
 
