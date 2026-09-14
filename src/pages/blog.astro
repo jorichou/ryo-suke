@@ -8,6 +8,7 @@ import BlogPost from "../components/BlogPost.astro";
 const allPosts = await getCollection('posts');
 const activePosts = allPosts.filter((post: CollectionEntry<'posts'>) => !import.meta.env.PROD || !post.data.draft);
 const sortedPosts = activePosts.sort((a: CollectionEntry<'posts'>, b: CollectionEntry<'posts'>) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const tags = [...new Set(activePosts.map((post: CollectionEntry<'posts'>) => post.data.janre).flat())];
 const posts = sortedPosts;
 const pageTitle = "Blog";
 ---
@@ -15,6 +16,12 @@ const pageTitle = "Blog";
 
 <BaseLayout pageTitle={pageTitle}>
 	<ContentFrame  chapterTitle={pageTitle} rubi="ブログ">
+		<div slot="sub-menu" class="tags">
+            <button class="tag filter-btn active" data-filter="all">All</button>
+            {tags.map((tag) => (   
+                <button class="tag filter-btn" data-filter={tag}>{tag}</button>
+            ))}
+        </div>
 		<div slot="chapter-content" class="chapter-box">
 			<div class="chapter-content">
 				<ul class="blog-list">
@@ -24,3 +31,30 @@ const pageTitle = "Blog";
 		</div>
 	</ContentFrame>
 </BaseLayout>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const buttons = document.querySelectorAll('.filter-btn');
+        const posts = document.querySelectorAll('.post-item');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active state
+                buttons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Filter logic
+                const filterValue = button.getAttribute('data-filter');
+                posts.forEach((post) => {
+                    const janre = post.getAttribute('data-janre');
+                    const el = post as HTMLElement; // cast to HTMLElement properly 
+                    if (filterValue === 'all' || janre === filterValue) {
+                        el.style.display = '';
+                    } else {
+                        el.style.display = 'none';
+                    }
+                });
+            });
+        });
+    });
+</script>
