@@ -1,8 +1,8 @@
 ---
 layout: ../../layouts/MarkdownWorkLayout.astro
-title: 'マイホームページ'
+title: 'マイホームページv1'
 pubDate: 2026-04-03
-description: '本サイトの紹介'
+description: 'マイホームページv1の紹介'
 author: 'ryousuke'
 image:
     url: '/images/works/work-1/blog_simbol.png'
