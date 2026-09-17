@@ -1,32 +1,66 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ContentFrame from "../components/ContentFrame.astro";
+import Card from "../components/Card.astro";
 
 const pageTitle = "About";
-const identity = {
-    name: "Izuchi",
-    country: "日本",
-    occupation: "大学生",
-    hobbies: ["プログラミング", "読書", "ゲーム"],
-};
-const skills = ["JavaScript", "Python", "Astro", "HTML", "CSS"];
-const check = false;
-// const age = 21;
-const age = 19;
-const skillColor = "blue";
-const fontWeight = "bold";
-const textCase = "uppercase";
+const qualifications = [
+    {date: "2025/04", title: "基本情報技術者試験", detail: "合格"},
+    {date: "2024/07", title: "TOEIC L&R TEST", detail: "620点"},
+    {date: "2023/09", title: "普通自動車第一種運転免許", detail: ""}
+];
+const skillLIst =[
+    {name: "Python", icon: "/images/skill-icon/Python-logo-notext.svg", detail: "研究や競技プログラミングで利用しています。大規模データの処理や簡単なアルゴリズムの実装ができます。"},
+    {name: "HTML / CSS", icon: "/images/skill-icon/Official_CSS_Logo.svg", detail: "このサイトのようなウェブサイトを制作することができます。"},
+    {name: "C++", icon: "/images/skill-icon/ISO_C++_Logo.svg", detail: "簡単なプログラムを組むことができます。競技プログラミングで使えるようにするために勉強中です。"},
+    {name: "Astro", icon: "/images/skill-icon/Astro.svg", detail: "このサイトを制作するにあたって利用しました。"},
+    {name: "figma", icon: "/images/skill-icon/Figma-logo.svg", detail: "このサイトを制作するにあたって利用しました。簡単なサイトやアプリのデザインをすることができます。"}
+];
+const actionList = [
+    {name: "Research", icon: "/images/action-icon/HealthiconsIntegratedDataAndResearch24px.svg", detail: "卒業研究として、コミュニティQ&Aサービスにおける外部参照の特徴についての研究を行っています。"},
+    {name: "Competition", icon: "/images/action-icon/SolarCupBold.svg", detail: "AtCoderという競技プログラミングに毎週参加しています。"},
+    {name: "Development", icon: "/images/action-icon/MaterialSymbolsCodeXml.svg", detail: "このサイトの制作を行いました。他にもアプリケーションやシステムの開発に取り組んでいきたいです。"}
+]
 ---
 
-<style define:vars={{ skillColor, fontWeight, textCase }}>
+<style>
+    .chapter-content.about{
+        flex-direction: column;
+    }
+
+    .portfolio-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .left-content {
+        position: sticky;
+        top: var(--header-height);
+        height: fit-content;
+        /* max-height: 100vh; */
+        flex: 0 0 40%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 2rem;
+    }
+
+    .right-content {
+        flex: 1;
+        padding: 1rem 2rem;
+    }
+    
     h1 {
         color: #e86b79;
         font-size: 3rem;
+        margin: 0;
     }
 
     h2 {
         color: #e86b79;
         font-size: 2.5rem;
+        margin: 0;
     }
 
     .skill {
@@ -45,9 +79,10 @@ const textCase = "uppercase";
     }
 
     .image-container {
-        width: 24vw;
-        height: 24vw;
-        border: solid #e86b79 2px;
+        width: 15vw;
+        aspect-ratio: 1 / 1;
+        height: auto;
+        border: solid var(--main-color-black) 1px;
         border-radius: 50%;
         overflow: hidden;          /* はみ出た部分を円でクリップ */
         flex-shrink: 0;
@@ -63,24 +98,153 @@ const textCase = "uppercase";
     .text-container {
         display: flex;
         flex-direction: column;
-        margin: 0 0 0 10vw;
+        margin: 2rem 0 0 0;
+        /* margin: 0 0 0 10vw; */
     }
 
-    .dev-name {
-        font-size: 3.5rem;
+    .dev-header {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .dev-name.about{
+        font-size: 2.2rem;
+        font-weight: var(--font-weight-semibold);
         /*margin: 0 0 2vh 0;*/
     }
 
+    .dev-status {
+        font-size: 0.8rem;
+        /* align-self: center; */
+        color: #757575;
+        font-weight: var(--font-weight-normal);
+        margin: 0;
+    }
+
     .intro-text {
-        font-size: 1.1rem;
+        font-size: 0.9rem;
+    }
+
+    .portfolio-item {
+        margin: 0 0 10vh 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .portfolio-item-name, .hobby-item-name {
+        font-size: 2rem;
+        font-weight: var(--font-weight-semibold);
+        color: var(--main-color-black);
+        margin: 0 0 4vh 0;
     }
     
-    .skill-container {
-        /*margin: 0 0 10vh 0;*/
+    
+    .timeline {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        /* padding: 1.5rem 0; */
+        margin: 0;
+        padding: 0;
+        gap: 2rem;
+        position: relative;
+    }
+    
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 10px;
+        top: 0.5rem;
+        bottom: 0.5rem;
+        width: 2px;
+        background: var(--theme-color);
+        opacity: 0.5;
+    }
+
+    .timeline-item {
+        display: flex;
+        align-items: center;
+        position: relative;
+        padding: 0 0 0 4rem;
+        /* margin-left: 2.5rem; */
+        font-size: 1rem;
+    }
+
+    .timeline-dot {
+        position: absolute;
+        left: 5px;
+        /* top: 50%; */
+        width: 12px;
+        height: 12px;
+        /* margin: 0 2rem 0 0; */
+        border-radius: 50%;
+        background: var(--theme-color);
+        z-index: 1;
+    }
+
+    .timeline-date {
+        width: 100px;
+        flex-shrink: 0;
+        /* margin: 0 2vw 0 3rem; */
+        margin-right: 3vw;
+        font-variant-numeric: tabular-nums;
+        color: var(--main-color-black);
+        font-weight: var(--font-weight-normal);
+    }
+
+    .timeline-title {
+        /* font-size: 1rem; */
+        display: flex;
+        gap: 1rem;
+        font-weight: var(--font-weight-normal);
+        color: var(--main-color-black);
+        flex-wrap: wrap;
+    }
+    
+    .timeline-detail {
+        color: var(--main-color-black);
     }
 
     .tabs {
         gap: 20vw;
+    }
+    
+    .skill-container {
+        /*margin: 0 0 10vh 0;*/
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(clamp(110px, 11vh, 130px), 1fr));
+        /* grid-template-columns: repeat(auto-fill, minmax(18vh, 1fr)); */
+        grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
+        justify-items: center;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .portfolio-item-content.action {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        /* max-width: 400px; */
+    }
+
+
+    .action-container {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        grid-template-columns: repeat(3, calc((100% - 6rem) / 3));
+        /* grid-template-columns: repeat(auto-fill, minmax(18vh, 1fr)); */
+        grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
+        justify-items: center;
+        gap: 3rem;
+        width: 80%;
     }
 
     .tab-line {
@@ -118,35 +282,96 @@ const textCase = "uppercase";
         display: block;
     }
     
-    ul, ol {
+    /* ul, ol {
       padding: 0;
       position: relative;
-    }
+    } */
     
-    ul li, ol li {
-      color: #e86b79;
-      border-left: solid 6px #e86b79;/*左側の線*/
-      background: #f9f0f0;/*背景色*/
-      margin-bottom: 3px;/*下のバーとの余白*/
-      line-height: 1.5;
-      padding: 0.5em;
-      list-style-type: none!important;/*ポチ消す*/
-    }
-    
-    li p {
-        color: #424242;
-        font-weight: normal;
-    }
 
     .tab-content {
         overflow-x: scroll;
     }
 
-    @media screen and (max-width: 636px) {
-        .introduce-container {
+    /* モーダル本体のスタイル */
+    .modal {
+        padding: 0;
+        border: none;
+        border-radius: 16px;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+        max-width: 480px;
+        width: 90%;
+        position: fixed;
+        /* showModal() を使うと自動で画面中央に配置されます */
+    }
+    /* モーダルの背景（オーバーレイ）のスタイル */
+    .modal::backdrop {
+        background-color: rgba(0, 0, 0, 0.45);
+        backdrop-filter: blur(4px); /* 背景をぼかす */
+    }
+    .modal-content {
+        position: relative;
+        padding: 2.5rem 2rem 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .modal-close {
+        position: absolute;
+        top: 1rem;
+        right: 1.2rem;
+        background: none;
+        border: none;
+        font-size: 1.8rem;
+        cursor: pointer;
+        color: #757575;
+        line-height: 1;
+    }
+    .modal-close:hover {
+        color: #000;
+    }
+    .modal-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    .modal-header img {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+    }
+    .modal-header h3 {
+        font-size: 1.8rem;
+        margin: 0;
+        font-weight: var(--font-weight-semibold);
+        color: var(--main-color-black);
+    }
+    .modal-detail {
+        font-size: 0.9rem;
+        font-weight: var(--font-weight-normal);
+        line-height: 1.6;
+        color: var(--main-color-black);
+        margin: 0;
+    }
+
+    @media screen and (max-width: 950px) {
+        .portfolio-container {
             flex-direction: column;
             justify-content: center;
             align-items: center;
+        }
+
+        .left-content {
+            position: inherit;
+            margin-bottom: clamp(40px, 1em, 50px);
+            /* padding: 1rem 0; */
+        }
+
+        .right-content {
+            padding: 1rem 0;
+            width: 100%;
         }
 
         .intro-text {
@@ -162,15 +387,25 @@ const textCase = "uppercase";
             align-items: center;
         }
 
+        .dev-header {
+            justify-content: center;
+            align-items: center;
+            margin: 1rem 0;
+        }
+
         .dev-name {
-            font-size: 2.5rem;
+            /* font-size: 2.; */
             width: fit-content;
             display: inline-block;
-            margin: 4vh 0;
+            /* margin: 4vh 0; */
         }
 
         .text-container {
             margin: 0;
+        }
+
+        .timeline-title {
+            gap: 0.5rem;
         }
 
         .tab-btn {
@@ -198,27 +433,117 @@ const textCase = "uppercase";
 
 <BaseLayout pageTitle={pageTitle}>
     <ContentFrame chapterTitle={pageTitle} rubi="私について">
-        <div slot="chapter-content" class="content-box">
-            <div class="introduce-container">
-                <div class="image-container">
-                    <img src="/izuchi-logo2.svg" alt="プロフィール画像" />
-                </div>
-                <div class="text-container">
-                    <h1 class="dev-name">Ryousuke</h1>
-                    <article class="intro-text-container">
-                        <p class="intro-text">
-                            こんにちは。Ryousukeです。人工知能・データ分析を学んでいる大学生です。
-                        </p>
-                        <p class="intro-text">
-                            プログラミングの勉強を兼ねてWebサイトやアプリを作っています。
-                        </p>
-                        <p class="intro-text">
-                            日本史が好きで、休日は城や寺社を巡ることも多いです。
-                        </p>
-                    </article>
+        <div slot="chapter-content" class="chapter-content about">
+            <div class="portfolio-container">
+                <aside class="left-content">
+                    <div class="image-container">
+                        <img src="/izuchi-logo2.svg" alt="プロフィール画像" />
+                    </div>
+                    <div class="text-container">
+                        <div class="dev-header">
+                            <h1 class="dev-name about">Ryousuke</h1>
+                            <p class="dev-status">Student / Developer</p>
+                        </div>
+                        <article class="intro-text-container">
+                            <p class="intro-text">
+                                こんにちは。Ryousukeです。データ分析や機械学習について学んでいる大学生です。
+                            </p>
+                            <p class="intro-text">
+                                競技プログラミングに取り組んだり、Webサイトを作ったりしています。
+                            </p>
+                            <p class="intro-text">
+                                日本史が好きで、城や寺社などの史跡めぐりも楽しんでます。
+                            </p>
+                        </article>
+                    </div>
+                </aside>
+                <div class="right-content">
+                    <div class="portfolio-item">
+                        <h2 class="portfolio-item-name">Qualifications</h2>
+                        <div class="portfolio-item-content">
+                            <ul class="timeline">
+                                {qualifications.map((item) => (
+                                    <li class="timeline-item">
+                                        <span class="timeline-dot"></span>
+                                        <span class="timeline-date">{item.date}</span>
+                                        <span class="timeline-title">
+                                            {item.title}
+                                            {item.detail && <span class="timeline-detail">{item.detail}</span>}
+                                        </span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <h2 class="portfolio-item-name">Skills</h2>
+                        <div class="portfolio-item-content">
+                            <ul class="skill-container">
+                                {skillLIst.map((item) => (
+                                    <Card
+                                        itemIcon={item.icon}
+                                        itemName={item.name}
+                                        itemDetail={item.detail}
+                                    />
+                                ))}
+                                <!-- <Card 
+                                    itemIcon="/images/skill-icon/Python-logo-notext.svg"
+                                    itemName="Python"
+                                />
+                                <Card 
+                                    itemIcon="/images/skill-icon/Python-logo-notext.svg"
+                                    itemName="Python"
+                                /> -->
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- <dialog id="skill-modal" class="modal">
+                        <div class="modal-content">
+                            <button type="button" class="modal-close" id="modal-close" aria-label="閉じる">&times;</button>
+                            <div class="modal-header">
+                                <img src="" alt="" id="modal-icon">
+                                <h3 id="modal-title"></h3>
+                            </div>
+                            <p id="modal-detail" class="modal-detail"></p>
+                        </div>
+                    </dialog> -->
+                    <div class="portfolio-item">
+                        <h2 class="portfolio-item-name">Actions</h2>
+                        <div class="portfolio-item-content action">
+                            <ul class="action-container">
+                                {actionList.map((item) => (
+                                    <Card
+                                        itemIcon={item.icon}
+                                        itemName={item.name}
+                                        itemDetail={item.detail}
+                                    />
+                                    
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                    <dialog id="modal" class="modal">
+                        <div class="modal-content">
+                            <button type="button" class="modal-close" id="modal-close" aria-label="閉じる">&times;</button>
+                            <div class="modal-header">
+                                <img src="" alt="" id="modal-icon">
+                                <h3 id="modal-title"></h3>
+                            </div>
+                            <p id="modal-detail" class="modal-detail"></p>
+                        </div>
+                    </dialog>
                 </div>
             </div>
-            <h2 class="chapter-title">Skills</h2>
+            <div class="hobby-item">
+                <h2 class="hobby-item-name">Favorites</h2>
+                <div class="hobby-item-content">
+                    
+                </div>
+            </div>
+            <div class="hobby-item">
+                <div class="galary-containter"></div>
+            </div>
+            <!-- <h2 class="chapter-title"></h2>
             <div class="skill-container">
                 <div class="tabs">
                     <button
@@ -272,30 +597,7 @@ const textCase = "uppercase";
                         evt.currentTarget.classList.add("active");
                     }
                 </script>
-            </div>
-            <h2>資格・試験</h2>
-            <ul>
-                <li>
-                    <p>基本情報技術者試験（2025年）</p>
-                </li>
-                <li>
-                    <p>TOEIC L&R 620点（2024年）</p>
-                </li>
-                <li>
-                    <p>普通自動車第一種運転免許（2023年）</p>
-                </li>
-                <li>
-                    <p>実用数学技能検定 3級（2019年）</p>
-                </li>
-                <li>
-                    <p>実用英語技能検定 3級（2019年）</p>
-                </li>
-                <li>
-                    <p>漢字能力検定 3級（2019年）</p>
-                <li>
-                    <p>歴史能力検定 3級日本史（2018年）</p>
-                </li>
-            </ul>
+            </div> -->
             <!-- <p></p>
     		<p>作ったものや日常の活動などについて発信していきます。</p>
     		<h2>自己紹介</h2>
@@ -326,3 +628,40 @@ const textCase = "uppercase";
         </div>
     </ContentFrame>
 </BaseLayout>
+
+<script>
+    const modal = document.getElementById("modal") as HTMLDialogElement;
+    // const actionModal = document.getElementById("action-modal") as HTMLDialogElement;
+    const modalIcon = document.getElementById("modal-icon") as HTMLImageElement;
+    const modalTitle = document.getElementById("modal-title");
+    const modaldetail = document.getElementById("modal-detail");
+    const modalClose = document.getElementById("modal-close");
+
+    const cards = document.querySelectorAll(".card-btn");
+    cards.forEach((card) => {
+        card.addEventListener("click", () => {
+            const name = card.getAttribute("data-name") || "";
+            const icon = card.getAttribute("data-icon") || "";
+            const detail = card.getAttribute("data-detail") || "";
+            if (modalTitle) {
+                modalTitle.textContent = name;
+            }
+            if (modalIcon) {
+                modalIcon.src = icon;
+            }
+            if (modaldetail) {
+                modaldetail.textContent = detail;
+            }
+            modal.showModal();
+        });
+    })
+    modalClose?.addEventListener("click", () => {
+        modal.close();
+    });
+
+    modal?.addEventListener("click", (e) => {
+        if (e.target === modal) {
+            modal.close();
+        }
+    });
+</script>
