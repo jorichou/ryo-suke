@@ -1,0 +1,25 @@
+---
+const { message } = Astro.props;
+---
+
+<div class="message-box">
+    <p class="message">{ message }</p>
+</div>
+
+<style>
+    .message-box{
+        display: flex;
+        border: var(--border-style);
+        border-radius: 10px;
+        padding: 2rem;
+        background-color: #BDBDBD;
+        align-items: center;
+        justify-content: center;
+        height: 40vh;
+    }
+    .message{
+        margin: 0;
+        font-size: 1.2rem;
+        color: var(--main-color-black);
+    }
+</style>
