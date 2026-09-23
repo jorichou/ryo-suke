@@ -15,8 +15,8 @@ source:
     url: "https://github.com/jorichou/ryo-suke"
     label: "GitHub"
 link:
-    url: "https://ryo-suke.org/"
-    label: "本サイト"
+    url: "https://archive-site1.ryo-suke.org/"
+    label: "マイホームページv1"
 draft: false
 ---
 
