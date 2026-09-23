@@ -16,10 +16,23 @@ const worksCollection = defineCollection({
     type: z.string().optional(),
     year: z.string().optional(),
     role: z.string().optional(),
+    // Updated source field supporting object with url (string or array) and optional label
+    source: z.object({
+      url: z.union([z.string(), z.array(z.string())]),
+      label: z.union([z.string(), z.array(z.string())]).optional(),
+    }).optional(),
+    // Updated link field accepting either a string or an object with url (string or array) and optional label
+    link: z.union([
+      z.string(),
+      z.object({
+        url: z.union([z.string(), z.array(z.string())]),
+        label: z.union([z.string(), z.array(z.string())]).optional(),
+      })
+    ]).optional(),
+    // Legacy fields for backward compatibility
     source_name: z.string().optional(),
     source_url: z.string().optional(),
     link_name: z.string().optional(),
-    link: z.string().optional(),
     draft: z.boolean().optional().default(false),
   })
 });
@@ -37,6 +50,7 @@ const postsCollection = defineCollection({
       alt: z.string(),
     }).optional(),
     tags: z.array(z.string()).optional(),
+    janre: z.string(),
     draft: z.boolean().optional().default(false),
   })
 });

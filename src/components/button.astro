@@ -5,25 +5,92 @@ const {link} = Astro.props
 
 <style>
     .button-body {
-        display: flex;
+        /* display: flex;
         justify-content: center;
         align-items: center;
         background-color: #E86B79;
         width: 8.2rem;
         height: 2.6rem;
-        border-radius: 6px;
+        border-radius: 6px; */
+        align-self: flex-end;
+    }
+
+    html.dark .button-body span {
+        color: #f5f5f5
+    }
+
+    html.dark .button-body path {
+        fill: #f5f5f5
     }
 
     .button-body a {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
         text-decoration: none;
-        color: #F5F5F5;
-        font-weight: bold;
+        color: #212121;
+        font-weight: 400;
         font-size: 1.2rem;
         font-family: 'Noto Sans', 'Google Sans Flex', sans-selif;
+    }
+
+    .button-body {
+        position: relative;
+    }
+
+    .button-body::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -10px;
+        height: 2px;
+        width: 100%;
+        background-color: #212121;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s ease-in-out;
+    }
+
+    /* ボタンの下のアンダーライン */
+    html.dark .button-body::after {
+        background: #f5f5f5;
+    }
+
+    .button-body:hover::after {
+        /* animation: button-underline 0.5s ease; */
+        transform: scaleX(0.94);
+    }
+
+    .button-body svg {
+        transition: 0.2s;
+    }
+
+    .button-body:hover svg {
+        animation: more-arrow-bounce 0.4s ease-in-out;
+    }
+
+    .button-body path {
+        fill: #212121;
+    }
+
+
+    @keyframes more-arrow-bounce {
+        0% {
+            transform: translateX(0px);
+        }
+        50% {
+            transform: translateX(4px);
+        }
+        100% {
+            transform: translateX(0px);
+        }
     }
 
 </style>
 
 <div class="button-body">
-    <a href={link}>{buttonName}</a>
+    <a href={link}>
+        <span class="text">{buttonName}</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><!-- Icon from Material Symbols by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" d="M16.175 13H4v-2h12.175l-5.6-5.6L12 4l8 8l-8 8l-1.425-1.4z"/></svg>
+    </a>
 </div>

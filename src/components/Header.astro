@@ -1,63 +1,180 @@
 ---
 import Hamburger from "./Hamburger.astro";
 import Navigation from "./Navigation.astro";
-import ThemeIcon from "./ThemeIcon.astro";
 ---
 
-<!-- スマホ用：画面全体を覆うオーバーレイナビ -->
-<div class="nav-overlay" id="nav-overlay">
-    <Navigation />
-</div>
-
-<header class="w-wrap">
-    <div class="site-title">
-        <a href="/">
-            <img src="/umekabuto.svg" alt="Ryo-suke.org" class="header-logo">
-             <!-- <p class="title-text">Ryo-suke.org</p> -->
-        </a>
+<header class="header">
+    <div class="header-bar w-wrap">
+        <div class="site-title">
+            <a href="/">
+                <p class="title-text">Ryousuke</p>
+            </a>
+        </div>
+        <div class="header-actions">
+            <Hamburger />
+        </div>
     </div>
-    <nav>
-        <Hamburger />
-        <!-- <ThemeIcon /> -->
-        <!-- PC用ナビ -->
-        <Navigation />
-    </nav>
+
+    <!-- スマホ版でヘッダーからスライド展開する帯ナビゲーション（PCではヘッダー右側に配置） -->
+    <div class="nav-band" id="nav-band">
+        <div class="nav-band-inner w-wrap">
+            <Navigation />
+        </div>
+    </div>
 </header>
 
 <script>
     const btn = document.getElementById('humburger-btn');
-    const overlay = document.getElementById('nav-overlay');
-    const header = document.querySelector('header');
+    const navBand = document.getElementById('nav-band');
+    const themeButton = document.getElementById('theme-button');
 
-    // ハンバーガーボタンでオーバーレイを開閉
-    btn?.addEventListener('click', () => {
-        btn.classList.toggle('active');
-        if (btn.classList.contains('active')) {
-            overlay?.classList.add('open');
-            header?.classList.add('header-hidden');
-            document.body.classList.add('no-scroll');
-        } else {
-            overlay?.classList.remove('open');
-            header?.classList.remove('header-hidden');
-            document.body.classList.remove('no-scroll');
-        }
+    // テーマ切り替え機能
+    themeButton?.addEventListener('click', () => {
+        const isDark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
 
-    // オーバーレイ内のリンクをクリックしたらメニューを閉じる
-    overlay?.querySelectorAll('a').forEach(link => {
+    // ハンバーガーボタンで帯を開閉
+    btn?.addEventListener('click', () => {
+        const isOpen = btn.classList.toggle('active');
+        navBand?.classList.toggle('open', isOpen);
+    });
+
+    // 帯内のリンクをクリックしたら帯を閉じる
+    navBand?.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             btn?.classList.remove('active');
-            overlay?.classList.remove('open');
-            header?.classList.remove('header-hidden');
-            document.body.classList.remove('no-scroll');
+            navBand?.classList.remove('open');
         });
+    });
+
+    // メニュー外側をクリックした時に閉じる
+    document.addEventListener('click', (e) => {
+        if (!btn?.contains(e.target as Node) && !navBand?.contains(e.target as Node)) {
+            btn?.classList.remove('active');
+            navBand?.classList.remove('open');
+        }
     });
 </script>
 
 <style>
+    .header {
+        position: sticky;
+        top: 0;
+        z-index: 201;
+        background-color: #f5f5f5;
+        transition: background-color 0.3s ease;
+    }
+
     .title-text {
         font-size: 1.7rem;
-        font-weight: bold;
-        color: #E86B79;
+        font-weight: 700;
+        color: #212121;
+        transition: color 0.3s ease;
+        margin: 0;
+    }
+
+    /* スマホ表示 (< 1024px) */
+    @media screen and (max-width: 1023px) {
+        .header {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 4.3rem;
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        /* ヘッダーから出てくる帯 */
+        .nav-band {
+            width: 100%;
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                        border-color 0.3s ease,
+                        box-shadow 0.3s ease;
+            background-color: #f5f5f5;
+            border-bottom: 1px solid transparent;
+        }
+
+        .nav-band.open {
+            grid-template-rows: 1fr;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-band-inner {
+            overflow: hidden;
+            width: 100%;
+        }
+    }
+
+    /* PC表示 (>= 1024px) */
+    @media screen and (min-width: 1024px) {
+        .header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            height: 4.3rem;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .header-bar {
+            display: flex;
+            align-items: center;
+            padding: 0;
+            width: auto;
+        }
+
+        .header-actions {
+            display: none;
+        }
+
+        .nav-band {
+            display: block !important;
+            width: auto;
+            grid-template-rows: unset;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+        }
+
+        .nav-band-inner {
+            padding: 0;
+            width: auto;
+            overflow: visible;
+        }
+    }
+
+    /* ダークモード時 */
+    :global(html.dark) .header {
+        background-color: #212121;
+    }
+
+    :global(html.dark) .title-text {
+        color: #ffffff;
+    }
+
+    @media screen and (max-width: 1023px) {
+        :global(html.dark) .nav-band {
+            background-color: #212121;
+        }
+
+        :global(html.dark) .nav-band.open {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+        }
     }
 </style>

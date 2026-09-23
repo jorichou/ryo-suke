@@ -1,20 +1,22 @@
 ---
 layout: ../../layouts/MarkdownWorkLayout.astro
-title: 'マイホームページ'
+title: 'マイホームページv1'
 pubDate: 2026-04-03
-description: '本サイトの紹介'
+description: 'マイホームページv1の紹介'
 author: 'ryousuke'
 image:
     url: '/images/works/work-1/blog_simbol.png'
     alt: 'サイトロゴ'
 tags: ["Webサイト", "Astro", "ホームページ"]
-type: "Webサイト"
+type: "Site"
 year: "2026"
 role: "All"
-source_name: "GitHub"
-source_url: "https://github.com/jorichou/ryo-suke"
-link_name: "本サイト"
-link: "https://ryo-suke.org/"
+source:
+    url: "https://github.com/jorichou/ryo-suke"
+    label: "GitHub"
+link:
+    url: "https://ryo-suke.org/"
+    label: "本サイト"
 draft: false
 ---
 

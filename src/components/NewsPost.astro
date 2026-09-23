@@ -6,16 +6,19 @@ const formattedDate = new Date(postDate).toLocaleDateString('ja-JP', {
   year: 'numeric',
   month: '2-digit',
   day: '2-digit',
-}).replace(/\//g, '.');
+})
 ---
 <style>
     li {
-        
-        
+        /* height: clamp(40px, 10vh, 60px); */
     }
 
     .news-post a:hover p{
         color: #E86B79;
+    }
+
+    html.dark .news-post a:hover p{
+        color: var(--theme-color-dark);
     }
 
     a {
@@ -30,32 +33,32 @@ const formattedDate = new Date(postDate).toLocaleDateString('ja-JP', {
     .text-content {
         display: flex;
         align-items: center;
-        height: 13vh;
+        height: clamp(50px, 13vh, 80px);
         padding: 1rem;
     }
 
     .date {
         font-size: 1.1rem;
-        color: #707070;
-        font-weight: bold;
+        color: #212121;
+        font-weight: 400;
         /* margin: 0; */
     }
 
     .title {
         font-size: 1.1rem;
-        font-weight: bold;
+        font-weight: 400;
         margin: 0 5rem;
-        color: #707070;
+        color: #212121;
     }
 
     .news-post p {
-        transition: color 0.4s;
+        transition: color 0.2s;
     }
 
     @media screen and (max-width: 636px) {
         .text-content {
             /* height: 10vh; */
-            height: 80px;
+            /* height: 80px; */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -72,6 +75,10 @@ const formattedDate = new Date(postDate).toLocaleDateString('ja-JP', {
             font-size: 0.8rem;
             margin: 0;
         }
+    }
+
+    html.dark .date, html.dark .title{
+        color: #F5F5F5;
     }
 </style>
 

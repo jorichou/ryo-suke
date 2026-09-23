@@ -15,8 +15,8 @@ const formattedDate = new Date(frontmatter.pubDate)
     <div class="news-container">
         <Breadcrumbs title={frontmatter.title} />
         <div class="news-top">
-            <p class="post-date">{formattedDate}</p>
             <h1 class="post-title">{frontmatter.title}</h1>
+            <p class="post-date">{formattedDate}</p>
             <!-- <p class="description">{frontmatter.description}</p> -->
         </div>
         <article>
@@ -32,14 +32,33 @@ const formattedDate = new Date(frontmatter.pubDate)
     <slot /> -->
 </BaseLayout>
 <style>
+
+    .news-top {
+        margin-bottom: 2rem;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        gap: 1rem;
+    }
+
     .post-date {
         margin: 0;
-        font-weight: 500;
-        color: #707070;
+        font-weight: var(--font-weight-normal);
+        color: var(--main-color-black);
     }
+
+    html.dark .post-date {
+        color: var(--main-color-white);
+    }
+
     .post-title {
-        color: #707070; 
-        margin: 5vh 0 8vh 0;
+        color: var(--main-color-black); 
+        font-weight: var(--font-weight-bold);
+        margin: 0;
+    }
+
+    html.dark .post-title {
+        color: var(--main-color-white);
     }
 
     .news-container {
@@ -72,7 +91,8 @@ const formattedDate = new Date(frontmatter.pubDate)
 
     /* 節（h2）および小節（h3, h4）のスペーシング */
     article :global(h2) {
-        color: #707070;
+        color: var(--main-color-black);
+        font-weight: var(--font-weight-semibold);
         margin-top: 4rem;
         margin-bottom: 1.5rem;
         font-size: 1.6rem;
@@ -84,7 +104,8 @@ const formattedDate = new Date(frontmatter.pubDate)
 
     /* 小節（h3）の間隔 */
     article :global(h3) {
-        color: #707070;
+        color: var(--main-color-black);
+        font-weight: var(--font-weight-semibold);
         margin-top: 3.5rem;
         margin-bottom: 1.2rem;
         font-size: 1.3rem;
@@ -96,7 +117,8 @@ const formattedDate = new Date(frontmatter.pubDate)
     }
 
     article :global(h4) {
-        color: #707070;
+        color: var(--main-color-black);
+        font-weight: var(--font-weight-semibold);
         margin-top: 2.5rem;
         margin-bottom: 0.8rem;
     }
@@ -104,5 +126,22 @@ const formattedDate = new Date(frontmatter.pubDate)
     article :global(p) {
         margin: 1.2rem 0;
         line-height: 1.8;
+        font-weight: var(--font-weight-normal);
+    }
+
+    html.dark article :global(h2) {
+        color: var(--main-color-white);
+    }
+
+    html.dark article :global(h3) {
+        color: var(--main-color-white);
+    }
+
+    html.dark article :global(h4) {
+        color: var(--main-color-white);
+    }
+
+    html.dark article :global(p) {
+        color: var(--main-color-white);
     }
 </style>

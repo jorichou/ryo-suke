@@ -15,7 +15,7 @@ const pageTitle = "News";
 <BaseLayout pageTitle={pageTitle}>
     <ContentFrame chapterTitle={pageTitle} rubi="ニュース">
 		<div slot="chapter-content" class="chapter-box">
-			<div class="chapter-content">
+			<div class="chapter-content news-content">
 				<ul class="news-list">
 					{news.map((news) => <NewsPost postDate={news.data.pubDate} title={news.data.title} url={`/news/${news.slug}`} />)}
 				</ul>

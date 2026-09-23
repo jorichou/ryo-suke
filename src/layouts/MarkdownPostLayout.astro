@@ -2,49 +2,69 @@
 import BaseLayout from "./BaseLayout.astro";
 import TableOfContents from "../components/TableOfContents.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
+import Tag from "../components/Tag.astro";
 const { frontmatter, headings } = Astro.props;
 const formattedDate = new Date(frontmatter.pubDate)
     .toLocaleDateString("ja-JP", {
         year: "numeric",
         month: "2-digit",
         day: "2-digit",
-    })
-    .replace(/\//g, ".");
+    });
 ---
 
 <BaseLayout pageTitle={frontmatter.title}>
-    <div class="post-layout">
-        <div class="post-container">
-            <Breadcrumbs title={frontmatter.title} />
-            <div class="post-top">
-                <p class="post-date">{formattedDate}</p>
-                <h1 class="post-title">{frontmatter.title}</h1>
-                <div class="img-container">
-                    <img
-                        src={frontmatter.image.url}
-                        alt={frontmatter.image.alt}
-                    />
-                </div>
-                <!-- <p class="description">{frontmatter.description}</p>
-                  -->
+    <!-- <div class="post-layout"> -->
+    <div class="post-container">
+        <Breadcrumbs title={frontmatter.title} />
+        <div class="post-top">
+            <div class="img-container">
+                <img
+                src={frontmatter.image.url}
+                alt={frontmatter.image.alt}
+                />
             </div>
-            <article>
-                <slot />
-            </article>
+            <h1 class="post-title">{frontmatter.title}</h1>
+            <div class="post-meta">
+                <p class="post-date">{formattedDate}</p>
+                <Tag tagName={frontmatter.janre} />
+            </div>
+            <p class="description">{frontmatter.description}</p>
         </div>
-        <aside>
-            <TableOfContents headings={headings} />
-        </aside>
+        <article>
+            <slot />
+        </article>
     </div>
+        <!-- <aside>
+            <TableOfContents headings={headings} />
+        </aside> -->
+    <!-- </div> -->
 </BaseLayout>
 <style>
+    .post-meta {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin: 1.2rem 0 2.8rem 0;
+
+    }
+
     .post-date {
         margin: 0;
-        font-weight: 500;
-        color: #707070;
+        font-weight: var(--font-weight-normal);
+        color: var(--main-color-black);
     }
     .post-title {
-        color: #707070;
+        color: var(--main-color-black);
+        margin: 2rem 0 0 0;
+    }
+
+    html.dark .post-date {
+        color: var(--main-color-white);
+    }
+
+    html.dark .post-title {
+        color: var(--main-color-white);
     }
 
     .post-container {
@@ -54,18 +74,25 @@ const formattedDate = new Date(frontmatter.pubDate)
     }
 
     .img-container {
-        aspect-ratio: 16 / 9; /* Sets a 4:3 aspect ratio */
         /* background-color: #f0f0f0; Placeholder color */
-        margin: 3vh 0;
+        margin: 2vh 0 2rem auto;
+        display: flex;
+        justify-content: center;
     }
 
     .img-container img {
-        width: 100%;
-        height: 100%;
+        aspect-ratio: 16 / 9; /* Sets a 4:3 aspect ratio */
+
+        width: 60%;
+        height: auto;
         object-fit: cover; /* This makes the image cover the container, cropping it */
         border-radius: 20px;
-        border: 2px #9E9E9E solid;
+        border: 1px var(--main-color-black) solid;
         margin: 0;
+    }
+
+    html.dark .img-container img {
+        border: 1px var(--main-color-white) solid;
     }
 
     article {
@@ -75,7 +102,8 @@ const formattedDate = new Date(frontmatter.pubDate)
 
     /* 節（h2）および小節（h3, h4）のスペーシング */
     article :global(h2) {
-        color: #707070;
+        color: var(--main-color-black);
+        font-weight: var(--font-weight-semibold);
         margin-top: 4rem;
         margin-bottom: 1.5rem;
         font-size: 1.6rem;
@@ -87,7 +115,8 @@ const formattedDate = new Date(frontmatter.pubDate)
 
     /* 小節（h3）の間隔 */
     article :global(h3) {
-        color: #707070;
+        color: var(--main-color-black);
+        font-weight: var(--font-weight-semibold);
         margin-top: 3.5rem;
         margin-bottom: 1.2rem;
         font-size: 1.3rem;
@@ -99,7 +128,8 @@ const formattedDate = new Date(frontmatter.pubDate)
     }
 
     article :global(h4) {
-        color: #707070;
+        color: var(--main-color-black);
+        font-weight: var(--font-weight-semibold);
         margin-top: 2.5rem;
         margin-bottom: 0.8rem;
     }
@@ -109,6 +139,22 @@ const formattedDate = new Date(frontmatter.pubDate)
         line-height: 1.8;
     }
 
+    html.dark article :global(h2) {
+        color: var(--main-color-white);
+    }
+
+    html.dark article :global(h3) {
+        color: var(--main-color-white);
+    }
+
+    html.dark article :global(h4) {
+        color: var(--main-color-white);
+    }
+
+    html.dark article :global(p) {
+        color: var(--main-color-white);
+    }
+
     /* 表（テーブル）スタイル */
     article :global(table) {
         width: 100%;
@@ -116,8 +162,8 @@ const formattedDate = new Date(frontmatter.pubDate)
         margin: 2.5rem 0;
         font-size: 0.95rem;
         line-height: 1.6;
-        border-top: 1.5px solid #e86b79;
-        border-bottom: 1.5px solid #e86b79;
+        border-top: 1.5px solid var(--theme-color);
+        border-bottom: 1.5px solid var(--theme-color);
         border-left: none;
         border-right: none;
     }
@@ -138,9 +184,9 @@ const formattedDate = new Date(frontmatter.pubDate)
 
     /* 列タイトル (thead th) */
     article :global(th) {
-        color: #e86b79;
-        font-weight: 700;
-        border-bottom: 1.5px solid #e86b79;
+        color: var(--theme-color);
+        font-weight: var(--font-weight-semibold);
+        border-bottom: 1.5px solid var(--theme-color);
         letter-spacing: 0.02em;
     }
 
@@ -148,13 +194,13 @@ const formattedDate = new Date(frontmatter.pubDate)
     article :global(tbody th),
     article :global(tbody tr > th:first-child),
     article :global(tbody tr > td:first-child) {
-        font-weight: 700;
-        color: #707070;
+        font-weight: var(--font-weight-semibold);
+        color: var(--main-color-black);
     }
 
     article :global(td) {
-        color: #707070;
-        font-weight: 500;
+        color: var(--main-color-black);
+        font-weight: var(--font-weight-normal);
     }
 
     /* 最下行のセルの下線はテーブル下部境界線と重複しないように消去 */
@@ -190,6 +236,10 @@ const formattedDate = new Date(frontmatter.pubDate)
 
     /* スマホ画面対応 */
     @media screen and (max-width: 636px) {
+        .img-container img {
+            width: 100%;
+        }
+
         article :global(h2) {
             margin-top: 2.8rem;
             margin-bottom: 1rem;
@@ -219,8 +269,8 @@ const formattedDate = new Date(frontmatter.pubDate)
 
     /* ダークモード対応 */
     :global(html.dark) article :global(table) {
-        border-top-color: #e86b79;
-        border-bottom-color: #e86b79;
+        border-top-color: var(--theme-color-dark);
+        border-bottom-color: var(--theme-color-dark);
     }
 
     :global(html.dark) article :global(thead) {
@@ -228,21 +278,22 @@ const formattedDate = new Date(frontmatter.pubDate)
     }
 
     :global(html.dark) article :global(th) {
-        border-bottom-color: #e86b79;
+        border-bottom-color: var(--theme-color-dark);
+        color: var(--theme-color-dark);
     }
 
     :global(html.dark) article :global(td) {
-        color: #d0d0d0;
+        color: var(--main-color-white);
         border-bottom-color: rgba(255, 255, 255, 0.12);
     }
 
     :global(html.dark) article :global(tbody th),
     :global(html.dark) article :global(tbody tr > th:first-child),
     :global(html.dark) article :global(tbody tr > td:first-child) {
-        color: #ffffff;
+        color: var(--main-color-white);
     }
 
-    :global(html.dark) article :global(tbody tr:hover) {
+    /* :global(html.dark) article :global(tbody tr:hover) {
         background-color: rgba(232, 107, 121, 0.1);
-    }
+    } */
 </style>
