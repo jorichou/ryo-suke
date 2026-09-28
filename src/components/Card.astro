@@ -1,5 +1,5 @@
 ---
-const {itemIcon, itemName, itemDetail} = Astro.props;
+const {itemIcon, itemName, itemDetail, invertOnDark = false} = Astro.props;
 ---
 
 <li class="skill-item">
@@ -9,9 +9,10 @@ const {itemIcon, itemName, itemDetail} = Astro.props;
         data-name={itemName}
         data-icon={itemIcon}
         data-detail={itemDetail}
+        data-invert={invertOnDark ? "true" : "false"}
     >
         <div class="item-icon">
-            <img src={itemIcon} alt={itemName} class="icon-img" />
+            <img src={itemIcon} alt={itemName} class={`icon-img ${invertOnDark ? "invert-dark" : ""}`} />
         </div>
         <div class="item-name">
             <p>{itemName}</p>
@@ -51,9 +52,19 @@ const {itemIcon, itemName, itemDetail} = Astro.props;
         /* aspect-ratio: 5 / 4; */
     }
 
+    html.dark .card-btn {
+        background-color: var(--main-color-black);
+        border: solid 1px var(--main-color-white);
+    }
+
     .card-btn:hover {
         border: 1px solid var(--theme-color);
         outline: 1.5px solid var(--theme-color);
+    }
+
+    html.dark .card-btn:hover {
+        border: 1px solid var(--theme-color-dark);
+        outline: 1.5px solid var(--theme-color-dark);
     }
 
     .item-icon {
@@ -83,6 +94,15 @@ const {itemIcon, itemName, itemDetail} = Astro.props;
         margin: 0;
         font-size: 1rem;
         font-weight: var(--font-weight-normal);
+        color: var(--main-color-black);
+    }
+
+    html.dark .item-name p {
+        color: var(--main-color-white);
+    }
+
+    html.dark .icon-img.invert-dark {
+        filter: invert(1);
     }
 
     @media screen and (max-width: 768px) {

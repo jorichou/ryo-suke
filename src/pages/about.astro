@@ -14,13 +14,13 @@ const skillLIst =[
     {name: "Python", icon: "/images/skill-icon/Python-logo-notext.svg", detail: "研究や競技プログラミングで利用しています。大規模データの処理や簡単なアルゴリズムの実装ができます。"},
     {name: "HTML / CSS", icon: "/images/skill-icon/Official_CSS_Logo.svg", detail: "このサイトのようなウェブサイトを制作することができます。"},
     {name: "C++", icon: "/images/skill-icon/ISO_C++_Logo.svg", detail: "簡単なプログラムを組むことができます。競技プログラミングで使えるようにするために勉強中です。"},
-    {name: "Astro", icon: "/images/skill-icon/Astro.svg", detail: "このサイトを制作するにあたって利用しました。"},
+    {name: "Astro", icon: "/images/skill-icon/Astro.svg", detail: "このサイトを制作するにあたって利用しました。", invert: true},
     {name: "figma", icon: "/images/skill-icon/Figma-logo.svg", detail: "このサイトを制作するにあたって利用しました。簡単なサイトやアプリのデザインをすることができます。"}
 ];
 const actionList = [
-    {name: "Research", icon: "/images/action-icon/HealthiconsIntegratedDataAndResearch24px.svg", detail: "卒業研究として、コミュニティQ&Aサービスにおける外部参照の特徴についての研究を行っています。"},
-    {name: "Competition", icon: "/images/action-icon/SolarCupBold.svg", detail: "AtCoderという競技プログラミングに毎週参加しています。"},
-    {name: "Development", icon: "/images/action-icon/MaterialSymbolsCodeXml.svg", detail: "このサイトの制作を行いました。他にもアプリケーションやシステムの開発に取り組んでいきたいです。"}
+    {name: "Research", icon: "/images/action-icon/HealthiconsIntegratedDataAndResearch24px.svg", detail: "卒業研究として、コミュニティQ&Aサービスにおける外部参照の特徴についての研究を行っています。", invert: true},
+    {name: "Competition", icon: "/images/action-icon/SolarCupBold.svg", detail: "AtCoderという競技プログラミングに毎週参加しています。", invert: true},
+    {name: "Development", icon: "/images/action-icon/MaterialSymbolsCodeXml.svg", detail: "このサイトの制作を行いました。他にもアプリケーションやシステムの開発に取り組んでいきたいです。", invert: true}
 ]
 ---
 
@@ -64,6 +64,10 @@ const actionList = [
         margin: 0;
     }
 
+    html.dark h1, h2 {
+        color: var(--theme-color-dark);
+    }
+
     .skill {
         /* color: #4A90E2; */
         color: var(--skillColor);
@@ -87,6 +91,10 @@ const actionList = [
         border-radius: 50%;
         overflow: hidden;          /* はみ出た部分を円でクリップ */
         flex-shrink: 0;
+    }
+
+    html.dark .image-container {
+        border: 1px solid var(--main-color-white);
     }
 
     .image-container img {
@@ -115,6 +123,10 @@ const actionList = [
         /*margin: 0 0 2vh 0;*/
     }
 
+    html.dark .dev-name.about {
+        color: var(--main-color-white);
+    }
+
     .dev-status {
         font-size: 0.8rem;
         /* align-self: center; */
@@ -123,8 +135,17 @@ const actionList = [
         margin: 0;
     }
 
+    html.dark .dev-status {
+        color: #888;
+    }
+
     .intro-text {
         font-size: 0.9rem;
+        color: var(--main-color-black);
+    }
+
+    html.dark .intro-text {
+        color: var(--main-color-white);
     }
 
     .portfolio-item {
@@ -139,6 +160,10 @@ const actionList = [
         font-weight: var(--font-weight-semibold);
         color: var(--main-color-black);
         margin: 0 0 4vh 0;
+    }
+
+    html.dark .portfolio-item-name, html.dark .hobby-item-name {
+        color: var(--main-color-white);
     }
     
     
@@ -164,6 +189,10 @@ const actionList = [
         opacity: 0.5;
     }
 
+    html.dark .timeline::before {
+        background: var(--theme-color-dark);
+    }
+
     .timeline-item {
         display: flex;
         align-items: center;
@@ -185,6 +214,10 @@ const actionList = [
         z-index: 1;
     }
 
+    html.dark .timeline-dot {
+        background: var(--theme-color-dark);
+    }
+
     .timeline-date {
         width: 100px;
         flex-shrink: 0;
@@ -195,6 +228,10 @@ const actionList = [
         font-weight: var(--font-weight-normal);
     }
 
+    html.dark .timeline-date {
+        color: var(--main-color-white);
+    }
+
     .timeline-title {
         /* font-size: 1rem; */
         display: flex;
@@ -203,9 +240,17 @@ const actionList = [
         color: var(--main-color-black);
         flex-wrap: wrap;
     }
+
+    html.dark .timeline-title {
+        color: var(--main-color-white);
+    }
     
     .timeline-detail {
         color: var(--main-color-black);
+    }
+
+    html.dark .timeline-detail {
+        color: var(--main-color-white);
     }
 
     .tabs {
@@ -242,10 +287,10 @@ const actionList = [
         display: grid;
         grid-template-columns: repeat(3, calc((100% - 4vw) / 3));
         /* grid-template-columns: repeat(auto-fill, minmax(18vh, 1fr)); */
-        grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
+        grid-template-rows: repeat(auto-fill, minmax(80px, 1fr));
         justify-items: center;
         gap: 1.5vw;
-        width: 90%;
+        width: 100%;
     }
 
     .tab-line {
@@ -304,11 +349,17 @@ const actionList = [
         position: fixed;
         /* showModal() を使うと自動で画面中央に配置されます */
     }
+
+    html.dark .modal {
+        background-color: var(--main-color-black);
+    }
+
     /* モーダルの背景（オーバーレイ）のスタイル */
     .modal::backdrop {
         background-color: rgba(0, 0, 0, 0.45);
         backdrop-filter: blur(4px); /* 背景をぼかす */
     }
+
     .modal-content {
         position: relative;
         padding: 2.5rem 2rem 2rem;
@@ -331,6 +382,11 @@ const actionList = [
     .modal-close:hover {
         color: #000;
     }
+
+    html.dark .modal-close:hover {
+        color: #fff;
+    }
+
     .modal-header {
         display: flex;
         flex-direction: column;
@@ -343,18 +399,30 @@ const actionList = [
         height: 80px;
         object-fit: contain;
     }
+    html.dark .modal-header img.invert-dark {
+        filter: invert(1);
+    }
     .modal-header h3 {
         font-size: 1.8rem;
         margin: 0;
         font-weight: var(--font-weight-semibold);
         color: var(--main-color-black);
     }
+
+    html.dark .modal-header h3 {
+        color: var(--main-color-white);
+    }
+
     .modal-detail {
         font-size: 0.9rem;
         font-weight: var(--font-weight-normal);
         line-height: 1.6;
         color: var(--main-color-black);
         margin: 0;
+    }
+
+    html.dark .modal-detail {
+        color: var(--main-color-white);
     }
 
     @media screen and (max-width: 950px) {
@@ -485,6 +553,7 @@ const actionList = [
                                         itemIcon={item.icon}
                                         itemName={item.name}
                                         itemDetail={item.detail}
+                                        invertOnDark={item.invert}
                                     />
                                 ))}
                                 <!-- <Card 
@@ -517,6 +586,7 @@ const actionList = [
                                         itemIcon={item.icon}
                                         itemName={item.name}
                                         itemDetail={item.detail}
+                                        invertOnDark={item.invert}
                                     />
                                     
                                 ))}
@@ -644,11 +714,13 @@ const actionList = [
             const name = card.getAttribute("data-name") || "";
             const icon = card.getAttribute("data-icon") || "";
             const detail = card.getAttribute("data-detail") || "";
+            const invert = card.getAttribute("data-invert") === "true";
             if (modalTitle) {
                 modalTitle.textContent = name;
             }
             if (modalIcon) {
                 modalIcon.src = icon;
+                modalIcon.classList.toggle("invert-dark", invert);
             }
             if (modaldetail) {
                 modaldetail.textContent = detail;
