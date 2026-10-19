@@ -16,9 +16,15 @@ const slideImages = [
         justify-content: center;
         flex-direction: column;
         /* background-color: white; */
-        height: clamp(400px, 50vh, 800px);
+        height: clamp(400px, calc(100vh - 4.3rem), 800px);
         max-height: 800px;
         width: 100%;
+    }
+
+    @media screen and (max-width: 636px) {
+        .hero {
+            height: clamp(400px, calc(65vh - 4.3rem), 500px);
+        }
     }
 
     .bg-slide {
