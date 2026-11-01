@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import ContentFrame from "../components/ContentFrame.astro";
 import Card from "../components/Card.astro";
 import Message from "../components/Message.astro";
+import ScrollGallery from "../components/ScrollGallery.astro";
 
 const pageTitle = "About";
 const qualifications = [
@@ -612,7 +613,9 @@ const actionList = [
                 </div>
             </div>
             <div class="hobby-item">
-                <div class="galary-containter"></div>
+                <div class="galary-container">
+                    <ScrollGallery />
+                </div>
             </div>
             <!-- <h2 class="chapter-title"></h2>
             <div class="skill-container">

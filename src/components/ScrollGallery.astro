@@ -1,0 +1,206 @@
+---
+import { readdirSync } from 'node:fs';
+import { join } from 'node:path';
+import details from '../data/gallery.json';
+
+const photos = readdirSync(join(process.cwd(), 'public/images/galary'))
+    .filter((name) => /\.(jpe?g|png|webp|avif)$/i.test(name))
+    .sort()
+    .map((file) => ({ file, ...details.find((item) => item.file === file) }));
+---
+
+<section class="gallery" aria-label="写真ギャラリー" data-scroll-gallery>
+    <div class="gallery-stage">
+        <div class="gallery-heading">
+            <!-- <h2>Gallery</h2> -->
+            <!-- <p class="gallery-hint">スクロールして写真を見る</p> -->
+        </div>
+        <div class="gallery-photos">
+            {photos.map((photo, index) => (
+                <figure class="gallery-photo" style={`--layer: ${index}`}>
+                    <div class="gallery-image">
+                        <img src={`/images/galary/${encodeURIComponent(photo.file)}`}
+                            alt={photo.place && photo.place !== '場所名未設定' ? photo.place : `ギャラリーの写真 ${index + 1}`}
+                            loading="lazy" decoding="async" />
+                    </div>
+                    <figcaption class="gallery-caption">
+                        <div class="gallery-location">
+                            <h3>{photo.place || '場所名未設定'}</h3>
+                            <p class="gallery-address">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8">
+                                    <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z" />
+                                    <circle cx="12" cy="10" r="2.5" />
+                                </svg>
+                                {photo.location || '所在地未設定'}
+                            </p>
+                        </div>
+                        <div class="gallery-description">
+                            <p class="gallery-year">{photo.year || '撮影年未設定'}</p>
+                            <p>{photo.description || '説明未設定'}</p>
+                        </div>
+                    </figcaption>
+                </figure>
+            ))}
+        </div>
+        <!-- <p class="gallery-count" aria-hidden="true"><span data-gallery-count>0</span> / {photos.length}</p> -->
+    </div>
+</section>
+
+<style>
+    .gallery { margin-block: 4rem; }
+    .gallery-stage { background: rgb(232 107 121 / 7%); padding: clamp(16px, 3vw, 40px); border-radius: 16px; }
+    .gallery-caption { display: flex; justify-content: space-between; gap: 1rem; padding-block: 1rem; }
+    .gallery-caption h3 { margin: 0 0 0.75rem; font-size: clamp(1rem, 1.6vw, 1.4rem); color: var(--theme-color); font-weight: var(--font-weight-semibold);}
+    .gallery-caption p { margin: 0; font-size: 0.85rem; line-height: 1.8; overflow-wrap: anywhere; }
+    .gallery-location, .gallery-description { display: flex; flex-direction: column; align-items: center;}
+    .gallery-address { display: flex; align-items: flex-start; gap: 0.4rem; }
+    .gallery-address svg { width: 1.1rem; height: 1.1rem; flex-shrink: 0; margin-top: 0.2rem; color: #E86B79; }
+    .gallery-caption .gallery-year { margin-bottom: 0.75rem; font-variant-numeric: tabular-nums; }
+    .gallery-year {color: var(--theme-color); font-size: clamp(1rem, 1.6vw, 1.4rem); font-weight: var(--font-weight-semibold);}
+    :global(html.dark) .gallery-caption :is(h3, p) { color: var(--main-color-white); }
+    .gallery-heading { text-align: center; }
+    h2 { margin: 0; font-size: clamp(1.8rem, 4vw, 2.5rem); color: var(--theme-color); }
+    .gallery-hint, .gallery-count { font-size: 0.8rem; text-align: center; }
+    .gallery-photos { display: grid; gap: 1.5rem; }
+    .gallery-photo { margin: 0; }
+    .gallery-photo img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 12px; }
+    .gallery-count, .gallery-hint { display: none; }
+
+    .gallery[data-animated] { height: var(--gallery-height); }
+    .gallery[data-animated] .gallery-stage {
+        position: sticky;
+        top: var(--header-height);
+        height: calc(90svh - var(--header-height));
+        display: flex;
+        flex-direction: column;
+        /* gap: 1rem; */
+        overflow: clip;
+    }
+    .gallery[data-animated] .gallery-photos { position: relative; flex: 1; min-height: 0; }
+    .gallery[data-animated] .gallery-photo {
+        position: absolute;
+        inset: 0;
+        z-index: var(--layer);
+        visibility: hidden;
+    }
+    .gallery[data-animated] .gallery-image {
+        position: absolute;
+        inset: 0 23%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        container-type: size;
+    }
+    .gallery[data-animated] .gallery-caption {
+        position: absolute;
+        inset: 0;
+        align-items: center;
+        visibility: hidden;
+        pointer-events: none;
+    }
+    .gallery[data-animated] .gallery-photo[data-current] .gallery-caption { visibility: visible; }
+    .gallery[data-animated] .gallery-photo[data-current] :is(.gallery-location, .gallery-description) {
+        animation: caption-fade-in 600ms ease-out both;
+    }
+    @keyframes caption-fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    .gallery[data-animated] .gallery-location,
+    .gallery[data-animated] .gallery-description { width: 21%; }
+    .gallery[data-animated] .gallery-photo img {
+        width: min(92%, calc(92cqh * 4 / 3));
+        height: auto;
+        /* box-shadow: 0 12px 30px rgb(0 0 0 / 18%); */
+    }
+    .gallery[data-animated] .gallery-count,
+    .gallery[data-animated] .gallery-hint { display: block; margin: 0; }
+    @media (max-width: 1023px) {
+        .gallery[data-animated] .gallery-stage {
+            top: max(var(--header-height), 15svh);
+            /* height: 70svh; */
+        }
+        .gallery-photo {
+            display: grid;
+            grid-template-rows: auto minmax(0, 1fr) auto;
+            gap: 0.75rem;
+        }
+        .gallery-caption,
+        .gallery[data-animated] .gallery-caption { display: contents; }
+        .gallery-image,
+        .gallery[data-animated] .gallery-image {
+            position: relative;
+            inset: auto;
+            grid-row: 2;
+            min-height: 0;
+        }
+        .gallery-location,
+        .gallery[data-animated] .gallery-location { grid-row: 1; width: auto; }
+        .gallery-description,
+        .gallery[data-animated] .gallery-description { grid-row: 3; width: auto; text-align: center; }
+        .gallery-caption p { font-size: 0.75rem; }
+    }
+    @media screen and (max-width: 635px) {
+        .gallery-stage { background: rgb(232 107 121 / 7%); padding: clamp(32px, 6vw, 80px) clamp(16px, 3vw, 40px); border-radius: 16px; }
+
+        .gallery[data-animated] .gallery-stage {
+            top: max(var(--header-height), 15svh);
+            height: 55svh;
+        }
+    }
+</style>
+
+<script>
+    document.querySelectorAll<HTMLElement>('[data-scroll-gallery]').forEach((gallery) => {
+        const stage = gallery.querySelector<HTMLElement>('.gallery-stage')!;
+        const photos = [...gallery.querySelectorAll<HTMLElement>('.gallery-photo')];
+        const images = photos.map((photo) => photo.querySelector<HTMLElement>('.gallery-image')!);
+        const count = gallery.querySelector<HTMLElement>('[data-gallery-count]');
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        let frame = 0;
+        let step = 1;
+
+        const render = () => {
+            frame = 0;
+            if (reducedMotion.matches || photos.length === 0) return;
+            const top = parseFloat(getComputedStyle(stage).top);
+            const progress = Math.max(0, (top - gallery.getBoundingClientRect().top) / step);
+            const distance = stage.clientHeight;
+            const current = Math.min(photos.length - 1, Math.max(0, Math.floor(progress)));
+            photos.forEach((photo, index) => {
+                // Each photo rises for 80% of its scroll interval, then rests at the center.
+                const amount = Math.min(1, Math.max(0, (progress - index) / 0.8));
+                const eased = 1 - Math.pow(1 - amount, 3);
+                photo.style.visibility = amount > 0 ? 'visible' : 'hidden';
+                photo.toggleAttribute('data-current', index === current && amount > 0);
+                photo.setAttribute('aria-hidden', String(index !== current || amount === 0));
+                images[index].style.transform = `translateY(${(1 - eased) * distance}px) scale(${0.45 + eased * 0.55})`;
+            });
+            if (count) count.textContent = String(Math.min(photos.length, Math.ceil(progress)));
+        };
+        const schedule = () => {
+            if (!frame) frame = requestAnimationFrame(render);
+        };
+        const resize = () => {
+            const animated = !reducedMotion.matches && photos.length > 0;
+            gallery.toggleAttribute('data-animated', animated);
+            if (!animated) {
+                gallery.style.removeProperty('--gallery-height');
+                photos.forEach((photo, index) => {
+                    photo.style.removeProperty('visibility');
+                    images[index].style.removeProperty('transform');
+                    photo.removeAttribute('aria-hidden');
+                    photo.removeAttribute('data-current');
+                });
+                return;
+            }
+            step = Math.max(320, window.innerHeight * 0.65);
+            gallery.style.setProperty('--gallery-height', `${stage.offsetHeight + step * photos.length}px`);
+            schedule();
+        };
+        window.addEventListener('scroll', schedule, { passive: true });
+        window.addEventListener('resize', resize);
+        reducedMotion.addEventListener('change', resize);
+        resize();
+    });
+</script>
