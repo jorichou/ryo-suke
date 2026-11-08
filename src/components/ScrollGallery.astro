@@ -6,7 +6,8 @@ import details from '../data/gallery.json';
 const photos = readdirSync(join(process.cwd(), 'public/images/galary'))
     .filter((name) => /\.(jpe?g|png|webp|avif)$/i.test(name))
     .sort()
-    .map((file) => ({ file, ...details.find((item) => item.file === file) }));
+    .map((file) => ({ file, ...details.find((item) => item.file === file) }))
+    .filter((photo) => photo.published === true);
 ---
 
 <section class="gallery" aria-label="写真ギャラリー" data-scroll-gallery>

@@ -1,6 +1,7 @@
 [
   {
     "file": "240629165501671.JPG",
+    "published": true,
     "place": "法隆寺",
     "location": "奈良県生駒郡斑鳩町",
     "year": "2025",
@@ -8,6 +9,7 @@
   },
   {
     "file": "240926124314259.JPG",
+    "published": true,
     "place": "うなぎの佳川 葵",
     "location": "静岡県浜松市",
     "year": "2024",
@@ -15,6 +17,7 @@
   },
   {
     "file": "250213091942541.JPG",
+    "published": true,
     "place": "松本城",
     "location": "長野県松本市",
     "year": "2025",
@@ -22,20 +25,23 @@
   },
   {
     "file": "250525131335388.JPG",
-    "place": "場所名未設定",
-    "location": "所在地未設定",
-    "year": "撮影年未設定",
-    "description": "説明未設定"
+    "published": true,
+    "place": "SATYA - サティヤ",
+    "location": "和歌山県和歌山市",
+    "year": "2025",
+    "description": "和歌山駅近くのスパイスカレー屋"
   },
   {
     "file": "251102162009288.JPG",
-    "place": "場所名未設定",
-    "location": "所在地未設定",
-    "year": "撮影年未設定",
-    "description": "説明未設定"
+    "published": true,
+    "place": "クレープリー・アルション",
+    "location": "大阪府大阪市",
+    "year": "2025",
+    "description": "難波にあるクレープ屋"
   },
   {
     "file": "260525110501733.JPG",
+    "published": true,
     "place": "五稜郭",
     "location": "北海道函館市",
     "year": "2026",
@@ -43,6 +49,7 @@
   },
   {
     "file": "260614194404856.JPG",
+    "published": true,
     "place": "のスたOSAKA",
     "location": "大阪府大阪市",
     "year": "2026",
@@ -50,6 +57,7 @@
   },
   {
     "file": "261004150317512.JPG",
+    "published": true,
     "place": "友愛亭",
     "location": "大阪府大阪市",
     "year": "2026",
