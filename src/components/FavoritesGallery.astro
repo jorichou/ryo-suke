@@ -1,0 +1,146 @@
+---
+import { favorites } from '../data/favorites';
+
+for (const item of favorites) {
+    if (item.youtubeId !== undefined && !/^[\w-]{11}$/.test(item.youtubeId)) {
+        throw new Error(`Favorites: 「${item.title}」の youtubeId は11文字の動画IDを指定してください。`);
+    }
+}
+---
+
+<div class="favorites" data-favorites>
+    <p class="gallery-hint">カードをクリックすると、紹介が読めます。</p>
+    <ul class="favorites-grid">
+        {favorites.map((item, index) => (
+            <li class="favorite" data-favorite>
+                <div class="favorite-inner">
+                    <button class="favorite-front" type="button" data-flip aria-expanded="false" aria-controls={`favorite-back-${index}`} aria-label={`${item.title}の紹介を読む`}>
+                        <img src={item.image} alt={item.title} loading="lazy" decoding="async" width="640" height="480" />
+                        <span class="favorite-title">{item.title}</span>
+                        <span class="flip-hint" aria-hidden="true">紹介を見る ↗</span>
+                    </button>
+                    <div class="favorite-back" id={`favorite-back-${index}`} inert>
+                        <h3>{item.title}</h3>
+                        <p>{item.description}</p>
+                        <div class="favorite-actions">
+                            {item.youtubeId && (
+                                <button type="button" data-video={item.youtubeId} data-title={item.title} aria-haspopup="dialog">▶ 動画を再生</button>
+                            )}
+                            <button type="button" data-return>表に戻す ↶</button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        ))}
+    </ul>
+    <dialog class="video-dialog" aria-labelledby="favorite-video-title">
+        <div class="video-header">
+            <h3 id="favorite-video-title"></h3>
+            <button type="button" data-close aria-label="動画を閉じる" autofocus>閉じる ×</button>
+        </div>
+        <iframe title="YouTube動画" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        <p class="video-note">再生されない場合は、プレーヤーの再生ボタンを押してください。</p>
+    </dialog>
+</div>
+
+<style>
+    .favorites {
+        --favorite-accent: var(--theme-color);
+        --favorite-bg: var(--main-color-white);
+        --favorite-text: var(--main-color-black);
+        color: var(--favorite-text);
+    }
+    :global(html.dark) .favorites {
+        --favorite-accent: var(--theme-color-dark);
+        --favorite-bg: var(--main-color-black);
+        --favorite-text: var(--main-color-white);
+    }
+    .gallery-hint, .video-note { color: var(--favorite-text); font-size: 0.85rem; }
+    .gallery-hint { margin: 0 0 1.5rem; }
+    .favorites-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 1.5rem; padding: 0; margin: 0; list-style: none; }
+    .favorite { perspective: 1200px; min-width: 0; }
+    .favorite-inner { display: grid; height: 100%; transform-style: preserve-3d; transition: transform 600ms ease; }
+    .favorite.is-flipped .favorite-inner { transform: rotateY(180deg); }
+    .favorite-front, .favorite-back {
+        grid-area: 1 / 1;
+        min-width: 0;
+        border: 1px solid color-mix(in srgb, var(--favorite-accent) 35%, transparent);
+        border-radius: 16px;
+        background: var(--favorite-bg);
+        color: var(--favorite-text);
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        overflow: hidden;
+    }
+    button { font: inherit; cursor: pointer; }
+    button:focus-visible { outline: 3px solid var(--favorite-accent); outline-offset: 4px; }
+    .favorite-front { display: flex; flex-direction: column; padding: 0; text-align: left; width: 100%; }
+    .favorite-front img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+    .favorite-title { padding: 1.1rem 1.25rem 0.5rem; font-size: 1.15rem; font-weight: var(--font-weight-semibold); }
+    .flip-hint { padding: 0 1.25rem 1.25rem; color: var(--favorite-accent); font-size: 0.8rem; }
+    .favorite-back { transform: rotateY(180deg); padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; background: color-mix(in srgb, var(--favorite-accent) 8%, var(--favorite-bg)); }
+    .favorite-back h3 { color: var(--favorite-accent); font-size: 1.2rem; margin: 0; }
+    .favorite-back p { color: var(--favorite-text); margin: 0; line-height: 1.9; overflow-wrap: anywhere; white-space: pre-line; }
+    .favorite-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: auto; padding-top: 0.5rem; }
+    .favorite-actions button, .video-header button { border: 1px solid var(--favorite-accent); border-radius: 999px; padding: 0.6rem 1rem; background: var(--favorite-bg); color: var(--favorite-text); }
+    .favorite-actions button:hover, .video-header button:hover { background: color-mix(in srgb, var(--favorite-accent) 18%, var(--favorite-bg)); }
+    .video-dialog { width: min(960px, calc(100% - 2rem)); max-width: none; max-height: calc(100dvh - 2rem); padding: 1rem; overflow: auto; border: 1px solid var(--favorite-accent); border-radius: 16px; background: var(--favorite-bg); color: var(--favorite-text); }
+    .video-dialog::backdrop { background: rgb(0 0 0 / 70%); }
+    .video-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+    .video-header h3 { margin: 0; color: var(--favorite-text); overflow-wrap: anywhere; }
+    .video-header button { flex-shrink: 0; }
+    iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; }
+    .video-note { margin-bottom: 0; }
+    :global(html:has(.video-dialog[open])) { overflow: hidden; }
+    @media (prefers-reduced-motion: reduce) {
+        .favorite-inner { transition: none; }
+    }
+</style>
+
+<script>
+    document.querySelectorAll<HTMLElement>('[data-favorites]').forEach((gallery) => {
+        const dialog = gallery.querySelector<HTMLDialogElement>('dialog')!;
+        const iframe = dialog.querySelector<HTMLIFrameElement>('iframe')!;
+        const title = dialog.querySelector<HTMLElement>('h3')!;
+        let videoTrigger: HTMLButtonElement | undefined;
+
+        gallery.querySelectorAll<HTMLElement>('[data-favorite]').forEach((card) => {
+            const front = card.querySelector<HTMLButtonElement>('[data-flip]')!;
+            const back = card.querySelector<HTMLElement>('.favorite-back')!;
+            const returnButton = back.querySelector<HTMLButtonElement>('[data-return]')!;
+            const flip = (flipped: boolean) => {
+                card.classList.toggle('is-flipped', flipped);
+                front.setAttribute('aria-expanded', String(flipped));
+                front.inert = flipped;
+                back.inert = !flipped;
+                (flipped ? returnButton : front).focus({ preventScroll: true });
+            };
+            front.addEventListener('click', () => flip(true));
+            back.addEventListener('click', (event) => {
+                if (!(event.target instanceof Element) || !event.target.closest('[data-video]')) flip(false);
+            });
+        });
+
+        gallery.querySelectorAll<HTMLButtonElement>('[data-video]').forEach((button) => {
+            button.addEventListener('click', () => {
+                const videoId = button.dataset.video!;
+                if (!/^[\w-]{11}$/.test(videoId)) return;
+                videoTrigger = button;
+                title.textContent = button.dataset.title || '動画';
+                iframe.title = `${title.textContent}のYouTube動画`;
+                iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
+                dialog.showModal();
+            });
+        });
+        dialog.querySelector('[data-close]')!.addEventListener('click', () => dialog.close());
+        dialog.addEventListener('click', (event) => {
+            if (event.target !== dialog) return;
+            const bounds = dialog.getBoundingClientRect();
+            if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) dialog.close();
+        });
+        dialog.addEventListener('close', () => {
+            iframe.removeAttribute('src');
+            videoTrigger?.focus({ preventScroll: true });
+        });
+    });
+</script>
