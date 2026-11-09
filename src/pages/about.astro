@@ -2,7 +2,8 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ContentFrame from "../components/ContentFrame.astro";
 import Card from "../components/Card.astro";
-import Message from "../components/Message.astro";
+import FavoritesGallery from "../components/FavoritesGallery.astro";
+import ScrollGallery from "../components/ScrollGallery.astro";
 
 const pageTitle = "About";
 const qualifications = [
@@ -13,7 +14,6 @@ const qualifications = [
 const skillLIst =[
     {name: "Python", icon: "/images/skill-icon/Python-logo-notext.svg", detail: "研究や競技プログラミングで利用しています。大規模データの処理や簡単なアルゴリズムの実装ができます。"},
     {name: "HTML / CSS", icon: "/images/skill-icon/Official_CSS_Logo.svg", detail: "このサイトのようなウェブサイトを制作することができます。"},
-    {name: "C++", icon: "/images/skill-icon/ISO_C++_Logo.svg", detail: "簡単なプログラムを組むことができます。競技プログラミングで使えるようにするために勉強中です。"},
     {name: "Astro", icon: "/images/skill-icon/Astro.svg", detail: "このサイトを制作するにあたって利用しました。", invert: true},
     {name: "figma", icon: "/images/skill-icon/Figma-logo.svg", detail: "このサイトを制作するにあたって利用しました。簡単なサイトやアプリのデザインをすることができます。"}
 ];
@@ -500,7 +500,7 @@ const actionList = [
     }
 </style>
 
-<BaseLayout pageTitle={pageTitle}>
+<BaseLayout pageTitle={pageTitle} description="プロフィールとお気に入りを紹介します。" ogImage="/og/about.png">
     <ContentFrame chapterTitle={pageTitle} rubi="私について">
         <div slot="chapter-content" class="chapter-content about">
             <div class="portfolio-container">
@@ -608,11 +608,13 @@ const actionList = [
             <div class="hobby-item">
                 <h2 class="hobby-item-name">Favorites</h2>
                 <div class="hobby-item-content">
-                    <Message message="Coming soon..." />
+                    <FavoritesGallery />
                 </div>
             </div>
             <div class="hobby-item">
-                <div class="galary-containter"></div>
+                <div class="galary-container">
+                    <ScrollGallery />
+                </div>
             </div>
             <!-- <h2 class="chapter-title"></h2>
             <div class="skill-container">

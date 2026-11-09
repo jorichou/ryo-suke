@@ -1,5 +1,24 @@
 # Astro Starter Kit: Minimal
 
+## Favorites ギャラリーの編集
+
+About ページの Favorites は `src/data/favorites.ts` の `favorites` 配列で管理します。
+配列に以下の形式の項目を追加すると、カードが追加されます。
+
+```ts
+{
+    title: 'カードのタイトル',
+    image: '/images/favorites/example.jpg',
+    description: 'カードの裏面に表示する紹介文。',
+    // youtubeId: '動画の11文字のID', // 動画を紹介する場合のみ指定
+},
+```
+
+画像は `public/images/` 配下に置き、`image` には `/images/` から始まるパスを指定します。
+YouTube 動画を紹介する場合は、`youtubeId` に `watch?v=` の後にある11文字のIDを指定してください。
+再生ボタンからモーダルが開き、閉じるボタン・Escキー・背景のクリックで閉じると再生を停止します。
+自動再生がブラウザーに制限される場合は、プレーヤー内の再生ボタンで開始できます。
+
 ```sh
 npm create astro@latest -- --template minimal
 ```

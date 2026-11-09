@@ -12,7 +12,7 @@ const tags = [...new Set(activeWorks.map((post: CollectionEntry<'works'>) => pos
 const works = sortedWorks;
 const pageTitle = "Works";
 ---
-<BaseLayout pageTitle={pageTitle}>
+<BaseLayout pageTitle={pageTitle} description="制作物・研究成果の一覧。" ogImage="/og/work.png">
     <ContentFrame chapterTitle={pageTitle} rubi="作品">
         <div slot="sub-menu" class="tags">
             <button class="tag filter-btn active" data-filter="all">All</button>

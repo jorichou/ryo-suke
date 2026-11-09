@@ -1,0 +1,55 @@
+---
+import { favorites } from '../data/favorites';
+
+for (const video of favorites) {
+    if (!/^[\w-]{11}$/.test(video.youtubeId)) {
+        throw new Error(`Favorites: 「${video.title}」の youtubeId は11文字の動画IDを指定してください。`);
+    }
+}
+---
+
+<div class="favorites">
+    {favorites.map((video) => (
+        <iframe
+            src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}`}
+            title={video.title}
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+        ></iframe>
+    ))}
+</div>
+
+<style>
+    .favorites {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+    }
+
+    iframe {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border: 0;
+    }
+
+    @media (max-width: 1023px) {
+        .favorites {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+/* 
+    @media (max-width: 767px) {
+        .favorites {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    } */
+
+    @media (max-width: 768px) {
+        .favorites {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
