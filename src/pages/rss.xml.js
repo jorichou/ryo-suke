@@ -1,8 +1,16 @@
 import rss from '@astrojs/rss';
-import { getHomeContent } from '../utils/homeContent';
+import { getCollection } from 'astro:content';
 
 export async function GET(context) {
-  const { posts, news, works } = await getHomeContent();
+  const [allPosts, allNews, allWorks] = await Promise.all([
+    getCollection('posts'),
+    getCollection('news'),
+    getCollection('works'),
+  ]);
+  const isPublished = item => !import.meta.env.PROD || !item.data.draft;
+  const posts = allPosts.filter(isPublished);
+  const news = allNews.filter(isPublished);
+  const works = allWorks.filter(isPublished);
 
   // Map each collection to RSS items
   const postItems = posts.map(item => ({
@@ -32,8 +40,8 @@ export async function GET(context) {
   );
 
   return rss({
-    title: 'Ryousuke',
-    description: 'Portfolio for Ryousuke',
+    title: 'Ryosuke',
+    description: 'Portfolio for Ryosuke',
     site: context.site,
     items: rssItems,
     customData: `<language>ja-jp</language>`,
