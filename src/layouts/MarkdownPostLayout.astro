@@ -3,7 +3,7 @@ import BaseLayout from "./BaseLayout.astro";
 import TableOfContents from "../components/TableOfContents.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
 import Tag from "../components/Tag.astro";
-const { frontmatter, headings, slug } = Astro.props;
+const { frontmatter, headings } = Astro.props;
 const formattedDate = new Date(frontmatter.pubDate)
     .toLocaleDateString("ja-JP", {
         year: "numeric",
@@ -12,7 +12,7 @@ const formattedDate = new Date(frontmatter.pubDate)
     });
 ---
 
-<BaseLayout pageTitle={frontmatter.title} description={frontmatter.description} ogImage={`/og/posts/${slug}.png`} ogType="article">
+<BaseLayout pageTitle={frontmatter.title} description={frontmatter.description} ogType="article">
     <!-- <div class="post-layout"> -->
     <div class="post-container">
         <Breadcrumbs title={frontmatter.title} />

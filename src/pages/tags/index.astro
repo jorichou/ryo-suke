@@ -7,7 +7,7 @@ const activePosts = allPosts.filter((post: CollectionEntry<'posts'>) => !import.
 const tags = [...new Set(activePosts.map((post: CollectionEntry<'posts'>) => post.data.tags || []).flat())];
 const pageTitle = "タグインデックス";
 ---
-<BaseLayout pageTitle={pageTitle} description="ブログ記事のタグ一覧。" ogImage="/og/tags.png">
+<BaseLayout pageTitle={pageTitle} description="ブログ記事のタグ一覧。">
     <div class="tags">{
         tags.map((tag) => (
             <p class="tag"><a href={`/tags/${tag}`}>{tag}</a></p>

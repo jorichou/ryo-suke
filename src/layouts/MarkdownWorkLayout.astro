@@ -3,10 +3,10 @@ import BaseLayout from "./BaseLayout.astro";
 import Tag from "../components/Tag.astro";
 import TableOfContents from "../components/TableOfContents.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
-const { frontmatter, headings, slug } = Astro.props;
+const { frontmatter, headings } = Astro.props;
 ---
 
-<BaseLayout pageTitle={frontmatter.title} description={frontmatter.description} ogImage={`/og/works/${slug}.png`} ogType="article">
+<BaseLayout pageTitle={frontmatter.title} description={frontmatter.description} ogType="article">
     <div class="work-container">
         <Breadcrumbs title={frontmatter.title} />
         <div class="work-content-wrap">
