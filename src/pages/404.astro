@@ -5,7 +5,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <BaseLayout pageTitle="404 Not Found">
     <section class="not-found" aria-labelledby="not-found-title">
         <a class="not-found-logo" href="/" aria-label="ホームへ戻る">
-            <img src="/umekabuto.svg" alt="" />
+            <img src="/izuchi-logo2.svg" alt="" />
         </a>
         <div class="not-found-message">
             <h1 id="not-found-title">404 Not Found</h1>
@@ -27,7 +27,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     .not-found-logo {
         display: block;
-        width: min(100%, 200px);
+        width: min(100%, 320px);
         line-height: 0;
     }
 
@@ -53,6 +53,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         font-size: 1rem;
     }
 
+    html.dark .not-found-message h1 {
+        color: var(--theme-color-dark);
+    }
+
+    html.dark .not-found-message p {
+        color: var(--main-color-white);
+    }
+
     @media (max-width: 636px) {
         .not-found {
             grid-template-columns: 1fr;
@@ -63,7 +71,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         }
 
         .not-found-logo {
-            width: min(62vw, 180px);
+            width: min(62vw, 240px);
         }
     }
 </style>
