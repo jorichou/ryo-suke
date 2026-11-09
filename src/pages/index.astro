@@ -1,6 +1,5 @@
 ---
-import { getCollection } from "astro:content";
-import type { CollectionEntry } from "astro:content";
+import { getHomeContent } from "../utils/homeContent";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Greeting from "../components/Greeting.jsx";
 import ContentFrame from "../components/ContentFrame.astro";
@@ -15,21 +14,7 @@ import IntroCard from "../components/IntroCard.astro";
 
 const pageTitle = "Home";
 
-const allPosts = await getCollection('posts');
-const activePosts = allPosts.filter((post: CollectionEntry<'posts'>) => !import.meta.env.PROD || !post.data.draft);
-const sortedPosts = activePosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-const posts = sortedPosts.slice(0, 4);
-
-const allNews = await getCollection('news');
-const activeNews = allNews.filter((news: CollectionEntry<'news'>) => !import.meta.env.PROD || !news.data.draft);
-const sortedNews = activeNews.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-const news = sortedNews.slice(0, 4);
-
-const allWorks = await getCollection('works');
-const activeWorks = allWorks.filter((work: CollectionEntry<'works'>) => !import.meta.env.PROD || !work.data.draft);
-const sortedWorks = activeWorks.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-const works = sortedWorks.slice(0, 4);
-const tags = [...new Set(activeWorks.map((post: CollectionEntry<'works'>) => post.data.type).flat())];
+const { posts, news, works } = await getHomeContent();
 ---
 
 <BaseLayout pageTitle={pageTitle}>

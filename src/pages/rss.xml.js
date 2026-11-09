@@ -1,32 +1,25 @@
 import rss from '@astrojs/rss';
-import { getCollection } from 'astro:content';
+import { getHomeContent } from '../utils/homeContent';
 
 export async function GET(context) {
-  const posts = await getCollection('posts');
-  const news = await getCollection('news');
-  const works = await getCollection('works');
-
-  // Filter drafts in production
-  const activePosts = posts.filter(item => !import.meta.env.PROD || !item.data.draft);
-  const activeNews = news.filter(item => !import.meta.env.PROD || !item.data.draft);
-  const activeWorks = works.filter(item => !import.meta.env.PROD || !item.data.draft);
+  const { posts, news, works } = await getHomeContent();
 
   // Map each collection to RSS items
-  const postItems = activePosts.map(item => ({
+  const postItems = posts.map(item => ({
     title: item.data.title,
     pubDate: item.data.pubDate,
     description: item.data.description || '',
     link: `/posts/${item.slug}/`,
   }));
 
-  const newsItems = activeNews.map(item => ({
+  const newsItems = news.map(item => ({
     title: item.data.title,
     pubDate: item.data.pubDate,
     description: item.data.description || '',
     link: `/news/${item.slug}/`,
   }));
 
-  const workItems = activeWorks.map(item => ({
+  const workItems = works.map(item => ({
     title: item.data.title,
     pubDate: item.data.pubDate,
     description: item.data.description || '',
