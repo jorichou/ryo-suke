@@ -1,26 +1,16 @@
-export interface Favorite {
+export interface FavoriteVideo {
     title: string;
-    image: string;
-    description: string;
-    /** YouTube の動画ID（URLではなく11文字のID）。指定すると再生ボタンを表示します。 */
-    youtubeId?: string;
+    /** YouTube の動画ID（URLではなく11文字のID）。 */
+    youtubeId: string;
 }
 
-// カードを追加するには、この配列に項目を追加してください。配列順に表示します。
-export const favorites: Favorite[] = [
-    {
-        title: '史跡めぐり',
-        image: '/images/galary/250213091942541.JPG',
-        description: '日本史が好きで、城や寺社などの史跡めぐりを楽しんでいます。写真は2月の松本城です。',
-    },
-    {
-        title: 'スパイスカレー',
-        image: '/images/galary/250525131335388.JPG',
-        description: '和歌山駅近くのスパイスカレー屋「SATYA - サティヤ」。',
-    },
-    {
-        title: 'ラーメン',
-        image: '/images/galary/260614194404856.JPG',
-        description: '大阪・難波千日前にある「のスたOSAKA」。',
-    },
+// 動画を追加するときは、タイトルとYouTube動画IDをここに追加してください。
+export const favorites: FavoriteVideo[] = [
+    // { title: '動画タイトル', youtubeId: '動画ID11文字' },
+    { title: 'ビッケブランカ - 完璧のペキ / VK Blanka - Kan Peki No Peki', youtubeId: '51DrN3ET6x8' },
+    { title: 'YOASOBI「勇者」 Official Music Video／TVアニメ『葬送のフリーレン』オープニングテーマ', youtubeId: 'OIBODIPC_8Y' },
+    { title: '月詠み『導火』Music Video', youtubeId: '2vkgqu3-_Pk' },
+    { title: '【公式】槇原敬之「どんなときも。」(MV)【3rdシングル】 (1991年) Noriyuki Makihara/donnatokimo　【1位】', youtubeId: 'b88pxLpMZKk' },
+    { title: 'アゲハ蝶', youtubeId: 'swxob0SJyHg' },
+    { title: '秦 基博 - 「ひまわりの約束」 Music Video', youtubeId: 'rKsQ-3N-Bks'}
 ];
