@@ -4,7 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
 const { pageTitle, description = "Ryosukeのポートフォリオとブログです。", ogType = "website" } = Astro.props;
-const tabTitle = pageTitle === "Home" ? "Ryosuke" : `${pageTitle} | Ryo-suke.org`;
+const tabTitle = pageTitle === "Home" ? "Ryosuke" : `${pageTitle} | Ryosuke`;
 const siteUrl = Astro.site ?? new URL("https://ryo-suke.org");
 const pageUrl = new URL(Astro.url.pathname, siteUrl).href;
 const ogImageUrl = new URL("/ryosuke-ogp.jpg", siteUrl).href;
