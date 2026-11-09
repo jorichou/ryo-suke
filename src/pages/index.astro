@@ -17,7 +17,7 @@ const pageTitle = "Home";
 const { posts, news, works } = await getHomeContent();
 ---
 
-<BaseLayout pageTitle={pageTitle}>
+<BaseLayout pageTitle={pageTitle} description="Portfolio and blog of Ryosuke." ogImage="/og/home.png">
     <Hero slot="hero" />
     <ContentFrame chapterTitle="Works" rubi="作品">
         <!-- <div slot="sub-menu" class="tags">

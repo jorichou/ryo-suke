@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
-const { frontmatter } = Astro.props;
+const { frontmatter, slug } = Astro.props;
 const formattedDate = new Date(frontmatter.pubDate)
     .toLocaleDateString("ja-JP", {
         year: "numeric",
@@ -11,7 +11,7 @@ const formattedDate = new Date(frontmatter.pubDate)
     .replace(/\//g, ".");
 ---
 
-<BaseLayout pageTitle={frontmatter.title}>
+<BaseLayout pageTitle={frontmatter.title} description={frontmatter.description} ogImage={`/og/news/${slug}.png`} ogType="article">
     <div class="news-container">
         <Breadcrumbs title={frontmatter.title} />
         <div class="news-top">
