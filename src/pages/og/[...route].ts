@@ -44,7 +44,7 @@ export const { getStaticPaths, GET } = await OGImageRoute({
     title: page.title,
     description: page.description,
     logo: {
-      path: fileURLToPath(new URL('../../../public/images/izuchi-logo-name2.png', import.meta.url)),
+      path: fileURLToPath(new URL('../../../public/images/izuchi-logo2.svg', import.meta.url)),
       size: [250],
     },
     bgGradient: [[255, 255, 255]],
