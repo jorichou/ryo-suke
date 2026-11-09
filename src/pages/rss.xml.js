@@ -39,8 +39,8 @@ export async function GET(context) {
   );
 
   return rss({
-    title: 'ryouske | ブログ',
-    description: 'Astroを学ぶ旅',
+    title: 'Ryousuke',
+    description: 'Portfolio for Ryousuke',
     site: context.site,
     items: rssItems,
     customData: `<language>ja-jp</language>`,
