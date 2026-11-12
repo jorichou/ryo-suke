@@ -3,6 +3,7 @@ import BaseLayout from "./BaseLayout.astro";
 import TableOfContents from "../components/TableOfContents.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
 import Tag from "../components/Tag.astro";
+import "katex/dist/katex.min.css";
 const { frontmatter, headings } = Astro.props;
 const formattedDate = new Date(frontmatter.pubDate)
     .toLocaleDateString("ja-JP", {
@@ -12,7 +13,6 @@ const formattedDate = new Date(frontmatter.pubDate)
     });
 ---
 
-<link rel="stylesheet" href="https://jsdelivr.net" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
 <BaseLayout pageTitle={frontmatter.title} description={frontmatter.description} ogType="article">
     <!-- <div class="post-layout"> -->
     <div class="post-container">
